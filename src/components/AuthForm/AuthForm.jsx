@@ -14,6 +14,8 @@ export default function AuthForm() {
 
   const handleSubmit = (values, actions) => {
     console.log(values);
+    console.log("Діма лох");
+
     actions.resetForm();
   };
 
