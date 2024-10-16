@@ -15,7 +15,7 @@ import bottleDesktop2xWebp from "../../assets/auth-page/bottle-deskt-2x.webp";
 import bottleDesktop1xPng from "../../assets/auth-page/bottle-deskt-1x.png";
 import bottleDesktop2xPng from "../../assets/auth-page/bottle-deskt-2x.png";
 
-export default function AuthBottleImg() {
+const AuthBottleImg = () => {
   return (
     <picture className={css.picture}>
       <source
@@ -60,4 +60,6 @@ export default function AuthBottleImg() {
       />
     </picture>
   );
-}
+};
+
+export default AuthBottleImg;

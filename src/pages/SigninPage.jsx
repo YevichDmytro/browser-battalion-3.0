@@ -1,9 +1,11 @@
 import Auth from "../components/Auth/Auth";
 
-export default function SigninPage() {
+const SigninPage = () => {
   return (
     <>
       <Auth />
     </>
   );
-}
+};
+
+export default SigninPage;

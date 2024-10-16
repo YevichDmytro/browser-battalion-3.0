@@ -3,7 +3,7 @@ import AuthForm from "../AuthForm/AuthForm";
 
 import css from "./Auth.module.css";
 
-export default function Auth() {
+const Auth = () => {
   return (
     <section className={css.section}>
       <div className={css.container}>
@@ -12,4 +12,6 @@ export default function Auth() {
       </div>
     </section>
   );
-}
+};
+
+export default Auth;

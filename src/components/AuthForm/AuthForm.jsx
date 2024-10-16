@@ -7,15 +7,13 @@ import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
 
 import css from "./AuthForm.module.css";
 
-export default function AuthForm() {
+const AuthForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const id = useId();
 
   const handleSubmit = (values, actions) => {
     console.log(values);
-    console.log("Діма лох");
-
     actions.resetForm();
   };
 
@@ -103,4 +101,6 @@ export default function AuthForm() {
       </NavLink>
     </div>
   );
-}
+};
+
+export default AuthForm;
