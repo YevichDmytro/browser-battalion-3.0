@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const waterTrackerInitialState = {
   waterTracker: {
@@ -11,7 +11,7 @@ const waterTrackerInitialState = {
 const waterTrackerSlice = createSlice({
   name: 'auth',
   initialState: waterTrackerInitialState,
-  extraReducers: builder => builder.addCase(),
+  // extraReducers: builder => builder.addCase(),
 });
 
 export const waterTrackerReducer = waterTrackerSlice.reducer;
