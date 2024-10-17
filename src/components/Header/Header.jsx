@@ -1,13 +1,13 @@
-import Button from "../ui/Button/Button";
+import Logo from "../Logo/Logo";
 import Container from "../ui/Container/Container";
+import UserAuth from "../UserAuth/UserAuth";
 
-const Header = () => {
+const Header = ({ isAuthenticated }) => {
   return (
     <header>
       <Container>
-        {/* <Link to="/">LOGO</Link> */}
-        <Button>Hello world</Button>
-        {/* <Link to="/signin">Sign in</Link> */}
+        <Logo isAuthenticated={isAuthenticated} />
+        <UserAuth />
       </Container>
     </header>
   );

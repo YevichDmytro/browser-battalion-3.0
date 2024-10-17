@@ -1,8 +1,8 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
+import PrivateRoute from "../Routing/PrivateRoute";
+import PublicRoute from "../Routing/PublicRoute";
 import SharedLayout from "../SharedLayout/SharedLayout";
-import style from "./App.module.css";
-// import { useSelector } from "react-redux";
 
 const HomePage = lazy(() => import("../../pages/HomePage"));
 const NotFoundPage = lazy(() => import("../../pages/NotFoundPage"));
@@ -11,20 +11,44 @@ const SignupPage = lazy(() => import("../../pages/SignupPage"));
 const WelcomePage = lazy(() => import("../../pages/WelcomePage"));
 
 const App = () => {
-  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  // in future when will be redux to make private routing
+  const isAuthenticated = false;
 
   return (
     <Suspense fallback={null}>
-      <div className={style}>
-        <SharedLayout />
-      </div>
       <Routes>
-        <Route path="/" element={<WelcomePage />} />
-        <Route path="/signin" element={<SigninPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        {isAuthenticated && <Route path="/welcome" element={<HomePage />} />}
-
+        <Route element={<SharedLayout isAuthenticated={isAuthenticated} />} />
+        <Route
+          path="/"
+          element={
+            <PublicRoute isAuthenticated={isAuthenticated}>
+              <WelcomePage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/signin"
+          element={
+            <PublicRoute isAuthenticated={isAuthenticated}>
+              <SigninPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <PublicRoute isAuthenticated={isAuthenticated}>
+              <SignupPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute isAuthenticated={isAuthenticated}>
+              <HomePage />
+            </PrivateRoute>
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
