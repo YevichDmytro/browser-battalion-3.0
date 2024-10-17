@@ -5,7 +5,8 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import App from "./components/App/App.jsx";
 import "modern-normalize";
-import "./index.css";
+import "./reset.css";
+import "./global.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
