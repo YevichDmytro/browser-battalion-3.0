@@ -1,4 +1,26 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/Roboto-Regular.woff2") format("woff2"),
+    url("./assets/fonts/Roboto-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/Roboto-Medium.woff2") format("woff2"),
+    url("./assets/fonts/Roboto-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/fonts/Roboto-Bold.woff2") format("woff2"),
+    url("./assets/fonts/Roboto-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
 
 :root {
   /* ---------colors-------- */
@@ -13,7 +35,6 @@
 
   /* ---------fonts-------- */
   --font-family: "Roboto", sans-serif;
-  /* --font-family: Roboto, system-ui, Arial, sans-serif; */
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-bold: 700;
@@ -24,9 +45,6 @@
 body {
   font-family: var(--font-family);
   font-weight: var(--font-weight-regular);
-  margin: 0;
-  padding: 0;
-  /* box-sizing: border-box; */
 }
 
 h1,
@@ -37,102 +55,4 @@ h3 {
 
 p {
   font-weight: var(--font-weight-regular);
-}
-
-/* ---------buttons-------- */
-button {
-  border-radius: 10px;
-  border: none;
-  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  opacity: 0;
-  font-family: inherit;
-  font-weight: var(--font-weight-medium);
-  color: var(--primary-white);
-  cursor: pointer;
-  transition: box-shadow 0.3s ease;
-}
-
-button:hover {
-  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
-}
-
-button:focus,
-button:focus-visible {
-  box-shadow: none;
-}
-
-textButton1 {
-  font-weight: var(--font-weight-regular);
-}
-
-textButton2 {
-  font-weight: var(--font-weight-medium);
-}
-
-textButton1,
-textButton2 {
-  border-radius: 0%;
-  box-shadow: none;
-  color: var(--primary-blue);
-}
-
-textButton1:hover,
-textButton2:hover {
-  color: var(--secondary-orange);
-}
-
-/* deleteButton, logoutButton {
-
-  } */
-
-/* ---------mobile-------- */
-@media (max-width: 768px) {
-  button1,
-  button2 {
-    width: 280px;
-    height: 36px;
-  }
-
-  button1 {
-    padding: 8px 30px;
-  }
-
-  button2 {
-    padding: 6px, 76px;
-  }
-}
-
-/* ---------tablet-------- */
-@media (min-width: 768px) and (max-width: 1024px) {
-  button1,
-  button2 {
-    width: 336px;
-    height: 44px;
-  }
-
-  button1 {
-    padding: 10px 30px;
-  }
-
-  button2 {
-    padding: 10px 104px;
-  }
-}
-
-/* ---------desktop-------- */
-@media (min-width: 1024px) {
-  button1,
-  button2 {
-    padding: 10px 30px;
-  }
-
-  button1 {
-    width: 384px;
-    height: 44px;
-  }
-
-  button2 {
-    width: 178px;
-    height: 44px;
-  }
 }
