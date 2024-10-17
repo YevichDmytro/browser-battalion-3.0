@@ -1,6 +1,8 @@
 import css from './WhyDrinkWater.module.css'
 import icons from '../../assets/welcome-page/icons.svg'
-export default function WhyDrinkWater() {
+
+
+const WhyDrinkWater = () => {
     return (
         <div className={css.justForCheck}>
             <div className={css.mainBox}>
@@ -46,3 +48,5 @@ export default function WhyDrinkWater() {
         </div>
     )
 }
+
+export default WhyDrinkWater

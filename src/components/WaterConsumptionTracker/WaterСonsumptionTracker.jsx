@@ -3,7 +3,7 @@ import css from './WaterConsumptionTracker.module.css'
 import icons from '../../assets/welcome-page/icons.svg'
 import { useNavigate } from 'react-router-dom'
 
-export default function WaterConsumptionTracker() {
+const WaterConsumptionTracker = () => {
 
     const navigate = useNavigate();
 
@@ -46,3 +46,5 @@ export default function WaterConsumptionTracker() {
         </div>
     )
 }
+
+export default WaterConsumptionTracker;

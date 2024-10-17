@@ -3,7 +3,7 @@ import WaterConsumptionTracker from "../../components/WaterConsumptionTracker/Wa
 import WhyDrinkWater from "../../components/WhyDrinkWater/WhyDrinkWater";
 import css from './WelcomePage.module.css'
 
-export default function WelcomePage() {
+const WelcomePage = () => {
     return (
         <Container className={css.background}>
             <div>
@@ -15,3 +15,5 @@ export default function WelcomePage() {
         </Container>
     )
 }
+
+export default WelcomePage
