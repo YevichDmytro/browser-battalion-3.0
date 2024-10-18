@@ -39,6 +39,9 @@
   --font-weight-medium: 500;
   --font-weight-bold: 700;
 
+  /* ---------transition-------- */
+  --transition: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
   background-color: var(--secondary-lightblue);
 }
 
