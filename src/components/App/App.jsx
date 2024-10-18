@@ -1,14 +1,15 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import PrivateRoute from "../Routing/PrivateRoute";
-import PublicRoute from "../Routing/PublicRoute";
 import SharedLayout from "../SharedLayout/SharedLayout";
+
+import PrivateRoute from "../../components/Routing/PrivateRoute";
+import PublicRoute from "../../components/Routing/PublicRoute";
 
 const HomePage = lazy(() => import("../../pages/HomePage"));
 const NotFoundPage = lazy(() => import("../../pages/NotFoundPage"));
 const SigninPage = lazy(() => import("../../pages/SigninPage"));
 const SignupPage = lazy(() => import("../../pages/SignupPage"));
-const WelcomePage = lazy(() => import("../../pages/WelcomePage"));
+const WelcomePage = lazy(() => import("../../pages/WelcomePage/WelcomePage"));
 
 const App = () => {
   return (

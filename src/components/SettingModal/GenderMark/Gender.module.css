@@ -1,0 +1,59 @@
+.radioGroup {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.genderGroup {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.radioLabel {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000; /* Чёрный цвет */
+  cursor: pointer;
+  position: relative;
+  margin-right: 20px;
+}
+
+.radioInput {
+  display: none;
+}
+
+.radioMark {
+  width: 14px;
+  height: 14px;
+  border: 1px solid #007bff; /* Синий цвет */
+  border-radius: 50%;
+  position: relative;
+  margin-right: 8px;
+}
+
+.radioInput:checked + .radioMark::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background-color: #007bff; /* Синий цвет при выборе */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 1440px) {
+  .genderGroup {
+    margin-bottom: 52px;
+  }
+}

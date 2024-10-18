@@ -1,0 +1,101 @@
+.settingModal {
+  width: 280px;
+  height: 852px;
+  border-radius: 10px;
+  padding: 32px 12px;
+}
+
+.settingTittle {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.infoGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.PasswordGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.saveButton {
+  width: 100%;
+  padding: 8px 30px;
+  background-color: #407bff;
+  color: #ffffff;
+  box-shadow: 0px 4px 8px 0px #407bff57;
+  line-height: 1.25;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.buttonGroup {
+  margin-top: 8px;
+}
+
+.saveButton:active {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.saveButton:disabled {
+  cursor: not-allowed;
+  background-color: dimgrey;
+  opacity: 1;
+}
+
+@media screen and (min-width: 768px) {
+  .settingModal {
+    width: 704px;
+    height: 860px;
+  }
+
+  .subtitle {
+    margin-bottom: 0px;
+  }
+
+  .buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .saveButton {
+    width: 160px;
+    height: 44px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .settingModal {
+    width: 1008px;
+    height: 592px;
+  }
+
+  .formsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+  }
+
+  .PasswordGroup {
+    margin-top: 9px;
+  }
+
+  .buttonGroup {
+    margin-left: 390px;
+  }
+}
