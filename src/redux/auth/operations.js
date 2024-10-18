@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 axios.defaults.baseURL =
-  "https://browser-battalion-3-0-backend-kyxl.onrender.com/user";
+  "https://browser-battalion-3-0-backend-kyxl.onrender.com/auth";
 
 export const register = createAsyncThunk(
   "auth/register",
