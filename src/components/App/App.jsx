@@ -1,13 +1,13 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
-const HomePage = lazy(() => import("../../pages/HomePage"));
+// const HomePage = lazy(() => import("../../pages/HomePage"));
 const NotFoundPage = lazy(() => import("../../pages/NotFoundPage"));
 const SigninPage = lazy(() => import("../../pages/SigninPage"));
 const SignupPage = lazy(() => import("../../pages/SignupPage"));
 const WelcomePage = lazy(() => import("../../pages/WelcomePage"));
 
-import style from "./App.module.css";
+import SharedLayout from "../SharedLayout/SharedLayout";
 // import { useSelector } from "react-redux";
 
 const App = () => {
@@ -16,16 +16,14 @@ const App = () => {
 
   return (
     <Suspense fallback={null}>
-      <div className={style}>
-        <SharedLayout />
-      </div>
       <Routes>
-        <Route path="/" element={<WelcomePage />} />
-        <Route path="/signin" element={<SigninPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        {isAuthenticated && <Route path="/welcome" element={<HomePage />} />}
-
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<WelcomePage />} />
+          <Route path="signin" element={<SigninPage />} />
+          <Route path="signup" element={<SignupPage />} />
+          {/* {isAuthenticated && <Route path="welcome" element={<HomePage />} />} */}
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
       </Routes>
     </Suspense>
   );

@@ -1,0 +1,19 @@
+.header {
+  padding-top: 12px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.iconUser {
+  stroke: black;
+  fill: none;
+}
+
+.menuBtn {
+  padding: 0;
+  margin: 0;
+}
