@@ -11,16 +11,14 @@ const SignupPage = lazy(() => import("../../pages/SignupPage"));
 const WelcomePage = lazy(() => import("../../pages/WelcomePage"));
 
 const App = () => {
-  const isAuthenticated = false;
-
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<Loading />}>
       <Routes>
-        <Route element={<SharedLayout isAuthenticated={isAuthenticated} />} />
+        <Route element={<SharedLayout />} />
         <Route
           path="/"
           element={
-            <PublicRoute isAuthenticated={isAuthenticated}>
+            <PublicRoute>
               <WelcomePage />
             </PublicRoute>
           }
@@ -28,7 +26,7 @@ const App = () => {
         <Route
           path="/signin"
           element={
-            <PublicRoute isAuthenticated={isAuthenticated}>
+            <PublicRoute>
               <SigninPage />
             </PublicRoute>
           }
@@ -36,7 +34,7 @@ const App = () => {
         <Route
           path="/signup"
           element={
-            <PublicRoute isAuthenticated={isAuthenticated}>
+            <PublicRoute>
               <SignupPage />
             </PublicRoute>
           }
@@ -44,7 +42,7 @@ const App = () => {
         <Route
           path="/home"
           element={
-            <PrivateRoute isAuthenticated={isAuthenticated}>
+            <PrivateRoute>
               <HomePage />
             </PrivateRoute>
           }
