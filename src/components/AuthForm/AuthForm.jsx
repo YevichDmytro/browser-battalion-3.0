@@ -73,7 +73,7 @@ const AuthForm = () => {
         className={css.link}
         to={pathname === '/signin' ? '/signup' : '/signin'}
       >
-        {getAuthPageTitle()}
+        {pathname === '/signin' ? 'Sign Up' : 'Sign In'}
       </NavLink>
     </div>
   );
