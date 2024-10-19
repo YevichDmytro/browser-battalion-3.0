@@ -3,7 +3,7 @@
 import { Navigate } from 'react-router-dom';
 
 const PublicRoute = ({ children }) => {
-  const isAuthenticated = true;
+  const isAuthenticated = false;
   return isAuthenticated ? <Navigate to='/home' /> : children;
 };
 

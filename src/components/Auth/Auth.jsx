@@ -1,7 +1,6 @@
-import AuthBottleImg from "../AuthBottleImg/AuthBottleImg";
-import AuthForm from "../AuthForm/AuthForm";
-
-import css from "./Auth.module.css";
+import css from './Auth.module.css';
+import AuthBottleImg from '../AuthBottleImg/AuthBottleImg';
+import AuthForm from '../AuthForm/AuthForm';
 
 const Auth = () => {
   return (

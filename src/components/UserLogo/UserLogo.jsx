@@ -1,9 +1,10 @@
+import classNames from "classnames";
 import { useState } from "react";
+
+import css from "./UserLogo.module.css";
 import Icon from "../../assets/header/icons.svg";
 import UserLogoModal from "../UserLogoModal/UserLogoModal";
 
-import css from "./UserLogo.module.css";
-import classNames from "classnames";
 
 const UserLogo = () => {
   const [isMenuVisible, setMenuVisible] = useState(false);

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 import css from "./Header.module.css";
-
 import Container from "../ui/Container/Container";
 import UserAuth from "../UserAuth/UserAuth";
 import UserLogo from "../UserLogo/UserLogo";

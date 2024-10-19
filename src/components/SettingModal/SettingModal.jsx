@@ -1,9 +1,10 @@
-import css from "./SettingModal.module.css";
 import { Formik, Form } from "formik";
-import Photo from "./Photo/Photo";
 import { useState } from "react";
+
 import Gender from "./GenderMark/Gender";
 import Input from "./Input/Input";
+import Photo from "./Photo/Photo";
+import css from "./SettingModal.module.css";
 import { userInfoValidationSchema } from "../../../utils/userInfoValidationSchema";
 
 const SettingModal = () => {
