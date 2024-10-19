@@ -1,25 +1,37 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { useId } from 'react';
+import { Form, Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 
 import css from './AuthForm.module.css';
-import { userInfoValidationSchema } from '../../../utils/userInfoValidationSchema';
-import AuthInputPassword from '../AuthInputPassword/AuthInputPassword';
+import {
+  loginFormValidationSchema,
+  registerFormValidationSchema,
+} from '../../../utils/userInfoValidationSchema';
+import { register } from '../../redux/auth/operations';
+import AuthFormInput from '../AuthFormInput/AuthFormInput';
 
 const AuthForm = () => {
   const { pathname } = useLocation();
-  const id = useId();
+  const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    if (pathname === '/signin') console.log(values);
+    else if (pathname === '/signup') dispatch(register(values));
     actions.resetForm();
+  };
+
+  const chooseValidationSchema = () => {
+    if (pathname === '/signin') return loginFormValidationSchema;
+    else if (pathname === '/signup') return registerFormValidationSchema;
+  };
+
+  const getAuthPageTitle = () => {
+    return pathname === '/signin' ? 'Sign In' : 'Sign Up';
   };
 
   return (
     <div className={css.container}>
-      <h2 className={css.title}>
-        {pathname === '/signin' ? 'Sign In' : 'Sign Up'}
-      </h2>
+      <h2 className={css.title}>{getAuthPageTitle()}</h2>
       <Formik
         initialValues={{
           email: '',
@@ -27,39 +39,24 @@ const AuthForm = () => {
           repeatPassword: '',
         }}
         onSubmit={handleSubmit}
-        validationSchema={userInfoValidationSchema}
+        validationSchema={chooseValidationSchema}
       >
         {({ errors, touched }) => (
           <Form className={css.form}>
-            <div className={css.wrap}>
-              <label className={css.label} htmlFor={`email${id}`}>
-                Email
-              </label>
-              <Field
-                className={`${
-                  errors.email && touched.email ? css.inputError : ''
-                } ${css.input}`}
-                type="email"
-                name="email"
-                id={`email${id}`}
-                placeholder="Email"
-              />
-              <ErrorMessage
-                className={css.error}
-                name="email"
-                component="span"
-              />
-            </div>
-            <AuthInputPassword
-              css={css}
+            <AuthFormInput
+              errors={errors}
+              touched={touched}
+              type={'email'}
+              placeholder={'Email'}
+            />
+            <AuthFormInput
               errors={errors}
               touched={touched}
               type={'password'}
               placeholder={'Password'}
             />
             {pathname === '/signup' && (
-              <AuthInputPassword
-                css={css}
+              <AuthFormInput
                 errors={errors}
                 touched={touched}
                 type={'repeatPassword'}
@@ -67,13 +64,16 @@ const AuthForm = () => {
               />
             )}
             <button className={css.button} type="submit">
-              Sign In
+              {getAuthPageTitle()}
             </button>
           </Form>
         )}
       </Formik>
-      <NavLink className={css.link} to={'/signup'}>
-        Sign up
+      <NavLink
+        className={css.link}
+        to={pathname === '/signin' ? '/signup' : '/signin'}
+      >
+        {getAuthPageTitle()}
       </NavLink>
     </div>
   );

@@ -1,0 +1,71 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.input {
+  border: 1px solid var(--secondary-lightblue);
+  border-radius: 6px;
+  padding: 11px 10px;
+  background: var(--primary-white);
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--secondary-4);
+  outline: none;
+  margin-bottom: 4px;
+}
+
+.input::placeholder {
+  color: var(--secondary-4);
+}
+
+.input:focus {
+  color: var(--primary-blue);
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--primary-black);
+}
+
+.error {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  color: var(--secondary-3);
+}
+
+.inputError {
+  border: 1px solid var(--secondary-3);
+  color: var(--secondary-3);
+}
+
+.inputError::placeholder {
+  color: var(--secondary-3);
+}
+
+.hidePwdBtn {
+  position: absolute;
+  padding: 0;
+  top: 46px;
+  right: 10px;
+  width: 16px;
+  height: 16px;
+  border: none;
+  background-color: transparent;
+  color: var(--primery-blue);
+  cursor: pointer;
+}
+
+.hidePwdBtn svg {
+  stroke-width: 1px;
+}
