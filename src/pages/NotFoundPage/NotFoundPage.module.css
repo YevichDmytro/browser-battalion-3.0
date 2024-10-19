@@ -1,0 +1,16 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10%;
+  gap: 12px;
+}
+
+.errNumber {
+  font-size: 54px;
+  color: red;
+}
+
+.errMessage {
+  font-size: 36px;
+}
