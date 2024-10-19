@@ -1,5 +1,10 @@
+import { selectIsAuthenticated } from "";
+import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
-export default function PublicRoute({ isAuthenticated, children }) {
+const PublicRoute = ({ children }) => {
+  const isAuthenticated = useSelector(selectIsAuthenticated);
   return !isAuthenticated ? children : <Navigate to="/home" />;
-}
+};
+
+export default PublicRoute;
