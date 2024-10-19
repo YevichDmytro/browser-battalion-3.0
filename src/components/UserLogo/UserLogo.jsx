@@ -9,7 +9,7 @@ import UserLogoModal from "../UserLogoModal/UserLogoModal";
 const UserLogo = () => {
   const [isMenuVisible, setMenuVisible] = useState(false);
 
-  const handleOpenMenu = () => {
+  const handleToggleMenu = () => {
     setMenuVisible(!isMenuVisible);
   };
 
@@ -19,7 +19,7 @@ const UserLogo = () => {
 
   return (
     <div className={css.container}>
-      <button className={css.user} onClick={handleOpenMenu}>
+      <button className={css.user} onClick={handleToggleMenu}>
         <p className={css.userName}>Username</p>
         <img src="" alt="" className={css.userImg} />
         <svg
@@ -30,7 +30,7 @@ const UserLogo = () => {
             isMenuVisible && css.iconArrowActive
           )}
         >
-          <use xlinkHref={`${Icon}#arrow`}></use>
+          <use href={`${Icon}#arrow`}></use>
         </svg>
       </button>
       <UserLogoModal

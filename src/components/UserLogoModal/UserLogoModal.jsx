@@ -10,7 +10,7 @@ const UserLogoModal = ({ className, handleClose }) => {
         <li className={css.item}>
           <button className={css.btn} onClick={handleClose}>
             <svg width="16" height="16" className={css.icon}>
-              <use xlinkHref={`${Icon}#settings`}></use>
+              <use href={`${Icon}#settings`}></use>
             </svg>
             <p className={css.text}>Setting</p>
           </button>
@@ -18,7 +18,7 @@ const UserLogoModal = ({ className, handleClose }) => {
         <li className={css.item}>
           <button className={css.btn} onClick={handleClose}>
             <svg width="16" height="16" className={css.icon}>
-              <use xlinkHref={`${Icon}#logout`}></use>
+              <use href={`${Icon}#logout`}></use>
             </svg>
             <p className={css.text}>Log out</p>
           </button>
