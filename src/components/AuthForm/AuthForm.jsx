@@ -1,12 +1,10 @@
-import { useId } from "react";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import { NavLink, useLocation } from "react-router-dom";
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { useId } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 
-import AuthInputPassword from "../AuthInputPassword/AuthInputPassword";
-
-import { userInfoValidationSchema } from "../../../utils/userInfoValidationSchema";
-
-import css from "./AuthForm.module.css";
+import css from './AuthForm.module.css';
+import { userInfoValidationSchema } from '../../../utils/userInfoValidationSchema';
+import AuthInputPassword from '../AuthInputPassword/AuthInputPassword';
 
 const AuthForm = () => {
   const { pathname } = useLocation();
@@ -20,13 +18,13 @@ const AuthForm = () => {
   return (
     <div className={css.container}>
       <h2 className={css.title}>
-        {pathname === "/signin" ? "Sign In" : "Sign Up"}
+        {pathname === '/signin' ? 'Sign In' : 'Sign Up'}
       </h2>
       <Formik
         initialValues={{
-          email: "",
-          password: "",
-          repeatPassword: "",
+          email: '',
+          password: '',
+          repeatPassword: '',
         }}
         onSubmit={handleSubmit}
         validationSchema={userInfoValidationSchema}
@@ -39,7 +37,7 @@ const AuthForm = () => {
               </label>
               <Field
                 className={`${
-                  errors.email && touched.email ? css.inputError : ""
+                  errors.email && touched.email ? css.inputError : ''
                 } ${css.input}`}
                 type="email"
                 name="email"
@@ -56,16 +54,16 @@ const AuthForm = () => {
               css={css}
               errors={errors}
               touched={touched}
-              type={"password"}
-              placeholder={"Password"}
+              type={'password'}
+              placeholder={'Password'}
             />
-            {pathname === "/signup" && (
+            {pathname === '/signup' && (
               <AuthInputPassword
                 css={css}
                 errors={errors}
                 touched={touched}
-                type={"repeatPassword"}
-                placeholder={"Repeat password"}
+                type={'repeatPassword'}
+                placeholder={'Repeat password'}
               />
             )}
             <button className={css.button} type="submit">
@@ -74,7 +72,7 @@ const AuthForm = () => {
           </Form>
         )}
       </Formik>
-      <NavLink className={css.link} to={"/signup"}>
+      <NavLink className={css.link} to={'/signup'}>
         Sign up
       </NavLink>
     </div>

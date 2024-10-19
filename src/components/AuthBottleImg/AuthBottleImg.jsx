@@ -1,19 +1,16 @@
 import css from "./AuthBottleImg.module.css";
-
-import bottleMobile1xWebp from "../../assets/auth-page/bottle-mobil-1x.webp";
-import bottleMobile2xWebp from "../../assets/auth-page/bottle-mobil-2x.webp";
-import bottleMobile1xPng from "../../assets/auth-page/bottle-mobil-1x.png";
-import bottleMobile2xPng from "../../assets/auth-page/bottle-mobil-2x.png";
-
-import bottleTablet1xWebp from "../../assets/auth-page/bottle-tabl-1x.webp";
-import bottleTablet2xWebp from "../../assets/auth-page/bottle-tabl-2x.webp";
-import bottleTablet1xPng from "../../assets/auth-page/bottle-tabl-1x.png";
-import bottleTablet2xPng from "../../assets/auth-page/bottle-tabl-2x.png";
-
-import bottleDesktop1xWebp from "../../assets/auth-page/bottle-deskt-1x.webp";
-import bottleDesktop2xWebp from "../../assets/auth-page/bottle-deskt-2x.webp";
 import bottleDesktop1xPng from "../../assets/auth-page/bottle-deskt-1x.png";
+import bottleDesktop1xWebp from "../../assets/auth-page/bottle-deskt-1x.webp";
 import bottleDesktop2xPng from "../../assets/auth-page/bottle-deskt-2x.png";
+import bottleDesktop2xWebp from "../../assets/auth-page/bottle-deskt-2x.webp";
+import bottleMobile1xPng from "../../assets/auth-page/bottle-mobil-1x.png";
+import bottleMobile1xWebp from "../../assets/auth-page/bottle-mobil-1x.webp";
+import bottleMobile2xPng from "../../assets/auth-page/bottle-mobil-2x.png";
+import bottleMobile2xWebp from "../../assets/auth-page/bottle-mobil-2x.webp";
+import bottleTablet1xPng from "../../assets/auth-page/bottle-tabl-1x.png";
+import bottleTablet1xWebp from "../../assets/auth-page/bottle-tabl-1x.webp";
+import bottleTablet2xPng from "../../assets/auth-page/bottle-tabl-2x.png";
+import bottleTablet2xWebp from "../../assets/auth-page/bottle-tabl-2x.webp";
 
 const AuthBottleImg = () => {
   return (

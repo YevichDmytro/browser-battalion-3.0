@@ -1,7 +1,9 @@
-import Button from '../ui/Button/Button'
+import { useNavigate } from 'react-router-dom'
+
 import css from './WaterConsumptionTracker.module.css'
 import icons from '../../assets/welcome-page/icons.svg'
-import { useNavigate } from 'react-router-dom'
+import Button from '../ui/Button/Button'
+
 
 const WaterConsumptionTracker = () => {
 
