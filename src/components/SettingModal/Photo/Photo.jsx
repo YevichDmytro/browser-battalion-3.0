@@ -1,5 +1,6 @@
-import { useId } from "react";
 import clsx from "clsx";
+import { useId } from "react";
+
 import styles from "./Photo.module.css";
 
 const Photo = ({ avatar, isSubmitBlocked, handleAvatarChange }) => {

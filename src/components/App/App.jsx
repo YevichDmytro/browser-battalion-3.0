@@ -1,10 +1,11 @@
 import { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import SharedLayout from '../SharedLayout/SharedLayout';
 
+import style from './App.module.css';
 import PrivateRoute from '../../components/Routing/PrivateRoute';
 import PublicRoute from '../../components/Routing/PublicRoute';
 import Loading from '../Loading/Loading.jsx';
+import SharedLayout from '../SharedLayout/SharedLayout';
 
 const HomePage = lazy(() => import('../../pages/HomePage'));
 const NotFoundPage = lazy(() =>
@@ -18,17 +19,17 @@ const App = () => {
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
-        <Route path='/' element={<SharedLayout />}>
+        <Route path="/" element={<SharedLayout />}>
           <Route
             index
             element={
               <PublicRoute>
-                <Navigate to='/welcome' />
+                <Navigate to="/welcome" />
               </PublicRoute>
             }
           />
           <Route
-            path='welcome'
+            path="welcome"
             element={
               <PublicRoute>
                 <WelcomePage />
@@ -36,7 +37,7 @@ const App = () => {
             }
           />
           <Route
-            path='signup'
+            path="signup"
             element={
               <PublicRoute>
                 <SignupPage />
@@ -44,7 +45,7 @@ const App = () => {
             }
           />
           <Route
-            path='signin'
+            path="signin"
             element={
               <PublicRoute>
                 <SigninPage />
@@ -52,7 +53,7 @@ const App = () => {
             }
           />
           <Route
-            path='home'
+            path="home"
             element={
               <PrivateRoute>
                 <HomePage />
@@ -60,7 +61,7 @@ const App = () => {
             }
           />
         </Route>
-        <Route path='*' element={<NotFoundPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );

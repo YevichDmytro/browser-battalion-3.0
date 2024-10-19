@@ -1,6 +1,7 @@
 import classNames from "classnames";
-import Icon from "../../assets/header/icons.svg";
+
 import css from "./UserLogoModal.module.css";
+import Icon from "../../assets/header/icons.svg";
 
 const UserLogoModal = ({ className, handleClose }) => {
   return (
