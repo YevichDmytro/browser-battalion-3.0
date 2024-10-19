@@ -1,4 +1,25 @@
 import * as Yup from "yup";
+
+export const registerFormValidationSchema = Yup.object({
+  email: Yup.string()
+    .required("Email is required")
+    .email("Invalid email address"),
+  password: Yup.string()
+    .required("Password is required")
+    .min(8, "Your password is too short!")
+    .max(64, "Your password is too long!"),
+});
+
+export const loginFormValidationSchema = Yup.object({
+  email: Yup.string()
+    .required("Email is required")
+    .email("Invalid email address"),
+  password: Yup.string()
+    .required("Password is required")
+    .min(8, "Your password is too short!")
+    .max(64, "Your password is too long!"),
+});
+
 export const userInfoValidationSchema = Yup.object({
   name: Yup.string().max(32, "Too long"),
   email: Yup.string().email("Invalid email address"),

@@ -1,15 +1,15 @@
-import * as Yup from "yup";
-import { useId, useState } from "react";
+import { useId } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
-import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
+import AuthInputPassword from "../AuthInputPassword/AuthInputPassword";
+
+import { userInfoValidationSchema } from "../../../utils/userInfoValidationSchema";
 
 import css from "./AuthForm.module.css";
 
 const AuthForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
-
+  const { pathname } = useLocation();
   const id = useId();
 
   const handleSubmit = (values, actions) => {
@@ -17,27 +17,19 @@ const AuthForm = () => {
     actions.resetForm();
   };
 
-  const addContactSchema = Yup.object().shape({
-    email: Yup.string()
-      .min(3, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
-    password: Yup.string()
-      .min(3, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Required"),
-  });
-
   return (
     <div className={css.container}>
-      <h2 className={css.title}>Sign In</h2>
+      <h2 className={css.title}>
+        {pathname === "/signin" ? "Sign In" : "Sign Up"}
+      </h2>
       <Formik
         initialValues={{
           email: "",
           password: "",
+          repeatPassword: "",
         }}
         onSubmit={handleSubmit}
-        validationSchema={addContactSchema}
+        validationSchema={userInfoValidationSchema}
       >
         {({ errors, touched }) => (
           <Form className={css.form}>
@@ -60,36 +52,22 @@ const AuthForm = () => {
                 component="span"
               />
             </div>
-            <div className={css.wrap}>
-              <label className={css.label} htmlFor={`password${id}`}>
-                Password
-              </label>
-              <Field
-                className={`${
-                  errors.password && touched.password ? css.inputError : ""
-                } ${css.input}`}
-                type={showPassword ? "text" : "password"}
-                name="password"
-                placeholder="Password"
-                id={`password${id}`}
+            <AuthInputPassword
+              css={css}
+              errors={errors}
+              touched={touched}
+              type={"password"}
+              placeholder={"Password"}
+            />
+            {pathname === "/signup" && (
+              <AuthInputPassword
+                css={css}
+                errors={errors}
+                touched={touched}
+                type={"repeatPassword"}
+                placeholder={"Repeat password"}
               />
-              <ErrorMessage
-                className={css.error}
-                name="password"
-                component="span"
-              />
-              <button
-                type="button"
-                className={css.hidePwdBtn}
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? (
-                  <HiOutlineEye size={16} />
-                ) : (
-                  <HiOutlineEyeOff size={16} />
-                )}
-              </button>
-            </div>
+            )}
             <button className={css.button} type="submit">
               Sign In
             </button>
