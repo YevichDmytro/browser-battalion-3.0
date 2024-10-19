@@ -6,8 +6,8 @@ import Logo2x from "../../assets/header/logo@2x-min.png";
 import css from "./Header.module.css";
 
 import Container from "../ui/Container/Container";
-import UserLogo from "../UserLogo/UserLogo";
 import UserAuth from "../UserAuth/UserAuth";
+import UserLogo from "../UserLogo/UserLogo";
 
 const Header = () => {
   const isAuth = true;

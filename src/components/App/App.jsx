@@ -1,22 +1,25 @@
 import { lazy, Suspense, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import SharedLayout from "../SharedLayout/SharedLayout";
 
+import PrivateRoute from "../../components/Routing/PrivateRoute";
+import PublicRoute from "../../components/Routing/PublicRoute";
+import Loading from "../Loading/Loading.jsx";
+
+import style from "./App.module.css";
+
+import { refreshUser } from "../../redux/auth/operations";
+
 const HomePage = lazy(() => import("../../pages/HomePage"));
-const NotFoundPage = lazy(() => import("../../pages/NotFoundPage"));
+const NotFoundPage = lazy(() =>
+  import("../../pages/NotFoundPage/NotFoundPage.jsx")
+);
 const SigninPage = lazy(() => import("../../pages/SigninPage"));
 const SignupPage = lazy(() => import("../../pages/SignupPage"));
 const WelcomePage = lazy(() => import("../../pages/WelcomePage/WelcomePage"));
 
-import style from "./App.module.css";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { refreshUser } from "../../redux/auth/operations";
-
 const App = () => {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  // in future when will be redux to make private routing
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,16 +27,50 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <Suspense fallback={null}>
-      <div className={style}>
-        <SharedLayout />
-      </div>
+    <Suspense fallback={<Loading />}>
       <Routes>
-        <Route path="/" element={<WelcomePage />} />
-        <Route path="/signin" element={<SigninPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        {isAuthenticated && <Route path="/welcome" element={<HomePage />} />}
-
+        <Route path="/" element={<SharedLayout />}>
+          <Route
+            index
+            element={
+              <PublicRoute>
+                <Navigate to="/welcome" />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="welcome"
+            element={
+              <PublicRoute>
+                <WelcomePage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="signup"
+            element={
+              <PublicRoute>
+                <SignupPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="signin"
+            element={
+              <PublicRoute>
+                <SigninPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="home"
+            element={
+              <PrivateRoute>
+                <HomePage />
+              </PrivateRoute>
+            }
+          />
+        </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
