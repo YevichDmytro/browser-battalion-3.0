@@ -1,9 +1,9 @@
-// import { selectIsAuthenticated } from "";
-// import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import { selectIsAuthenticated } from '../../redux/auth/selectors.js';
 
 const PrivateRoute = ({ children }) => {
-  const isAuthenticated = false;
-  return isAuthenticated ? children : <Navigate to='/welcome' />;
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  return isAuthenticated ? children : <Navigate to="/welcome" />;
 };
 export default PrivateRoute;
