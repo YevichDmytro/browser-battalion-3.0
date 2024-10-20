@@ -6,7 +6,7 @@ import PrivateRoute from "../../components/Routing/PrivateRoute";
 import PublicRoute from "../../components/Routing/PublicRoute";
 import Loader from "../ui/Loader/Loader.jsx";
 
-const HomePage = lazy(() => import("../../pages/HomePage"));
+const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const NotFoundPage = lazy(() =>
   import("../../pages/NotFoundPage/NotFoundPage.jsx")
 );
