@@ -1,21 +1,31 @@
-import { lazy, Suspense } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { lazy, Suspense, useEffect } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import SharedLayout from "../SharedLayout/SharedLayout";
 
-import style from './App.module.css';
-import PrivateRoute from '../../components/Routing/PrivateRoute';
-import PublicRoute from '../../components/Routing/PublicRoute';
-import Loading from '../Loading/Loading.jsx';
-import SharedLayout from '../SharedLayout/SharedLayout';
+import PrivateRoute from "../../components/Routing/PrivateRoute";
+import PublicRoute from "../../components/Routing/PublicRoute";
+import Loading from "../Loading/Loading.jsx";
 
-const HomePage = lazy(() => import('../../pages/HomePage'));
+import style from "./App.module.css";
+
+import { refreshUser } from "../../redux/auth/operations";
+
+const HomePage = lazy(() => import("../../pages/HomePage"));
 const NotFoundPage = lazy(() =>
-  import('../../pages/NotFoundPage/NotFoundPage.jsx')
+  import("../../pages/NotFoundPage/NotFoundPage.jsx")
 );
-const SigninPage = lazy(() => import('../../pages/SigninPage'));
-const SignupPage = lazy(() => import('../../pages/SignupPage'));
-const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
+const SigninPage = lazy(() => import("../../pages/SigninPage"));
+const SignupPage = lazy(() => import("../../pages/SignupPage"));
+const WelcomePage = lazy(() => import("../../pages/WelcomePage/WelcomePage"));
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
