@@ -12,7 +12,6 @@ const authInitialState = {
   },
   token: null,
   isAuthenticated: false,
-  // isRefreshing: false,
   loading: false,
   error: null,
 };
@@ -82,23 +81,6 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = true;
       }),
-  // .addCase(refreshUser.pending, (state) => {
-  //   state.isRefreshing = true;
-  //   state.loading = true;
-  //   state.error = false;
-  // })
-  // .addCase(refreshUser.fulfilled, (state, action) => {
-  //   state.user = action.payload.user;
-  //   state.state.isAuthenticated = true;
-  //   state.loading = false;
-  //   state.error = false;
-  //   state.isRefreshing = false;
-  // })
-  // .addCase(refreshUser.rejected, (state) => {
-  //   state.loading = false;
-  //   state.error = true;
-  //   state.isRefreshing = false;
-  // }),
 });
 
 export const authReducer = authSlice.reducer;
