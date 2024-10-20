@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 axios.defaults.baseURL =
-  'https://browser-battalion-3-0-backend-kyxl.onrender.com/auth';
+  'https://browser-battalion-3-0-backend-kyxl.onrender.com';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -12,7 +12,7 @@ export const register = createAsyncThunk(
   'auth/register',
   async (newUser, thunkAPI) => {
     try {
-      const response = await axios.post('/register', newUser);
+      const response = await axios.post('/auth/register', newUser);
 
       return response.data.data;
     } catch (error) {
@@ -25,7 +25,7 @@ export const login = createAsyncThunk(
   'auth/login',
   async (userData, thunkAPI) => {
     try {
-      const response = await axios.post('/login', userData);
+      const response = await axios.post('/auth/login', userData);
       setAuthHeader(response.data.data.accessToken);
 
       return response.data.data;
@@ -44,24 +44,24 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
-export const refreshUser = createAsyncThunk(
-  'auth/refresh',
-  async (_, thunkAPI) => {
-    const reduxState = thunkAPI.getState();
-    const token = reduxState.auth.token;
-    setAuthHeader(token);
-    try {
-      const response = await axios.post('/refresh');
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response?.data || error.message);
-    }
-  },
-  {
-    condition: (_, thunkAPI) => {
-      const reduxState = thunkAPI.getState();
-      const token = reduxState.auth.token;
-      return token !== null;
-    },
-  }
-);
+// export const refreshUser = createAsyncThunk(
+//   'auth/refresh',
+//   async (_, thunkAPI) => {
+//     const reduxState = thunkAPI.getState();
+//     const token = reduxState.auth.token;
+//     setAuthHeader(token);
+//     try {
+//       const response = await axios.post('/auth/refresh');
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.response?.data || error.message);
+//     }
+//   },
+//   {
+//     condition: (_, thunkAPI) => {
+//       const reduxState = thunkAPI.getState();
+//       const token = reduxState.auth.token;
+//       return token !== null;
+//     },
+//   }
+// );
