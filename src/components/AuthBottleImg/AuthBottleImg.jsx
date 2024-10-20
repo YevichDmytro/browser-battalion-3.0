@@ -1,16 +1,16 @@
-import css from "./AuthBottleImg.module.css";
-import bottleDesktop1xPng from "../../assets/auth-page/bottle-deskt-1x.png";
-import bottleDesktop1xWebp from "../../assets/auth-page/bottle-deskt-1x.webp";
-import bottleDesktop2xPng from "../../assets/auth-page/bottle-deskt-2x.png";
-import bottleDesktop2xWebp from "../../assets/auth-page/bottle-deskt-2x.webp";
-import bottleMobile1xPng from "../../assets/auth-page/bottle-mobil-1x.png";
-import bottleMobile1xWebp from "../../assets/auth-page/bottle-mobil-1x.webp";
-import bottleMobile2xPng from "../../assets/auth-page/bottle-mobil-2x.png";
-import bottleMobile2xWebp from "../../assets/auth-page/bottle-mobil-2x.webp";
-import bottleTablet1xPng from "../../assets/auth-page/bottle-tabl-1x.png";
-import bottleTablet1xWebp from "../../assets/auth-page/bottle-tabl-1x.webp";
-import bottleTablet2xPng from "../../assets/auth-page/bottle-tabl-2x.png";
-import bottleTablet2xWebp from "../../assets/auth-page/bottle-tabl-2x.webp";
+import css from './AuthBottleImg.module.css';
+import bottleDesktop1xPng from '../../assets/auth-page/bottle-deskt-1x.png';
+import bottleDesktop1xWebp from '../../assets/auth-page/bottle-deskt-1x.webp';
+import bottleDesktop2xPng from '../../assets/auth-page/bottle-deskt-2x.png';
+import bottleDesktop2xWebp from '../../assets/auth-page/bottle-deskt-2x.webp';
+import bottleMobile1xPng from '../../assets/auth-page/bottle-mobil-1x.png';
+import bottleMobile1xWebp from '../../assets/auth-page/bottle-mobil-1x.webp';
+import bottleMobile2xPng from '../../assets/auth-page/bottle-mobil-2x.png';
+import bottleMobile2xWebp from '../../assets/auth-page/bottle-mobil-2x.webp';
+import bottleTablet1xPng from '../../assets/auth-page/bottle-tabl-1x.png';
+import bottleTablet1xWebp from '../../assets/auth-page/bottle-tabl-1x.webp';
+import bottleTablet2xPng from '../../assets/auth-page/bottle-tabl-2x.png';
+import bottleTablet2xWebp from '../../assets/auth-page/bottle-tabl-2x.webp';
 
 const AuthBottleImg = () => {
   return (
@@ -28,23 +28,23 @@ const AuthBottleImg = () => {
 
       <source
         srcSet={`${bottleTablet1xWebp} 1x, ${bottleTablet2xWebp} 2x`}
-        media="(max-width:1279px)"
+        media="(max-width:1439px)"
         type="image/webp"
       />
       <source
         srcSet={`${bottleTablet1xPng} 1x, ${bottleTablet2xPng} 2x`}
-        media="(max-width:1279px)"
+        media="(max-width:1439px)"
         type="image/png"
       />
 
       <source
         srcSet={`${bottleDesktop1xWebp} 1x, ${bottleDesktop2xWebp} 2x`}
-        media="(min-width:1280px)"
+        media="(min-width:1440px)"
         type="image/webp"
       />
       <source
         srcSet={`${bottleDesktop1xPng} 1x, ${bottleDesktop2xPng} 2x`}
-        media="(min-width:1280px)"
+        media="(min-width:1440px)"
         type="image/png"
       />
 
