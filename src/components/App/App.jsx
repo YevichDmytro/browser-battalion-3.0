@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 // import { useDispatch } from "react-redux";
 import SharedLayout from "../SharedLayout/SharedLayout";
