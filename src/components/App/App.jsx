@@ -11,7 +11,7 @@ import style from "./App.module.css";
 
 import { refreshUser } from "../../redux/auth/operations";
 
-const HomePage = lazy(() => import("../../pages/HomePage"));
+const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const NotFoundPage = lazy(() =>
   import("../../pages/NotFoundPage/NotFoundPage.jsx")
 );
