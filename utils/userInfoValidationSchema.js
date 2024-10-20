@@ -61,3 +61,18 @@ export const userInfoValidationSchema = Yup.object({
       return true;
     }),
 });
+
+export const WaterRateValidationSchema = Yup.object({
+  waterRate: Yup.string()
+    .required("Water rate is required")
+    .min(1, "Please, add you water rate!")
+    .max(15000, "You drank too much water!!"),
+});
+
+export const WaterNotesValidationSchema = Yup.object({
+  waterVolume: Yup.string()
+    .required("Water volume is required")
+    .min(1, "Please, add you water volume!")
+    .max(15000, "You drank too much water!!"),
+  date: Yup.string().required("Date is required").typeError("Incorrect date"),
+});
