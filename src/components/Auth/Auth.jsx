@@ -1,6 +1,6 @@
 import css from './Auth.module.css';
-import AuthBottleImg from '../AuthBottleImg/AuthBottleImg';
 import AuthForm from '../AuthForm/AuthForm';
+import BottleImg from '../BottleImg/BottleImg';
 import Container from '../ui/Container/Container';
 
 const Auth = () => {
@@ -8,7 +8,7 @@ const Auth = () => {
     <section className={css.section}>
       <Container className={css.container}>
         <AuthForm />
-        <AuthBottleImg />
+        <BottleImg className={css.picture} />
       </Container>
     </section>
   );

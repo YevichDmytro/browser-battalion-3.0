@@ -1,4 +1,4 @@
-import css from './AuthBottleImg.module.css';
+import css from './BottleImg.module.css';
 import bottleDesktop1xPng from '../../assets/auth-page/bottle-deskt-1x.png';
 import bottleDesktop1xWebp from '../../assets/auth-page/bottle-deskt-1x.webp';
 import bottleDesktop2xPng from '../../assets/auth-page/bottle-deskt-2x.png';
@@ -12,9 +12,9 @@ import bottleTablet1xWebp from '../../assets/auth-page/bottle-tabl-1x.webp';
 import bottleTablet2xPng from '../../assets/auth-page/bottle-tabl-2x.png';
 import bottleTablet2xWebp from '../../assets/auth-page/bottle-tabl-2x.webp';
 
-const AuthBottleImg = () => {
+const BottleImg = ({ className = '' }) => {
   return (
-    <picture className={css.picture}>
+    <picture className={className}>
       <source
         srcSet={`${bottleMobile1xWebp} 1x, ${bottleMobile2xWebp} 2x`}
         media="(max-width:767px)"
@@ -59,4 +59,4 @@ const AuthBottleImg = () => {
   );
 };
 
-export default AuthBottleImg;
+export default BottleImg;
