@@ -8,7 +8,7 @@ p {
 }
 
 .justForCheck {
-    margin: 0px auto 40px;
+    width: max-content;
 }
 
 .mainBox {
@@ -54,9 +54,6 @@ p {
 }
 
 @media screen and (min-width: 768px) {
-    .justForCheck {
-        margin: 0 0 40px 0;
-    }
 
     .mainBox {
         padding: 32px 24px;

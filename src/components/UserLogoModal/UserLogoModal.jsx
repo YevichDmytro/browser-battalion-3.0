@@ -1,16 +1,16 @@
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import css from "./UserLogoModal.module.css";
-import Icon from "../../assets/header/icons.svg";
+import css from './UserLogoModal.module.css';
+import Icon from '../../assets/header/icons.svg';
 
-const UserLogoModal = ({ className, handleClose }) => {
+const UserLogoModal = ({ handleClose, isVisible }) => {
   return (
-    <div className={classNames(css.modal, className)}>
+    <div className={classNames(css.modal, isVisible && css.modalActive)}>
       <ul className={css.list}>
         <li className={css.item}>
           <button className={css.btn} onClick={handleClose}>
             <svg width="16" height="16" className={css.icon}>
-              <use href={`${Icon}#settings`}></use>
+              <use href={`${Icon}#settings`}></use>\
             </svg>
             <p className={css.text}>Setting</p>
           </button>
