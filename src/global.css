@@ -45,6 +45,19 @@
   background-color: var(--primary-white);
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
+}
+
+html,
+body {
+  overflow: auto;
+}
+
 body {
   font-family: var(--font-family);
   font-weight: var(--font-weight-regular);
