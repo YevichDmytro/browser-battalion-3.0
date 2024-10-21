@@ -8,7 +8,7 @@ import css from './SettingModal.module.css';
 import { userInfoValidationSchema } from '../../../utils/userInfoValidationSchema';
 import ModalWrapper from '../ModalWrapper/ModalWrapper';
 
-const SettingModal = ({ isOpen, setOpen }) => {
+const SettingModal = ({ isOpen, handleClose }) => {
   const user = {};
   const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
 
@@ -45,7 +45,7 @@ const SettingModal = ({ isOpen, setOpen }) => {
   };
 
   return (
-    <ModalWrapper isOpen={isOpen} onClose={() => setOpen(false)}>
+    <ModalWrapper isOpen={isOpen} onClose={handleClose}>
       <div className={css.settingModal}>
         <h2 className={css.settingTitle}>Setting</h2>
         <Formik

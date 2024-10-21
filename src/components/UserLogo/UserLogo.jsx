@@ -4,12 +4,14 @@ import { useSelector } from 'react-redux';
 
 import css from './UserLogo.module.css';
 import { selectUser } from '../../redux/auth/selectors';
+import SettingModal from '../SettingModal/SettingModal';
 import UserLogoModal from '../UserLogoModal/UserLogoModal';
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
 
 const UserLogo = () => {
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [isLogoutVisible, setIsLogoutVisible] = useState(false);
+  const [isSettingsVisible, setIsSettingsVisible] = useState(false);
 
   const user = useSelector(selectUser);
   const { name, email, photo } = user;
@@ -31,8 +33,17 @@ const UserLogo = () => {
     setIsLogoutVisible(true);
   };
 
+  const handleSettingsClick = () => {
+    setMenuVisible(false);
+    setIsSettingsVisible(true);
+  };
+
   const handleLogoutModalClose = () => {
     setIsLogoutVisible(false);
+  };
+
+  const handleSettingsModalClose = () => {
+    setIsSettingsVisible(false);
   };
 
   return (
@@ -59,11 +70,16 @@ const UserLogo = () => {
       </button>
       <UserLogoModal
         isVisible={isMenuVisible}
-        handleClose={handleLogoutClick}
+        onLogoutClose={handleLogoutClick}
+        onSettingsClose={handleSettingsClick}
       />
       <UserLogoutModal
         isOpen={isLogoutVisible}
         onClose={handleLogoutModalClose}
+      />
+      <SettingModal
+        isOpen={isSettingsVisible}
+        handleClose={handleSettingsModalClose}
       />
     </div>
   );
