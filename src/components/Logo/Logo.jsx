@@ -1,11 +1,8 @@
-import LogoImg from "../../assets/header/logo-min.png";
-import LogoImg2x from "../../assets/header/logo@2x-min.png";
-
 const Logo = () => {
   return (
     <img
-      srcSet={`${LogoImg} 1x, ${LogoImg2x} 2x`}
-      src={`${LogoImg}`}
+      srcSet={`./header/logo-min.png 1x, ./header/logo-2x-min.png2x`}
+      src="./header/logo-min.png"
       alt="Logotype"
     />
   );

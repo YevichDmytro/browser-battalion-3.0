@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import css from './UserLogo.module.css';
-import Icon from '../../assets/header/icons.svg';
+// import Icon from '../../assets/header/icons.svg';
 import { selectUser } from '../../redux/auth/selectors';
 import UserLogoModal from '../UserLogoModal/UserLogoModal';
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
@@ -55,7 +55,7 @@ const UserLogo = () => {
             isMenuVisible && css.iconArrowActive
           )}
         >
-          <use href={`${Icon}#arrow`}></use>
+          <use href="./header/icons.svg#arrow"></use>
         </svg>
       </button>
       <UserLogoModal
