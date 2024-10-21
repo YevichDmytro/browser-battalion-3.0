@@ -1,0 +1,57 @@
+.modal {
+  background-color: var(--primary-white);
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.2);
+  margin-top: 10px;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 300;
+
+  transition: opacity var(--transition);
+
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.modalActive {
+  visibility: visible;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  transition: opacity var(--transition);
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.icon {
+  fill: none;
+  stroke: var(--primary-blue);
+}
+
+.text {
+  white-space: nowrap;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--primary-blue);
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+  }
+}
