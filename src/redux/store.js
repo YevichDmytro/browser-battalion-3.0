@@ -1,9 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { authReducer } from "./auth/slice.js";
-import { waterTrackerReducer } from "./waterTracker/slice.js";
-
 import {
   FLUSH,
   REHYDRATE,
@@ -12,6 +8,11 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
+import { authReducer } from "./auth/slice.js";
+import { waterTrackerReducer } from "./waterTracker/slice.js";
+
 
 const authPersistConfig = {
   key: "auth-token",

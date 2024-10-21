@@ -5,6 +5,7 @@
 
   font-weight: 400;
   font-size: 16px;
+  color: var(--primary-blue);
 
   transition: opacity var(--transition);
 
@@ -15,4 +16,9 @@
   @media screen and (min-width: 768px) {
     font-size: 18px;
   }
+}
+
+.iconUser {
+  stroke: black;
+  fill: none;
 }
