@@ -47,9 +47,9 @@ const WaterConsumptionTracker = () => {
         onClick={tryTrackerOnClick}
         className={css.trackerButton}
         variant="link"
-        href="/signin"
+        href="/signup"
       >
-        Try tracker
+        Try tracker 
       </Button>
     </div>
   );
