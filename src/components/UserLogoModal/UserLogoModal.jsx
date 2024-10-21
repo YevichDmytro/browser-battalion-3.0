@@ -29,3 +29,4 @@ const UserLogoModal = ({ className, handleClose }) => {
 };
 
 export default UserLogoModal;
+
