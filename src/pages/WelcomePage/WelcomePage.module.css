@@ -1,5 +1,5 @@
 .background {
-  background-image: url(./welcome-page/mob/MainPageBG.png);
+  background-image: url(../../../public/welcome-page/mob/MainPageBG.png);
   background-size: cover;
   background-position: bottom;
   background-repeat: no-repeat;
@@ -17,13 +17,13 @@
   screen and (min-resolution: 2dppx) and (max-width: 767px),
   screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
   .image {
-    background-image: url(./welcome-page/mob/MainPageBG@2x.png);
+    background-image: url(../../../public/welcome-page/mob/MainPageBG@2x.png);
   }
 }
 
 @media screen and (min-width: 768px) {
   .background {
-    background-image: url(./welcome-page/tab/MainPageBG.png);
+    background-image: url(../../../public/welcome-page/tab/MainPageBG.png);
     padding: 40px 32px 50px;
   }
 
@@ -31,7 +31,7 @@
     screen and (min-resolution: 2dppx) and (min-width: 768px),
     screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
     .image {
-      background-image: url(./welcome-page/tab/MainPageBG@2x.png);
+      background-image: url(../../../public/welcome-page/tab/MainPageBG@2x.png);
     }
   }
 
@@ -43,7 +43,7 @@
 
 @media screen and (min-width: 1440px) {
   .background {
-    background-image: url(./welcome-page/desk/MainPageBG.png);
+    background-image: url(../../../public/welcome-page/desk/MainPageBG.png);
     background-size: contain;
     background-position: bottom;
     padding: 41px 32px 109px;
@@ -56,13 +56,13 @@
     screen and (min-resolution: 2dppx) and (min-width: 1440px),
     screen and (min-device-pixel-ratio: 2) and (min-width: 1440px) {
     .image {
-      background-image: url(./welcome-page/desk/MainPageBG@2x.png),
-        url(./welcome-page/desk/MainPageBubbleBG@2x.png);
+      background-image: url(../../../public/welcome-page/desk/MainPageBG@2x.png),
+        url(../../../public/welcome-page/desk/MainPageBubbleBG@2x.png);
     }
   }
 
   .sizeBox {
-    background-image: url(./welcome-page/desk/MainPageBubbleBG.png);
+    background-image: url(../../../public/welcome-page/desk/MainPageBubbleBG.png);
     background-position: bottom right;
     max-width: max-content;
     gap: 81px;
