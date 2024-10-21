@@ -1,9 +1,7 @@
 import { useEffect, useCallback } from 'react';
-import { IoClose } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
 
 import style from './UserLogoutModal.module.css';
-import Icon from '../../assets/logout/x-btn.svg';
 import { logout } from '../../redux/auth/operations.js';
 import Container from '../ui/Container/Container.jsx';
 
@@ -49,7 +47,7 @@ const UserLogoutModal = ({ isOpen, onClose }) => {
             <h2 className={style.title}>Logout</h2>
             <button className={style.closeBtn} onClick={onClose}>
               <svg width="16" height="16">
-                <use href={`${Icon}#x-btn`}></use>
+                <use href="./logout/x-btn.svg#x-btn"></use>
               </svg>
             </button>
           </div>

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 import css from './UserAuth.module.css';
-// import Icon from "../../assets/header/icons.svg";
 
 const UserAuth = () => {
   return (
