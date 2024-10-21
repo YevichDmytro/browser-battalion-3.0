@@ -1,6 +1,6 @@
 .backdrop {
   position: fixed;
-  z-index: 999;
+  z-index: 300;
   top: 0;
   left: 0;
   width: 100%;
@@ -137,8 +137,5 @@
 @media screen and (min-width: 1440px) {
   .wrapModal {
     top: 296px;
-  }
-  .wrapButtons {
-    justify-content: start;
   }
 }
