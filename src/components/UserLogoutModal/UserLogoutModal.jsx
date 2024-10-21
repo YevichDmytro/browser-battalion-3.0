@@ -1,10 +1,11 @@
-import Container from '../ui/Container/Container.jsx';
-import { IoClose } from 'react-icons/io5';
-import style from './UserLogoutModal.module.css';
-import { useDispatch } from 'react-redux';
-import { logout } from '../../redux/auth/operations.js';
 import { useEffect, useCallback } from 'react';
+import { IoClose } from 'react-icons/io5';
+import { useDispatch } from 'react-redux';
+
+import style from './UserLogoutModal.module.css';
 import Icon from '../../assets/logout/x-btn.svg';
+import { logout } from '../../redux/auth/operations.js';
+import Container from '../ui/Container/Container.jsx';
 
 const UserLogoutModal = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
@@ -51,7 +52,6 @@ const UserLogoutModal = ({ isOpen, onClose }) => {
                 <use href={`${Icon}#x-btn`}></use>
               </svg>
             </button>
-            ;
           </div>
           <p className={style.text}>Do you really want to leave?</p>
           <div className={style.wrapButtons}>

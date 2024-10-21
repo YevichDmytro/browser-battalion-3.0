@@ -29,4 +29,3 @@ const UserLogoModal = ({ handleClose, isVisible }) => {
 };
 
 export default UserLogoModal;
-
