@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
 import css from './WaterConsumptionTracker.module.css';
-import icons from '../../assets/welcome-page/icons.svg';
 import Button from '../ui/Button/Button';
 
 const WaterConsumptionTracker = () => {
@@ -25,19 +24,19 @@ const WaterConsumptionTracker = () => {
         <ul className={css.list}>
           <li className={css.listItem}>
             <svg className={css.listItemSvg} height={32} width={32}>
-              <use href={`${icons}#icon-key`}></use>
+              <use href="./welcome-page/icons.svg#icon-key"></use>
             </svg>
             Habit drive
           </li>
           <li className={css.listItem}>
             <svg className={css.listItemSvg} height={32} width={32}>
-              <use href={`${icons}#icon-statistic`}></use>
+              <use href="./welcome-page/icons.svg#icon-statistic"></use>
             </svg>
             Viev statistics
           </li>
           <li className={css.listItem}>
             <svg className={css.listItemSvg} height={32} width={32}>
-              <use href={`${icons}#icon-calendar`}></use>
+              <use href="./welcome-page/icons.svg#icon-calendar"></use>
             </svg>
             Personal rate setting
           </li>

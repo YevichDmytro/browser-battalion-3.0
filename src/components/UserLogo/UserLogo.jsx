@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import css from './UserLogo.module.css';
-// import Icon from '../../assets/header/icons.svg';
 import { selectUser } from '../../redux/auth/selectors';
 import UserLogoModal from '../UserLogoModal/UserLogoModal';
 import UserLogoutModal from '../UserLogoutModal/UserLogoutModal';
