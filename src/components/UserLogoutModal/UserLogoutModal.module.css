@@ -1,0 +1,123 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapModal {
+  border-radius: 10px;
+  padding: 32px 24px;
+  width: 280px;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+
+  margin-top: 30px;
+  outline: 2px solid red;
+}
+
+.wrapTitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-medium);
+  font-size: 26px;
+  line-height: 1.23;
+  color: black;
+}
+
+.closeBtn {
+  background-color: transparent;
+}
+
+.closeIcon {
+  fill: blue;
+}
+
+.text {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-medium);
+  font-size: 18px;
+  line-height: 1.1;
+  color: black;
+}
+
+.wrapButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.logoutBtn,
+.cancelBtn {
+  border-radius: 10px;
+  padding: 8px 30px;
+  width: 232px;
+  height: 36px;
+
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-medium);
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.logoutBtn {
+  color: var(--primary-white);
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  background-color: var(--secondary-3);
+  transition: box-shadow var(--transition);
+
+  &:hover {
+    box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+  }
+  &:active {
+    box-shadow: none;
+  }
+}
+
+.cancelBtn {
+  color: var(--primary-blue);
+  background-color: var(--secondary-lightblue);
+  transition: box-shadow var(--transition);
+
+  &:hover {
+    box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+  }
+  &:active {
+    box-shadow: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .wrapModal {
+    width: 592px;
+    height: 208px;
+  }
+
+  .text {
+    text-align: start;
+  }
+
+  .wrapButtons {
+    flex-direction: row;
+    justify-content: end;
+  }
+
+  .logoutBtn,
+  .cancelBtn {
+    padding: 10px 30px;
+    width: 160px;
+    height: 44px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapButtons {
+    justify-content: start;
+  }
+}
