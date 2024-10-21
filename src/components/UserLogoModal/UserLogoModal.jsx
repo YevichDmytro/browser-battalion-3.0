@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 import css from './UserLogoModal.module.css';
-import Icon from '../../assets/header/icons.svg';
+// import Icon from '../../assets/header/icons.svg';
 
 const UserLogoModal = ({ handleClose, isVisible }) => {
   return (
@@ -10,7 +10,7 @@ const UserLogoModal = ({ handleClose, isVisible }) => {
         <li className={css.item}>
           <button className={css.btn} onClick={handleClose}>
             <svg width="16" height="16" className={css.icon}>
-              <use href={`${Icon}#settings`}></use>\
+              <use href="./header/icons.svg#settings"></use>\
             </svg>
             <p className={css.text}>Setting</p>
           </button>
@@ -18,7 +18,7 @@ const UserLogoModal = ({ handleClose, isVisible }) => {
         <li className={css.item}>
           <button className={css.btn} onClick={handleClose}>
             <svg width="16" height="16" className={css.icon}>
-              <use href={`${Icon}#logout`}></use>
+              <use href="./header/icons.svg#logout"></use>
             </svg>
             <p className={css.text}>Log out</p>
           </button>
