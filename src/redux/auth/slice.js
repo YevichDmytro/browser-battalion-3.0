@@ -10,7 +10,7 @@ import {
 
 const authInitialState = {
   user: {
-    name: null,
+    userName: null,
     email: null,
     gender: null,
     waterRate: null,
@@ -64,7 +64,7 @@ const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, state => {
         state.user = {
-          name: null,
+          userName: null,
           email: null,
           gender: null,
           waterRate: null,
@@ -77,7 +77,7 @@ const authSlice = createSlice({
       })
       .addCase(logout.rejected, state => {
         state.user = {
-          name: null,
+          userName: null,
           email: null,
           gender: null,
           waterRate: null,
@@ -106,11 +106,7 @@ const authSlice = createSlice({
         state.error = false;
       })
       .addCase(updateUserData.fulfilled, (state, action) => {
-        // відповідь action.payload - немає вкладки user, action.payload: {
-        // _id: ...,
-        // email: "....",
-        // gender: "....",
-        // і т.д}
+        state.user = { ...state.user, ...action.payload };
         state.isAuthenticated = true;
         state.loading = false;
         state.error = false;
