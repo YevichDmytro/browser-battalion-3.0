@@ -14,13 +14,30 @@ const SettingModal = ({ isOpen, handleClose }) => {
 
   const initialValues = {
     email: user.email || '',
-    name: user.name || '',
+    userName: user.name || '',
     gender: user.gender,
-    avatar: user.avatar || '',
-    outdatedPassword: '',
+    photo: user.avatar || '',
+    oldPassword: '',
     password: '',
     repeatPassword: '',
   };
+
+  /// можливо знадобиться цей код в роботі, він працює для оновлення аватару
+  // const dispatch = useDispatch();
+
+  // const handleAvatarChange = e => {
+  //   setIsSubmitBlocked(true);
+  //   const file = e.target.files[0];
+
+  //   /// для створення нового ключа FormData для відправки файлу
+  //   const formData = new FormData();
+  //   formData.append('photo', file);
+
+  //   // для відправки аватару на сервер
+  //   dispatch(updateUserData(formData)).then(() => {
+  //     setIsSubmitBlocked(false);
+  //   });
+  // };
 
   const handleAvatarChange = e => {
     setIsSubmitBlocked(true);
@@ -33,11 +50,11 @@ const SettingModal = ({ isOpen, handleClose }) => {
 
   const onSubmit = values => {
     const userInfo = {
-      name: values.name,
+      userName: values.name,
       email: values.email,
       gender: values.gender,
-      avatar: values.avatar,
-      outdatedPassword: values.outdatedPassword,
+      photo: values.avatar,
+      oldPassword: values.outdatedPassword,
       password: values.password,
       repeatPassword: values.repeatPassword,
     };

@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { register, login, logout, refreshUser } from './operations';
+import {
+  register,
+  login,
+  logout,
+  refreshUser,
+  updateUserData,
+} from './operations';
 
 const authInitialState = {
   user: {
@@ -94,6 +100,24 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, (state, action) => {
         state.isRefreshing = false;
         state.error = action.payload;
+      })
+      .addCase(updateUserData.pending, state => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(updateUserData.fulfilled, (state, action) => {
+        // відповідь action.payload - немає вкладки user, action.payload: {
+        // _id: ...,
+        // email: "....",
+        // gender: "....",
+        // і т.д}
+        state.isAuthenticated = true;
+        state.loading = false;
+        state.error = false;
+      })
+      .addCase(updateUserData.rejected, state => {
+        state.loading = false;
+        state.error = true;
       }),
 });
 
