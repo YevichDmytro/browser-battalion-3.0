@@ -1,10 +1,9 @@
 import css from './TodayWaterList.module.css';
 import TodayWaterListItem from './TodayWaterListItem';
-import Container from '../ui/Container/Container';
 
 const TodayWaterList = () => {
   return (
-    <Container className={css.container}>
+    <div className={css.container}>
       <h2 className={css.title}>Today</h2>
       <ul>
         <TodayWaterListItem className={css.addWaterBox} />
@@ -12,7 +11,7 @@ const TodayWaterList = () => {
       <button className={css.button} type="button">
         + Add water
       </button>
-    </Container>
+    </div>
   );
 };
 
