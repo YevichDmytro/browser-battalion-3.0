@@ -6,16 +6,18 @@ import css from './ModalInput.module.css';
 const ModalInput = ({ errors, touched, name, text }) => {
   const id = useId();
   return (
-    <div>
+    <div className={css.wrap}>
       {name === 'willDrink' ? (
-        <h3>{text}</h3>
+        <h3 className={css.subtitle}>{text}</h3>
       ) : (
-        <label htmlFor={name}>{text}</label>
+        <label className={css.label} htmlFor={name}>
+          {text}
+        </label>
       )}
       <Field
-        className={`${
-          errors.kilograms && touched.kilograms ? css.inputError : ''
-        } ${css.input}`}
+        className={`${errors[name] && touched[name] ? css.inputError : ''} ${
+          css.input
+        }`}
         type={'text'}
         name={name}
         placeholder={'0'}

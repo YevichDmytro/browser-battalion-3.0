@@ -68,9 +68,11 @@ const ModalForm = () => {
               'The time of active participation in sports or other activities with a high physical. load in hours:'
             }
           />
-          <div>
-            <p>The required amount of water in liters per day:</p>
-            <p>{liters} L</p>
+          <div className={css.wrap}>
+            <p className={css.discr}>
+              The required amount of water in liters per day:
+            </p>
+            <p className={css.litersText}>{liters} L</p>
           </div>
           <ModalInput
             errors={errors}
