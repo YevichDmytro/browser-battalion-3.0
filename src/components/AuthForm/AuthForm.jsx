@@ -16,7 +16,7 @@ const AuthForm = () => {
 
   const handleSubmit = (values, actions) => {
     const { email, password } = values;
-    if (pathname === '/signin') dispatch(login({email, password}));
+    if (pathname === '/signin') dispatch(login({ email, password }));
     else if (pathname === '/signup') dispatch(register({ email, password }));
     actions.resetForm();
   };

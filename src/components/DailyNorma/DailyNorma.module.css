@@ -10,6 +10,7 @@
   border-radius: 10px;
   max-width: 166px;
   z-index: 1;
+  position: relative;
 }
 
 .title {
@@ -42,6 +43,7 @@
   color: #8baeff;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .picture {

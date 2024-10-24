@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
+import css from './HomePage.module.css';
 import DailyNorma from '../../components/DailyNorma/DailyNorma';
+import MonthStatsTable from '../../components/MonthStatsTable/MonthStatsTable';
 import TodayListModal from '../../components/TodayListModal/TodayListModal';
 import TodayWaterList from '../../components/TodayWaterList/TodayWaterList';
 import Container from '../../components/ui/Container/Container';
@@ -13,8 +15,11 @@ const HomePage = () => {
   return (
     <Container>
       <DailyNorma />
-      <TodayWaterList setModal={setIsModalOpen} isAddModal={setAddModal}/>
-      {isModalOpen && <TodayListModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} isAddModal={addModal} />}
+      <div className={css.rightContainer}>
+        <TodayWaterList setModal={setIsModalOpen} isAddModal={setAddModal}/>
+        {isModalOpen && <TodayListModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} isAddModal={addModal} />}
+        <MonthStatsTable />
+      </div>
     </Container>
   );
 };
