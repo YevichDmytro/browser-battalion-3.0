@@ -1,7 +1,10 @@
 import classNames from 'classnames';
+
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import DaysGeneralStats from './DaysGeneralStats/DaysGeneralStats';
+import DaysGeneralStatsCss from './DaysGeneralStats/DaysGeneralStats.module.css';
 import css from './MonthStatsTable.module.css';
 import { getMonthWaterData } from '../../redux/waterTracker/operations';
 import { selectMonthData } from '../../redux/waterTracker/selectors';
@@ -29,6 +32,33 @@ const MonthStatsTable = () => {
   const handlePrevMonth = () => changeMonth(-1);
   const handleNextMonth = () => changeMonth(1);
 
+  // налаштування відображення модального вікна
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openGeneralStats = () => {
+    setIsOpen(true);
+  };
+
+  const closeGeneralStats = () => {
+    setIsOpen(false);
+  };
+
+  useEffect(() => {
+    const handleEsc = event => {
+      if (event.key === 'Escape') {
+        closeGeneralStats();
+      }
+    };
+
+    if (isOpen) {
+      window.addEventListener('keydown', handleEsc);
+    } else {
+      window.removeEventListener('keydown', handleEsc);
+    }
+
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [isOpen]);
+
   return (
     <div className={css.container}>
       <div className={css.top}>
@@ -46,6 +76,16 @@ const MonthStatsTable = () => {
             </svg>
           </button>
         </div>
+        <ul className={css.list}>
+          {days.map(day => (
+            <li onClick={openGeneralStats} key={day} className={css.item}>
+              <div className={css.day}>
+                <span>{day}</span>
+              </div>
+              <p className={css.percentage}>50%</p>
+            </li>
+          ))}
+        </ul>
       </div>
       <ul className={css.list}>
         {monthData.map((dayData, index) => (
