@@ -1,6 +1,6 @@
 import css from './TodayWaterListItem.module.css';
 
-const TodayWaterListItem = () => {
+const TodayWaterListItem = ({openEditModal}) => {
   return (
     <li className={css.container}>
       <div className={css.operationContainer}>
@@ -12,7 +12,7 @@ const TodayWaterListItem = () => {
           <p className={css.timeInfo}>10:00PM</p>
         </div>
         <div className={css.iconsContainer}>
-          <button className={css.iconsButton} type="button">
+          <button onClick={openEditModal} className={css.iconsButton} type="button">
             <svg className={css.notebook} width={11} height={13}>
               <use href="./home-page/icons.svg#icon-note"></use>
             </svg>
