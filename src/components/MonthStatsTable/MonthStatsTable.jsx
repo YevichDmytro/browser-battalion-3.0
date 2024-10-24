@@ -9,9 +9,6 @@ import { selectMonthData } from '../../redux/waterTracker/selectors';
 const MonthStatsTable = () => {
   const dispatch = useDispatch();
   const monthData = useSelector(selectMonthData);
-  console.log(monthData);
-
-  console.log(monthData);
 
   const getCurrentMonth = () => {
     const today = new Date();
