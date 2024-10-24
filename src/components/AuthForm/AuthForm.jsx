@@ -1,24 +1,39 @@
 import { Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
-import css from './AuthForm.module.css';
 import {
   loginFormValidationSchema,
   registerFormValidationSchema,
 } from '../../../utils/userInfoValidationSchema';
-import { register, login } from '../../redux/auth/operations';
+import { login, register } from '../../redux/auth/operations';
 import AuthFormInput from '../AuthFormInput/AuthFormInput';
+import css from './AuthForm.module.css';
 
 const AuthForm = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = async (values, actions) => {
     const { email, password } = values;
-    if (pathname === '/signin') dispatch(login({ email, password }));
-    else if (pathname === '/signup') dispatch(register({ email, password }));
-    actions.resetForm();
+
+    try {
+      let response;
+      if (pathname === '/signin') {
+        response = await dispatch(login({ email, password })).unwrap();
+      } else if (pathname === '/signup') {
+        response = await dispatch(register({ email, password })).unwrap();
+      }
+
+      if (response && response.redirectUrl) {
+        navigate(response.redirectUrl);
+      }
+
+      actions.resetForm();
+    } catch (error) {
+      error.message;
+    }
   };
 
   const chooseValidationSchema = () => {

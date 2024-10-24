@@ -14,7 +14,10 @@ export const register = createAsyncThunk(
     try {
       const response = await axios.post('/auth/register', newUser);
 
-      return response.data.data;
+      return {
+        user: response.data.data.user,
+        redirectUrl: response.data.redirectUrl,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -28,7 +31,10 @@ export const login = createAsyncThunk(
       const response = await axios.post('/auth/login', userData);
       setAuthHeader(response.data.data.accessToken);
 
-      return response.data.data;
+      return {
+        user: response.data.data.user,
+        redirectUrl: response.data.redirectUrl,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
