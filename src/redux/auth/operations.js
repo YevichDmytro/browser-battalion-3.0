@@ -50,7 +50,7 @@ export const refreshUser = createAsyncThunk(
     const state = thunkAPI.getState();
     setAuthHeader(state.auth.token);
     try {
-      const response = await axios.get('/users/userById');
+      const response = await axios.get('/user/userById');
 
       return response.data.data;
     } catch (error) {
@@ -69,7 +69,7 @@ export const updateUserData = createAsyncThunk(
   'users/updateUserData',
   async (userData, thunkAPI) => {
     try {
-      const response = await axios.patch('/users/update', userData, {
+      const response = await axios.patch('/user/update', userData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
