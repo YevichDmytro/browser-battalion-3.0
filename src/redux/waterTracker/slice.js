@@ -8,10 +8,9 @@ import {
 } from './operations';
 
 const initialState = {
-  waterTracker: {
-    monthData: [],
-    todayData: {},
-  },
+  formattedMonth: null,
+  monthData: [],
+  todayData: {},
   error: null,
   loading: false,
 };
@@ -50,7 +49,7 @@ const waterSlice = createSlice({
         state.error = false;
       })
       .addCase(getTodayWaterData.fulfilled, (state, action) => {
-        state.waterTracker.todayData = action.payload;
+        state.todayData = action.payload;
         state.loading = false;
         state.error = null;
       })
@@ -63,7 +62,8 @@ const waterSlice = createSlice({
         state.error = false;
       })
       .addCase(getMonthWaterData.fulfilled, (state, action) => {
-        state.waterTracker.monthData = action.payload;
+        state.formattedMonth = action.payload.date;
+        state.monthData = action.payload.waterData;
         state.loading = false;
         state.error = null;
       })
