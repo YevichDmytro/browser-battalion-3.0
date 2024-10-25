@@ -71,11 +71,7 @@ const SettingModal = ({ isOpen, handleClose }) => {
   };
 
   return (
-    <ModalWrapper
-      isOpen={isOpen}
-      onClose={handleClose}
-      overlayStyles={css.backdrop}
-    >
+    <ModalWrapper isOpen={isOpen} onClose={handleClose}>
       <div className={css.settingModal}>
         <h2 className={css.settingTitle}>Setting</h2>
         <Formik
