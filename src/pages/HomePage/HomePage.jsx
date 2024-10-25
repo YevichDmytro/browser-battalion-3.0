@@ -13,7 +13,7 @@ const HomePage = () => {
   const [editingItem, setEditingItem] = useState(null);
 
   return (
-    <Container>
+    <Container className={css.container}>
       <DailyNorma />
       <div className={css.rightContainer}>
         <TodayWaterList
