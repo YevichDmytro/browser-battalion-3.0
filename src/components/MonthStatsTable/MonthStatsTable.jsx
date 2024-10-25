@@ -16,7 +16,6 @@ const MonthStatsTable = () => {
   const monthData = useSelector(selectMonthData);
   const isLoading = useSelector(selectWaterIsLoading);
   const formattedDate = useSelector(selectFormattedMonth);
-  // const error = useSelector(selectWaterError);
 
   const getCurrentMonth = () => {
     const today = new Date();
@@ -24,13 +23,6 @@ const MonthStatsTable = () => {
   };
 
   const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
-
-  const formatMonth = monthYear => {
-    const [month, year] = monthYear.split('-').map(Number);
-    const date = new Date(year, month - 1);
-    const formattedMonth = date.toLocaleString('en-US', { month: 'long' });
-    return `${formattedMonth}, ${year}`;
-  };
 
   useEffect(() => {
     dispatch(getMonthWaterData(currentMonth));
@@ -61,7 +53,7 @@ const MonthStatsTable = () => {
               <use href="./month-stats-table/icons.svg#arrow"></use>
             </svg>
           </button>
-          <p>{formatMonth(currentMonth)}</p>
+          <p>{formattedDate}</p>
           <button onClick={handleNextMonth}>
             <svg className={classNames(css.arrow, css.arrowRight)}>
               <use href="./month-stats-table/icons.svg#arrow"></use>

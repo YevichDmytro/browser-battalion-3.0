@@ -13,11 +13,7 @@ export const register = createAsyncThunk(
   async (newUser, thunkAPI) => {
     try {
       const response = await axios.post('/auth/register', newUser);
-
-      return {
-        user: response.data.data.user,
-        redirectUrl: response.data.redirectUrl,
-      };
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -30,11 +26,7 @@ export const login = createAsyncThunk(
     try {
       const response = await axios.post('/auth/login', userData);
       setAuthHeader(response.data.data.accessToken);
-
-      return {
-        user: response.data.data.user,
-        redirectUrl: response.data.redirectUrl,
-      };
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -55,11 +47,14 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     setAuthHeader(state.auth.token);
+
     try {
       const response = await axios.get('/user/userById');
-
+      console.log(response);
       return response.data.data;
     } catch (error) {
+      console.log(error);
+
       return thunkAPI.rejectWithValue(error.message);
     }
   },
