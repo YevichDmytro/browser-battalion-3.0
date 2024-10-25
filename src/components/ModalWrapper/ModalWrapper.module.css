@@ -1,4 +1,4 @@
-.backdrop {
+.defaultOverlay {
   position: fixed;
   z-index: 999;
   top: 0;
@@ -11,7 +11,20 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.modal {
+.transparentOverlay {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.defaultModal {
   position: relative;
   padding: 24px 12px;
   border-radius: 10px;
