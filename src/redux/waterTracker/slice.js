@@ -11,9 +11,9 @@ const initialState = {
   waterTracker: {
     monthData: [],
     todayData: {},
-    error: null,
-    loading: false,
   },
+  error: null,
+  loading: false,
 };
 
 const waterSlice = createSlice({
