@@ -13,25 +13,29 @@ const HomePage = () => {
   const [editingItem, setEditingItem] = useState(null);
 
   return (
-    <Container className={css.container}>
-      <DailyNorma />
-      <div className={css.rightContainer}>
-        <TodayWaterList
-          setModal={setIsModalOpen}
-          setAddModal={setIsAddModal}
-          setEditingItem={setEditingItem}
-        />
-        {isModalOpen && (
-          <TodayListModal
-            isModalOpen={isModalOpen}
-            setIsModalOpen={setIsModalOpen}
-            isAddModal={isAddModal}
-            editingItem={editingItem}
+    <div className={css.wrapper}>
+      <Container className={css.homepage}>
+        <div className={css.col}>
+          <DailyNorma />
+        </div>
+        <div className={css.col}>
+          <TodayWaterList
+            setModal={setIsModalOpen}
+            setAddModal={setIsAddModal}
+            setEditingItem={setEditingItem}
           />
-        )}
-        <MonthStatsTable />
-      </div>
-    </Container>
+          {isModalOpen && (
+            <TodayListModal
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+              isAddModal={isAddModal}
+              editingItem={editingItem}
+            />
+          )}
+          <MonthStatsTable />
+        </div>
+      </Container>
+    </div>
   );
 };
 
