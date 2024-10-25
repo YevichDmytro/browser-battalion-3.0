@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import css from './MonthStatsTable.module.css';
 import { getMonthWaterData } from '../../redux/waterTracker/operations';
 import {
+  selectFormattedMonth,
   selectMonthData,
   // selectWaterError,
   selectWaterIsLoading,
@@ -14,6 +15,7 @@ const MonthStatsTable = () => {
   const dispatch = useDispatch();
   const monthData = useSelector(selectMonthData);
   const isLoading = useSelector(selectWaterIsLoading);
+  const formattedDate = useSelector(selectFormattedMonth);
   // const error = useSelector(selectWaterError);
 
   const getCurrentMonth = () => {
