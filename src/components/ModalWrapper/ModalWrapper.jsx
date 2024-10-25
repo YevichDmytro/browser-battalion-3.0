@@ -5,7 +5,7 @@ import css from './ModalWrapper.module.css';
 
 Modal.setAppElement('#root');
 
-const ModalWrapper = ({ isOpen, onClose, children }) => {
+const ModalWrapper = ({ isOpen, onClose, children, modalType }) => {
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'unset';
 
@@ -19,8 +19,12 @@ const ModalWrapper = ({ isOpen, onClose, children }) => {
       isOpen={isOpen}
       onRequestClose={onClose}
       shouldCloseOnOverlayClick={true}
-      className={css.modal}
-      overlayClassName={css.backdrop}
+      className={modalType === 'transparent' ? '' : css.defaultModal}
+      overlayClassName={
+        modalType === 'transparent'
+          ? css.transparentOverlay
+          : css.defaultOverlay
+      }
     >
       <div className={css.modalContent}>
         <button className={css.closeButton} onClick={onClose}>
