@@ -44,8 +44,8 @@ export const getTodayWaterData = createAsyncThunk(
   'water/todayWaterData',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/water/day');
-      return response.data.data;
+      const response = await axios.get('/water/today');
+      return response.data.data.records;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

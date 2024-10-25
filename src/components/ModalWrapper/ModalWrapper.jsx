@@ -19,13 +19,13 @@ const ModalWrapper = ({ isOpen, onClose, children }) => {
       isOpen={isOpen}
       onRequestClose={onClose}
       shouldCloseOnOverlayClick={true}
-      className={css.modal}
-      overlayClassName={css.backdrop}
+      className={css.defaultModal}
+      overlayClassName={css.defaultOverlay}
     >
       <div className={css.modalContent}>
         <button className={css.closeButton} onClick={onClose}>
           <svg width="16" height="16" className={css.iconClose}>
-            <use href={`/src/assets/logout/x-btn.svg#x-btn`}></use>
+            <use href={`/public/logout/x-btn.svg#x-btn`}></use>
           </svg>
         </button>
         {children}

@@ -1,17 +1,20 @@
 import { Formik, Form } from 'formik';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Gender from './GenderMark/Gender';
 import Input from './Input/Input';
 import Photo from './Photo/Photo';
 import css from './SettingModal.module.css';
 import { userInfoValidationSchema } from '../../../utils/userInfoValidationSchema';
+import { updateUserData } from '../../redux/auth/operations';
+import { selectUser } from '../../redux/auth/selectors';
 import ModalWrapper from '../ModalWrapper/ModalWrapper';
 
 const SettingModal = ({ isOpen, handleClose }) => {
-  const user = {};
+  const user = useSelector(selectUser);
   const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
-
+  // const [photo, setPhoto] = useState(undefined);
   const initialValues = {
     email: user.email || '',
     userName: user.name || '',
@@ -22,42 +25,48 @@ const SettingModal = ({ isOpen, handleClose }) => {
     repeatPassword: '',
   };
 
-  /// можливо знадобиться цей код в роботі, він працює для оновлення аватару
-  // const dispatch = useDispatch();
-
-  // const handleAvatarChange = e => {
-  //   setIsSubmitBlocked(true);
-  //   const file = e.target.files[0];
-
-  //   /// для створення нового ключа FormData для відправки файлу
-  //   const formData = new FormData();
-  //   formData.append('photo', file);
-
-  //   // для відправки аватару на сервер
-  //   dispatch(updateUserData(formData)).then(() => {
-  //     setIsSubmitBlocked(false);
-  //   });
-  // };
+  const dispatch = useDispatch();
 
   const handleAvatarChange = e => {
     setIsSubmitBlocked(true);
-    setTimeout(() => {
-      setIsSubmitBlocked(false);
-    }, 3000);
     const file = e.target.files[0];
     console.log(file);
+    const formData = new FormData();
+    formData.append('photo', file);
+    // for (let [key, value] of formData.entries()) {
+    //   console.log(key, value);
+    // }
+
+    dispatch(updateUserData(formData)).then(() => {
+      setIsSubmitBlocked(false);
+    });
   };
+
+  // const handleAvatarChange = e => {
+  //   setIsSubmitBlocked(true);
+  //   setTimeout(() => {
+  //     setIsSubmitBlocked(false);
+  //   }, 3000);
+  //   const file = e.target.files[0];
+  //   setPhoto(file);
+  //   console.log(file);
+  // };
 
   const onSubmit = values => {
     const userInfo = {
       userName: values.name,
       email: values.email,
       gender: values.gender,
-      photo: values.avatar,
       oldPassword: values.outdatedPassword,
       password: values.password,
       repeatPassword: values.repeatPassword,
     };
+
+    if (userInfo.password === '' && userInfo.repeatPassword === '') {
+      userInfo.password = undefined;
+      userInfo.repeatPassword = undefined;
+    }
+
     console.log('User Info Object:', userInfo);
   };
 
@@ -73,7 +82,6 @@ const SettingModal = ({ isOpen, handleClose }) => {
           {({ errors, touched, handleSubmit }) => (
             <Form onSubmit={handleSubmit} className={css.form}>
               <Photo
-                avatar={user.avatar}
                 isSubmitBlocked={isSubmitBlocked}
                 handleAvatarChange={handleAvatarChange}
               />

@@ -4,16 +4,24 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import css from './MonthStatsTable.module.css';
 import { getMonthWaterData } from '../../redux/waterTracker/operations';
-import { selectMonthData } from '../../redux/waterTracker/selectors';
+import {
+  selectFormattedMonth,
+  selectMonthData,
+  // selectWaterError,
+  selectWaterIsLoading,
+} from '../../redux/waterTracker/selectors';
 
 const MonthStatsTable = () => {
   const dispatch = useDispatch();
   const monthData = useSelector(selectMonthData);
+  const isLoading = useSelector(selectWaterIsLoading);
+  const formattedDate = useSelector(selectFormattedMonth);
 
   const getCurrentMonth = () => {
     const today = new Date();
     return `${today.getMonth() + 1}-${today.getFullYear()}`;
   };
+
   const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
 
   useEffect(() => {
@@ -26,8 +34,14 @@ const MonthStatsTable = () => {
     setCurrentMonth(`${newDate.getMonth() + 1}-${newDate.getFullYear()}`);
   };
 
-  const handlePrevMonth = () => changeMonth(-1);
-  const handleNextMonth = () => changeMonth(1);
+  const handlePrevMonth = () => {
+    if (isLoading) return;
+    changeMonth(-1);
+  };
+  const handleNextMonth = () => {
+    if (isLoading) return;
+    changeMonth(1);
+  };
 
   return (
     <div className={css.container}>
@@ -39,7 +53,7 @@ const MonthStatsTable = () => {
               <use href="./month-stats-table/icons.svg#arrow"></use>
             </svg>
           </button>
-          <p>April, 2023</p>
+          <p>{formattedDate}</p>
           <button onClick={handleNextMonth}>
             <svg className={classNames(css.arrow, css.arrowRight)}>
               <use href="./month-stats-table/icons.svg#arrow"></use>
@@ -47,16 +61,22 @@ const MonthStatsTable = () => {
           </button>
         </div>
       </div>
-      <ul className={css.list}>
-        {monthData.map((dayData, index) => (
-          <li key={dayData.day} className={css.item}>
-            <div className={css.day}>
-              <span>{index + 1}</span>
-            </div>
-            <p className={css.percentage}>{dayData.goalPercentage}%</p>
-          </li>
-        ))}
-      </ul>
+      <div className={css.bottom}>
+        {isLoading ? (
+          <span className={css.loader}>Loading</span>
+        ) : (
+          <ul className={css.list}>
+            {monthData.map((dayData, index) => (
+              <li key={dayData.date} className={css.item}>
+                <div className={css.day}>
+                  <span>{index + 1}</span>
+                </div>
+                <p className={css.percentage}>{dayData.goalPercentage}%</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };

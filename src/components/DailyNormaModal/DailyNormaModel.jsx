@@ -1,7 +1,7 @@
 import css from './DailyNormaModal.module.css';
 import ModalForm from './ModalForm/ModalForm';
 
-const DailyNormaModal = () => {
+const DailyNormaModal = ({ onClose }) => {
   return (
     <div className={css.container}>
       <h2 className={css.title}>My daily norma</h2>
@@ -22,7 +22,7 @@ const DailyNormaModal = () => {
         must set 0)
       </p>
       <h3 className={css.subTitle}>Calculate your rate:</h3>
-      <ModalForm />
+      <ModalForm onClose={onClose} />
     </div>
   );
 };
