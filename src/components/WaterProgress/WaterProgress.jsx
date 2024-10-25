@@ -1,11 +1,20 @@
 import css from './WaterProgress.module.css';
 const WaterProgress = ({ currentWater, waterGoal }) => {
-  const progress = (currentWater / waterGoal) * 100;
+  const progress = () => {
+    if (currentWater > waterGoal) {
+      currentWater = waterGoal;
+    }
+    const sum = (currentWater / waterGoal) * 100;
+    return sum;
+  };
 
   return (
     <div className={css.waterProgressContainer}>
       <div className={css.waterProgress}>
-        <div className={css.waterProgressBar} style={{ width: `${progress}%` }}>
+        <div
+          className={css.waterProgressBar}
+          style={{ width: `${progress()}%` }}
+        >
           <svg
             className={css.progressIcon}
             width="14"
