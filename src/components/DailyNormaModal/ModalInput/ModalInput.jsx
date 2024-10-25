@@ -1,10 +1,18 @@
-import { ErrorMessage, Field } from 'formik';
-import { useId } from 'react';
+import { ErrorMessage, Field, useField } from 'formik';
+import { useEffect, useId } from 'react';
 
 import css from './ModalInput.module.css';
 
-const ModalInput = ({ errors, touched, name, text }) => {
+const ModalInput = ({ errors, touched, name, text, onChange }) => {
   const id = useId();
+  const [{ value }] = useField(name);
+
+  useEffect(() => {
+    if (/^\d*$/.test(value)) {
+      onChange && onChange(value);
+    }
+  }, [value, onChange]);
+
   return (
     <div className={css.wrap}>
       {name === 'willDrink' ? (
@@ -20,7 +28,6 @@ const ModalInput = ({ errors, touched, name, text }) => {
         }`}
         type={'text'}
         name={name}
-        placeholder={'0'}
         id={`${name}-${id}`}
       />
       <ErrorMessage className={css.error} name={name} component="span" />
