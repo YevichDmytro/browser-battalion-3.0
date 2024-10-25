@@ -26,7 +26,7 @@ const DailyNorma = () => {
       </div>
       <BottleImg className={css.picture} />
       <ModalWrapper isOpen={isOpen} onClose={closeEditModal}>
-        <DailyNormaModal />
+        <DailyNormaModal onClose={closeEditModal} />
       </ModalWrapper>
     </div>
   );
