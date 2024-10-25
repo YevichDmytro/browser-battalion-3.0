@@ -1,42 +1,51 @@
+.waterProgressContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .waterProgress {
   width: 100%;
-  background-color: #e0e0e0;
+  height: 8px;
+  position: relative;
   border-radius: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 6px;
+  background-color: #d7e3ff;
 }
 
 .waterProgressBar {
-  border-radius: 10px;
-  width: 8px;
-  height: 10px;
+  position: relative;
+  border-radius: 10px 0 0 10px;
+  width: 190px;
+  height: 8px;
   background: #9ebbff;
-
-  text-align: center;
-  color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.progressIcon {
+  position: absolute;
+  right: -7px;
 }
 .block {
   display: flex;
-  justify-content: space-between;
+
+  gap: 43%;
   text-align: center;
   color: #407bff;
+  width: 100%;
 }
+
+.block1 {
+  display: flex;
+  border: 1px solid #d7e3ff;
+  width: 8px;
+  height: 0px;
+  transform: rotate(90deg);
+}
+
 .blocks {
   display: flex;
-}
-.block1 {
-  border: 1px solid #d7e3ff;
-  width: 8px;
-  height: 0px;
-}
-
-.block2 {
-  border: 1px solid #d7e3ff;
-  width: 8px;
-  height: 0px;
-}
-
-.block3 {
-  border: 1px solid #d7e3ff;
-  width: 8px;
-  height: 0px;
+  flex-direction: column;
+  gap: 4px;
 }
