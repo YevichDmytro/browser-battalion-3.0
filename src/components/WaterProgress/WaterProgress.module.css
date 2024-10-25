@@ -1,0 +1,42 @@
+.waterProgress {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.waterProgressBar {
+  border-radius: 10px;
+  width: 8px;
+  height: 10px;
+  background: #9ebbff;
+
+  text-align: center;
+  color: white;
+}
+.block {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  color: #407bff;
+}
+.blocks {
+  display: flex;
+}
+.block1 {
+  border: 1px solid #d7e3ff;
+  width: 8px;
+  height: 0px;
+}
+
+.block2 {
+  border: 1px solid #d7e3ff;
+  width: 8px;
+  height: 0px;
+}
+
+.block3 {
+  border: 1px solid #d7e3ff;
+  width: 8px;
+  height: 0px;
+}
