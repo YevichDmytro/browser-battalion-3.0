@@ -1,5 +1,8 @@
 .container {
   padding-bottom: 40px;
+  @media screen and (max-width: 1440px) {
+    width: 100%;
+  }
 }
 
 .rightContainer {

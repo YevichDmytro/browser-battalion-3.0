@@ -40,8 +40,14 @@ const MonthStatsTable = () => {
     setCurrentMonth(`${newDate.getMonth() + 1}-${newDate.getFullYear()}`);
   };
 
-  const handlePrevMonth = () => changeMonth(-1);
-  const handleNextMonth = () => changeMonth(1);
+  const handlePrevMonth = () => {
+    if (isLoading) return;
+    changeMonth(-1);
+  };
+  const handleNextMonth = () => {
+    if (isLoading) return;
+    changeMonth(1);
+  };
 
   return (
     <div className={css.container}>
