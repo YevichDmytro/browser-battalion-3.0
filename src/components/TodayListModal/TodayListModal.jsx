@@ -128,7 +128,7 @@ const TodayListModal = ({ isModalOpen, setIsModalOpen, isAddModal, editingItem }
                             <div className={css.previouWaterInfoWrapper}>
                                 <div className={css.previouWaterInfoBox}>
                                     <svg height={36} width={36}>
-                                        <use href='/public/home-page/icons.svg#icon-glass'></use>
+                                        <use href='/home-page/icons.svg#icon-glass'></use>
                                     </svg>
                                     <div className={css.previuosWaterInfo}>
                                         <p className={css.previousWaterInfoAmount}>{editingItem.value}ml</p>
@@ -150,7 +150,7 @@ const TodayListModal = ({ isModalOpen, setIsModalOpen, isAddModal, editingItem }
                                         disabled={value === 0}
                                     >
                                         <svg className={css.buttonSvgMinus} height={24} width={22}>
-                                            <use href='/public/today-water-list/icons.svg#icon-minus'></use>
+                                            <use href='/today-water-list/icons.svg#icon-minus'></use>
                                         </svg>
                                     </button>
                                     <p className={css.counterBoxAmount}>{value}ml</p>
@@ -161,7 +161,7 @@ const TodayListModal = ({ isModalOpen, setIsModalOpen, isAddModal, editingItem }
                                         disabled={value >= 5000}
                                     >
                                         <svg className={css.buttonSvgPlus} height={24} width={23}>
-                                            <use href='/public/today-water-list/icons.svg#icon-plus'></use>
+                                            <use href='/today-water-list/icons.svg#icon-plus'></use>
                                         </svg>
                                     </button>
                                 </div>
