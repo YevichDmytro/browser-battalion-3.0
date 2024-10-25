@@ -6,7 +6,7 @@ import Container from '../../components/ui/Container/Container';
 
 const HomePage = () => {
   return (
-    <Container>
+    <Container className={css.container}>
       <DailyNorma />
       <div className={css.rightContainer}>
         <TodayWaterList />
