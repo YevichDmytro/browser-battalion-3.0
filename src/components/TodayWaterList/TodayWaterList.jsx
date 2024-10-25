@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import css from './TodayWaterList.module.css';
 import { getTodayWaterData } from '../../redux/waterTracker/operations';
-import { selectTodayData } from '../../redux/waterTracker/selectors';
+import { selectTodayData, selectWaterIsLoading } from '../../redux/waterTracker/selectors';
 import TodayWaterListItem from '../TodayWaterListItem/TodayWaterListItem';
 
 const TodayWaterList = ({ setModal, setAddModal, setEditingItem }) => {
   const dispatch = useDispatch();
   const todayData = useSelector(selectTodayData) || [];
+  const isLoading = useSelector(selectWaterIsLoading)
 
   const getCurrentDate = () => {
     const now = new Date();
@@ -51,17 +52,21 @@ const TodayWaterList = ({ setModal, setAddModal, setEditingItem }) => {
   return (
     <div className={css.container}>
       <h2 className={css.title}>Today</h2>
-      <ul className={css.addWaterBox}>
-        {sortedTodayData.length > 0 ? (
-          sortedTodayData.map((item) => (
-            <li key={item._id}>
-              <TodayWaterListItem item={item} openEditModal={() => openEditModal(item)} />
-            </li>
-          ))
-        ) : (
-          <li>No notes yet</li>
+      {isLoading ? (
+        <span className={css.loader}>Loading</span>
+          ) : (
+          <ul className={css.addWaterBox}>
+            {sortedTodayData.length > 0 ? (
+              sortedTodayData.map((item) => (
+                <li key={item._id}>
+                  <TodayWaterListItem item={item} openEditModal={() => openEditModal(item)} />
+                </li>
+              ))
+            ) : (
+              <li>No notes yet</li>
+            ) }
+          </ul>
         )}
-      </ul>
       <button onClick={openAddModal} className={css.button} type="button">
         + Add water
       </button>
