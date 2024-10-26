@@ -1,16 +1,20 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import css from './HomePage.module.css';
 import DailyNorma from '../../components/DailyNorma/DailyNorma';
 import MonthStatsTable from '../../components/MonthStatsTable/MonthStatsTable';
 import TodayListModal from '../../components/TodayListModal/TodayListModal';
 import TodayWaterList from '../../components/TodayWaterList/TodayWaterList';
+import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel';
 import Container from '../../components/ui/Container/Container';
+import { selectTodayData } from '../../redux/waterTracker/selectors';
 
 const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddModal, setIsAddModal] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
+  const todayData = useSelector(selectTodayData);
 
   return (
     <div className={css.wrapper}>

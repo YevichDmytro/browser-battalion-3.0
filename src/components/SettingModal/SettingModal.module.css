@@ -9,7 +9,9 @@
   font-size: 26px;
   font-weight: 500;
   line-height: 1.2;
-  margin-bottom: 24px;
+}
+.form {
+  margin-top: 16px;
 }
 
 .infoGroup {
@@ -62,6 +64,9 @@
   .settingModal {
     width: 704px;
     height: 860px;
+  }
+  .settingTitle {
+    margin-bottom: 16px;
   }
 
   .subtitle {

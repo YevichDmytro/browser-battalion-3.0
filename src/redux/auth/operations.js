@@ -13,11 +13,7 @@ export const register = createAsyncThunk(
   async (newUser, thunkAPI) => {
     try {
       const response = await axios.post('/auth/register', newUser);
-
-      return {
-        user: response.data.data.user,
-        redirectUrl: response.data.redirectUrl,
-      };
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -30,11 +26,7 @@ export const login = createAsyncThunk(
     try {
       const response = await axios.post('/auth/login', userData);
       setAuthHeader(response.data.data.accessToken);
-
-      return {
-        user: response.data.data.user,
-        redirectUrl: response.data.redirectUrl,
-      };
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -55,11 +47,14 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     setAuthHeader(state.auth.token);
+
     try {
       const response = await axios.get('/user/userById');
 
       return response.data.data;
     } catch (error) {
+      console.log(error);
+
       return thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -75,7 +70,19 @@ export const updateUserData = createAsyncThunk(
   'users/updateUserData',
   async (userData, thunkAPI) => {
     try {
-      const response = await axios.patch('/user/update', userData, {
+      const response = await axios.patch('/user/update', userData, {});
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updatePhoto = createAsyncThunk(
+  'users/updatePhoto',
+  async (userData, thunkAPI) => {
+    try {
+      const response = await axios.patch('/user/avatar', userData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

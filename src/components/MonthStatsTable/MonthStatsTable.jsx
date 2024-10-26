@@ -1,13 +1,13 @@
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import DaysGeneralStats from './DaysGeneralStats/DaysGeneralStats';
 import css from './MonthStatsTable.module.css';
 import { getMonthWaterData } from '../../redux/waterTracker/operations';
 import {
   selectFormattedMonth,
   selectMonthData,
-  // selectWaterError,
   selectWaterIsLoading,
 } from '../../redux/waterTracker/selectors';
 
@@ -16,21 +16,18 @@ const MonthStatsTable = () => {
   const monthData = useSelector(selectMonthData);
   const isLoading = useSelector(selectWaterIsLoading);
   const formattedDate = useSelector(selectFormattedMonth);
-  // const error = useSelector(selectWaterError);
 
   const getCurrentMonth = () => {
     const today = new Date();
     return `${today.getMonth() + 1}-${today.getFullYear()}`;
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [dayData, setDayData] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
+  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
 
-  const formatMonth = monthYear => {
-    const [month, year] = monthYear.split('-').map(Number);
-    const date = new Date(year, month - 1);
-    const formattedMonth = date.toLocaleString('en-US', { month: 'long' });
-    return `${formattedMonth}, ${year}`;
-  };
+  const modalRef = useRef();
 
   useEffect(() => {
     dispatch(getMonthWaterData(currentMonth));
@@ -51,6 +48,35 @@ const MonthStatsTable = () => {
     changeMonth(1);
   };
 
+  const handleDayClick = (data, event) => {
+    const liElement = event.currentTarget;
+    const rect = liElement.getBoundingClientRect();
+
+    setModalPosition({
+      top: rect.top + window.scrollY - 100,
+      left: rect.left + window.scrollX + rect.width / 2,
+    });
+    setDayData(data);
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = e => {
+    const isListItemClick = e.target.closest('li') !== null;
+
+    if (!isListItemClick) {
+      setIsModalOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.addEventListener('click', handleModalClose);
+    }
+    return () => {
+      document.removeEventListener('click', handleModalClose);
+    };
+  }, [isModalOpen]);
+
   return (
     <div className={css.container}>
       <div className={css.top}>
@@ -61,7 +87,7 @@ const MonthStatsTable = () => {
               <use href="./month-stats-table/icons.svg#arrow"></use>
             </svg>
           </button>
-          <p>{formatMonth(currentMonth)}</p>
+          <p>{formattedDate}</p>
           <button onClick={handleNextMonth}>
             <svg className={classNames(css.arrow, css.arrowRight)}>
               <use href="./month-stats-table/icons.svg#arrow"></use>
@@ -73,16 +99,35 @@ const MonthStatsTable = () => {
         {isLoading ? (
           <span className={css.loader}>Loading</span>
         ) : (
-          <ul className={css.list}>
-            {monthData.map((dayData, index) => (
-              <li key={dayData.date} className={css.item}>
-                <div className={css.day}>
-                  <span>{index + 1}</span>
-                </div>
-                <p className={css.percentage}>{dayData.goalPercentage}%</p>
-              </li>
-            ))}
-          </ul>
+          <>
+            <ul className={css.list}>
+              {monthData.map((dayData, index) => (
+                <li
+                  key={dayData.date}
+                  className={css.item}
+                  onClick={event => handleDayClick(dayData, event)}
+                >
+                  <div className={css.day}>
+                    <span>{index + 1}</span>
+                  </div>
+                  <p className={css.percentage}>{dayData.goalPercentage}%</p>
+                </li>
+              ))}
+            </ul>
+            {isModalOpen && (
+              <DaysGeneralStats
+                ref={modalRef}
+                dayData={dayData}
+                handleClose={handleModalClose}
+                style={{
+                  position: 'absolute',
+                  top: `${modalPosition.top}px`,
+                  left: `${modalPosition.left}px`,
+                  transform: 'translate(-50%, -50%)',
+                }}
+              />
+            )}
+          </>
         )}
       </div>
     </div>

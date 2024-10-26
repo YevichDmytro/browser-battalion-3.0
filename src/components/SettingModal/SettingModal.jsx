@@ -1,5 +1,6 @@
 import { Formik, Form } from 'formik';
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Gender from './GenderMark/Gender';
@@ -7,75 +8,73 @@ import Input from './Input/Input';
 import Photo from './Photo/Photo';
 import css from './SettingModal.module.css';
 import { userInfoValidationSchema } from '../../../utils/userInfoValidationSchema';
-import { updateUserData } from '../../redux/auth/operations';
+import { updatePhoto, updateUserData } from '../../redux/auth/operations';
 import { selectUser } from '../../redux/auth/selectors';
 import ModalWrapper from '../ModalWrapper/ModalWrapper';
 
 const SettingModal = ({ isOpen, handleClose }) => {
   const user = useSelector(selectUser);
+  console.log(user);
+  const dispatch = useDispatch();
   const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
-  // const [photo, setPhoto] = useState(undefined);
+
   const initialValues = {
     email: user.email || '',
-    userName: user.name || '',
-    gender: user.gender,
-    photo: user.avatar || '',
-    oldPassword: '',
+    name: user.name || '',
+    gender: user.gender || '',
+    outdatedPassword: '',
     password: '',
     repeatPassword: '',
   };
 
-  const dispatch = useDispatch();
-
   const handleAvatarChange = e => {
     setIsSubmitBlocked(true);
     const file = e.target.files[0];
-    console.log(file);
-    const formData = new FormData();
-    formData.append('photo', file);
-    // for (let [key, value] of formData.entries()) {
-    //   console.log(key, value);
-    // }
 
-    dispatch(updateUserData(formData)).then(() => {
-      setIsSubmitBlocked(false);
-    });
+    if (file) {
+      const formData = new FormData();
+      formData.append('photo', file);
+
+      dispatch(updatePhoto(formData))
+        .then(() => {
+          toast.success('You updated your avatar!');
+          setIsSubmitBlocked(false);
+        })
+        .catch(() => {
+          setIsSubmitBlocked(false);
+          toast.success('Something went wrong!');
+        });
+    }
   };
 
-  // const handleAvatarChange = e => {
-  //   setIsSubmitBlocked(true);
-  //   setTimeout(() => {
-  //     setIsSubmitBlocked(false);
-  //   }, 3000);
-  //   const file = e.target.files[0];
-  //   setPhoto(file);
-  //   console.log(file);
-  // };
-
   const onSubmit = values => {
-    const userInfo = {
-      userName: values.name,
+    let userInfo = {
+      name: values.name,
       email: values.email,
       gender: values.gender,
-      oldPassword: values.outdatedPassword,
+      outdatedPassword: values.outdatedPassword,
       password: values.password,
-      repeatPassword: values.repeatPassword,
     };
 
-    if (userInfo.password === '' && userInfo.repeatPassword === '') {
-      userInfo.password = undefined;
-      userInfo.repeatPassword = undefined;
+    if (userInfo.password === '') {
+      delete userInfo.password;
     }
 
-    console.log('User Info Object:', userInfo);
+    if (userInfo.name === undefined || userInfo.name === '') {
+      delete userInfo.name;
+    }
+
+    dispatch(updateUserData(userInfo))
+      .then(() => {
+        toast.success('You updated your data!');
+      })
+      .catch(() => {
+        toast.error('Something went wrong!');
+      });
   };
 
   return (
-    <ModalWrapper
-      isOpen={isOpen}
-      onClose={handleClose}
-      overlayStyles={css.backdrop}
-    >
+    <ModalWrapper isOpen={isOpen} onClose={handleClose}>
       <div className={css.settingModal}>
         <h2 className={css.settingTitle}>Setting</h2>
         <Formik

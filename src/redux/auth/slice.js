@@ -6,6 +6,7 @@ import {
   logout,
   refreshUser,
   updateUserData,
+  updatePhoto,
 } from './operations';
 
 const authInitialState = {
@@ -112,6 +113,19 @@ const authSlice = createSlice({
         state.error = false;
       })
       .addCase(updateUserData.rejected, state => {
+        state.loading = false;
+        state.error = true;
+      })
+      .addCase(updatePhoto.pending, state => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(updatePhoto.fulfilled, (state, action) => {
+        state.user.photo = action.payload;
+        state.loading = false;
+        state.error = false;
+      })
+      .addCase(updatePhoto.rejected, state => {
         state.loading = false;
         state.error = true;
       }),
