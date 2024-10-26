@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL =
-  'https://browser-battalion-3-0-backend-kyxl.onrender.com';
+axios.defaults.baseURL = 'https://browser-battalion-3-0-backend.onrender.com';
 
 export const addWaterItem = createAsyncThunk(
   'water/addItem',
