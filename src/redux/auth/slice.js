@@ -11,7 +11,7 @@ import {
 
 const authInitialState = {
   user: {
-    userName: null,
+    name: null,
     email: null,
     gender: null,
     waterRate: null,
@@ -65,7 +65,7 @@ const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, state => {
         state.user = {
-          userName: null,
+          name: null,
           email: null,
           gender: null,
           waterRate: null,
@@ -78,7 +78,7 @@ const authSlice = createSlice({
       })
       .addCase(logout.rejected, state => {
         state.user = {
-          userName: null,
+          name: null,
           email: null,
           gender: null,
           waterRate: null,
