@@ -3,13 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import css from './TodayWaterList.module.css';
 import { getTodayWaterData } from '../../redux/waterTracker/operations';
-import { selectTodayData, selectWaterIsLoading } from '../../redux/waterTracker/selectors';
+import {
+  selectTodayData,
+  selectWaterIsLoading,
+} from '../../redux/waterTracker/selectors';
 import TodayWaterListItem from '../TodayWaterListItem/TodayWaterListItem';
 
 const TodayWaterList = ({ setModal, setAddModal, setEditingItem }) => {
   const dispatch = useDispatch();
   const todayData = useSelector(selectTodayData) || [];
-  const isLoading = useSelector(selectWaterIsLoading)
+  const isLoading = useSelector(selectWaterIsLoading);
 
   const getCurrentDate = () => {
     const now = new Date();
@@ -31,7 +34,7 @@ const TodayWaterList = ({ setModal, setAddModal, setEditingItem }) => {
     setModal(true);
   };
 
-  const openEditModal = (item) => {
+  const openEditModal = item => {
     setEditingItem(item);
     setAddModal(false);
     setModal(true);
@@ -42,8 +45,12 @@ const TodayWaterList = ({ setModal, setAddModal, setEditingItem }) => {
         const [dateA, timeA] = a.dateTime.split(' ');
         const [dateB, timeB] = b.dateTime.split(' ');
 
-        const dateTimeA = new Date(`${dateA.split('-').reverse().join('-')}T${timeA}`);
-        const dateTimeB = new Date(`${dateB.split('-').reverse().join('-')}T${timeB}`);
+        const dateTimeA = new Date(
+          `${dateA.split('-').reverse().join('-')}T${timeA}`
+        );
+        const dateTimeB = new Date(
+          `${dateB.split('-').reverse().join('-')}T${timeB}`
+        );
 
         return dateTimeA - dateTimeB;
       })
@@ -54,19 +61,22 @@ const TodayWaterList = ({ setModal, setAddModal, setEditingItem }) => {
       <h2 className={css.title}>Today</h2>
       {isLoading ? (
         <span className={css.loader}>Loading</span>
+      ) : (
+        <ul className={css.addWaterBox}>
+          {sortedTodayData.length > 0 ? (
+            sortedTodayData.map(item => (
+              <li key={item._id}>
+                <TodayWaterListItem
+                  item={item}
+                  openEditModal={() => openEditModal(item)}
+                />
+              </li>
+            ))
           ) : (
-          <ul className={css.addWaterBox}>
-            {sortedTodayData.length > 0 ? (
-              sortedTodayData.map((item) => (
-                <li key={item._id}>
-                  <TodayWaterListItem item={item} openEditModal={() => openEditModal(item)} />
-                </li>
-              ))
-            ) : (
-              <li>No notes yet</li>
-            ) }
-          </ul>
-        )}
+            <li>No notes yet</li>
+          )}
+        </ul>
+      )}
       <button onClick={openAddModal} className={css.button} type="button">
         + Add water
       </button>

@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import css from './WaterRatioPanel.module.css';
+import { selectTodayData } from '../../redux/waterTracker/selectors';
 import TodayListModal from '../TodayListModal/TodayListModal';
 import WaterProgress from '../WaterProgress/WaterProgress';
 
-const WaterRatioPanel = ({ todayData }) => {
+const WaterRatioPanel = () => {
+  const todayData = useSelector(selectTodayData);
+
   const [isModalOpen, setModalOpen] = useState(false);
   const [isAddModal, setIsAddModal] = useState(true);
   const [editingItem, setEditingItem] = useState(null);
