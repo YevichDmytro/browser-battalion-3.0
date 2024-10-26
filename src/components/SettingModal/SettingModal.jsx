@@ -35,10 +35,15 @@ const SettingModal = ({ isOpen, handleClose }) => {
       const formData = new FormData();
       formData.append('photo', file);
 
-      dispatch(updatePhoto(formData)).then(() => {
-        toast.success('You updated your avatar!');
-        setIsSubmitBlocked(false);
-      });
+      dispatch(updatePhoto(formData))
+        .then(() => {
+          toast.success('You updated your avatar!');
+          setIsSubmitBlocked(false);
+        })
+        .catch(() => {
+          setIsSubmitBlocked(false);
+          toast.success('Something went wrong!');
+        });
     }
   };
 
@@ -59,9 +64,13 @@ const SettingModal = ({ isOpen, handleClose }) => {
       delete userInfo.name;
     }
 
-    dispatch(updateUserData(userInfo)).then(() => {
-      toast.success('You updated your data!');
-    });
+    dispatch(updateUserData(userInfo))
+      .then(() => {
+        toast.success('You updated your data!');
+      })
+      .catch(() => {
+        toast.error('Something went wrong!');
+      });
   };
 
   return (
