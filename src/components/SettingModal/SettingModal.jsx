@@ -47,6 +47,7 @@ const SettingModal = ({ isOpen, handleClose }) => {
       name: values.name,
       email: values.email,
       gender: values.gender,
+      outdatedPassword: values.outdatedPassword,
       password: values.password,
     };
 
