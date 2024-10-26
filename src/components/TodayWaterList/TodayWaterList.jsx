@@ -6,14 +6,13 @@ import { getTodayWaterData } from '../../redux/waterTracker/operations';
 import {
   selectTodayData,
   selectWaterIsLoading,
-  selectWaterIsMonthLoading,
 } from '../../redux/waterTracker/selectors';
 import TodayWaterListItem from '../TodayWaterListItem/TodayWaterListItem';
 
 const TodayWaterList = ({ setModal, setAddModal, setEditingItem }) => {
   const dispatch = useDispatch();
   const todayData = useSelector(selectTodayData) || [];
-  const isLoading = useSelector(selectWaterIsMonthLoading);
+  const isLoading = useSelector(selectWaterIsLoading);
 
   const getCurrentDate = () => {
     const now = new Date();
