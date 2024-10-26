@@ -41,11 +41,21 @@ const MonthStatsTable = () => {
   const [isNextDisabled, setIsNextDisabled] = useState(isFutureMonth());
 
   const modalRef = useRef();
+  const containerRef = useRef(null);
 
   useEffect(() => {
     dispatch(getMonthWaterData(currentMonth));
     setIsNextDisabled(isFutureMonth());
   }, [dispatch, currentMonth]);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.addEventListener('click', handleModalClose);
+    }
+    return () => {
+      document.removeEventListener('click', handleModalClose);
+    };
+  }, [isModalOpen]);
 
   const changeMonth = increment => {
     const [month, year] = currentMonth.split('-').map(Number);
@@ -65,12 +75,32 @@ const MonthStatsTable = () => {
 
   const handleDayClick = (data, event) => {
     const liElement = event.currentTarget;
-    const rect = liElement.getBoundingClientRect();
+    const liRect = liElement.getBoundingClientRect();
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const modalWidth = 300;
+
+    let resultPosition;
+
+    if (window.innerWidth < 768) {
+      resultPosition = (containerRect.width - modalWidth) / 2 + 15;
+    } else if (window.innerWidth >= 768 && window.innerWidth < 1440) {
+      resultPosition =
+        liRect.left - containerRect.left + liRect.width / 2 - modalWidth / 2;
+
+      if (resultPosition < 0) {
+        resultPosition = 0;
+      } else if (resultPosition + modalWidth > containerRect.width) {
+        resultPosition = containerRect.width - modalWidth;
+      }
+    } else {
+      resultPosition = liRect.left - containerRect.left + liRect.width / 2;
+    }
 
     setModalPosition({
-      top: rect.top + window.scrollY - 100,
-      left: rect.left + window.scrollX + rect.width / 2,
+      top: liRect.top - containerRect.top - 100,
+      left: resultPosition,
     });
+
     setDayData(data);
     setIsModalOpen(true);
   };
@@ -83,17 +113,8 @@ const MonthStatsTable = () => {
     }
   };
 
-  useEffect(() => {
-    if (isModalOpen) {
-      document.addEventListener('click', handleModalClose);
-    }
-    return () => {
-      document.removeEventListener('click', handleModalClose);
-    };
-  }, [isModalOpen]);
-
   return (
-    <div className={css.container}>
+    <div ref={containerRef} className={css.container}>
       <div className={css.top}>
         <p className={css.title}>Month</p>
         <div className={css.date}>
@@ -144,10 +165,8 @@ const MonthStatsTable = () => {
                 dayData={dayData}
                 handleClose={handleModalClose}
                 style={{
-                  position: 'absolute',
                   top: `${modalPosition.top}px`,
                   left: `${modalPosition.left}px`,
-                  transform: 'translate(-50%, -50%)',
                 }}
               />
             )}

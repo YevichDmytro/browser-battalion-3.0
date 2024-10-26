@@ -13,7 +13,6 @@ import { selectWaterIsLoading } from '../../redux/waterTracker/selectors';
 
 const HomePage = () => {
   const isListLoading = useSelector(selectWaterIsLoading);
-  console.log(isListLoading);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddModal, setIsAddModal] = useState(false);

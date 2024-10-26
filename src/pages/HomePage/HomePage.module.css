@@ -18,7 +18,7 @@
 
 .rightCol {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   background-color: var(--secondary-2);
   padding: 24px 8px;
   border-radius: 10px;
