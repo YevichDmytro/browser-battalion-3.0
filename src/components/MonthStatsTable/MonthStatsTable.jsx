@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DaysGeneralStats from './DaysGeneralStats/DaysGeneralStats';
@@ -8,7 +8,6 @@ import { getMonthWaterData } from '../../redux/waterTracker/operations';
 import {
   selectFormattedMonth,
   selectMonthData,
-  // selectWaterError,
   selectWaterIsLoading,
 } from '../../redux/waterTracker/selectors';
 
@@ -23,8 +22,12 @@ const MonthStatsTable = () => {
     return `${today.getMonth() + 1}-${today.getFullYear()}`;
   };
 
-  const [selectDay, setSelectDay] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [dayData, setDayData] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
+  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
+
+  const modalRef = useRef();
 
   useEffect(() => {
     dispatch(getMonthWaterData(currentMonth));
@@ -45,12 +48,34 @@ const MonthStatsTable = () => {
     changeMonth(1);
   };
 
-  const openGeneralStats = e => {
-    // dispatch(getMonthWaterData(currentMonth));
-    setSelectDay(e.target.textContent);
+  const handleDayClick = (data, event) => {
+    const liElement = event.currentTarget;
+    const rect = liElement.getBoundingClientRect();
+
+    setModalPosition({
+      top: rect.top + window.scrollY - 100,
+      left: rect.left + window.scrollX + rect.width / 2,
+    });
+    setDayData(data);
+    setIsModalOpen(true);
   };
 
-  const dayData = monthData[selectDay - 1];
+  const handleModalClose = e => {
+    const isListItemClick = e.target.closest('li') !== null;
+
+    if (!isListItemClick) {
+      setIsModalOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.addEventListener('click', handleModalClose);
+    }
+    return () => {
+      document.removeEventListener('click', handleModalClose);
+    };
+  }, [isModalOpen]);
 
   return (
     <div className={css.container}>
@@ -74,23 +99,37 @@ const MonthStatsTable = () => {
         {isLoading ? (
           <span className={css.loader}>Loading</span>
         ) : (
-          <ul className={css.list}>
-            {monthData.map((dayData, index) => (
-              <li
-                onClick={openGeneralStats}
-                key={dayData.date}
-                className={css.item}
-              >
-                <div className={css.day}>
-                  <span>{index + 1}</span>
-                </div>
-                <p className={css.percentage}>{dayData.goalPercentage}%</p>
-              </li>
-            ))}
-          </ul>
+          <>
+            <ul className={css.list}>
+              {monthData.map((dayData, index) => (
+                <li
+                  key={dayData.date}
+                  className={css.item}
+                  onClick={event => handleDayClick(dayData, event)}
+                >
+                  <div className={css.day}>
+                    <span>{index + 1}</span>
+                  </div>
+                  <p className={css.percentage}>{dayData.goalPercentage}%</p>
+                </li>
+              ))}
+            </ul>
+            {isModalOpen && (
+              <DaysGeneralStats
+                ref={modalRef}
+                dayData={dayData}
+                handleClose={handleModalClose}
+                style={{
+                  position: 'absolute',
+                  top: `${modalPosition.top}px`,
+                  left: `${modalPosition.left}px`,
+                  transform: 'translate(-50%, -50%)',
+                }}
+              />
+            )}
+          </>
         )}
       </div>
-      {dayData && <DaysGeneralStats dayData={dayData} />}
     </div>
   );
 };
