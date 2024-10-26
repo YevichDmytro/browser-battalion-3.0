@@ -60,6 +60,10 @@ const SettingModal = ({ isOpen, handleClose }) => {
       delete userInfo.password;
     }
 
+    if (userInfo.outdatedPassword === '') {
+      delete userInfo.outdatedPassword;
+    }
+
     if (userInfo.name === undefined || userInfo.name === '') {
       delete userInfo.name;
     }

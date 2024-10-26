@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL =
-  'https://browser-battalion-3-0-backend-kyxl.onrender.com';
+axios.defaults.baseURL = 'https://browser-battalion-3-0-backend-kyxl.onrender.com';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -50,7 +49,7 @@ export const refreshUser = createAsyncThunk(
 
     try {
       const response = await axios.get('/user/userById');
-      console.log(response);
+
       return response.data.data;
     } catch (error) {
       console.log(error);

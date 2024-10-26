@@ -11,8 +11,8 @@
 }
 
 .bottom {
-  position: relative;
   /* overflow-x: auto; */
+  height: 100%;
   min-height: 400px;
 
   @media screen and (min-width: 768px) {
@@ -21,55 +21,6 @@
 
   @media screen and (min-width: 1440px) {
     min-height: 284px;
-  }
-}
-
-.loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  font-size: 38px;
-  display: inline-block;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: var(--primary-blue);
-  letter-spacing: 2px;
-  position: relative;
-  box-sizing: border-box;
-}
-.loader::after {
-  content: 'Loading';
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #263238;
-  text-shadow: 0 0 2px #fff, 0 0 1px #fff, 0 0 1px #fff;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
-  animation: animloader 2s linear infinite;
-}
-
-@keyframes animloader {
-  0% {
-    height: 100%;
-  }
-  100% {
-    height: 0%;
-  }
-}
-
-@keyframes filling {
-  0% {
-    background-position: 1500px 0px;
-  }
-  50% {
-    background-position: 3000px 0px;
-  }
-  100% {
-    background-position: 6000px 350px;
   }
 }
 
@@ -90,9 +41,36 @@
     font-size: 16px;
     color: var(--primary-blue);
   }
+}
 
-  button {
-    color: var(--primary-blue);
+.btn {
+  transition: transform var(--transition), opacity var(--transition);
+
+  &:disabled {
+    opacity: 0.3;
+  }
+}
+
+.btnPrev {
+  transform: rotate(90deg);
+
+  &:hover {
+    transform: rotate(90deg) translateY(2px);
+    opacity: 0.5;
+  }
+}
+
+.btnNext {
+  transform: rotate(-90deg);
+
+  &:hover {
+    transform: rotate(-90deg) translateY(2px);
+    opacity: 0.5;
+
+    &:disabled {
+      opacity: 0.3;
+      transform: rotate(-90deg) translateY(0px);
+    }
   }
 }
 
@@ -159,24 +137,59 @@
   width: 16px;
   height: 16px;
   fill: var(--primary-blue);
-
-  transition: transform var(--transition), opacity var(--transition);
 }
 
-.arrowLeft {
-  transform: rotate(90deg);
+.loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  &:hover {
-    transform: rotate(90deg) translateY(2px);
-    opacity: 0.5;
+.clockLoader {
+  --clock-color: var(--primary-color);
+  --clock-width: 4rem;
+  --clock-radius: calc(var(--clock-width) / 2);
+  --clock-minute-length: calc(var(--clock-width) * 0.4);
+  --clock-hour-length: calc(var(--clock-width) * 0.2);
+  --clock-thickness: 0.2rem;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--clock-width);
+  height: var(--clock-width);
+  border: 3px solid var(--clock-color);
+  border-radius: 50%;
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: '';
+    top: calc(var(--clock-radius) * 0.25);
+    width: var(--clock-thickness);
+    background: var(--clock-color);
+    border-radius: 10px;
+    transform-origin: center calc(100% - calc(var(--clock-thickness) / 2));
+    animation: spin infinite linear;
+  }
+
+  &::before {
+    height: var(--clock-minute-length);
+    animation-duration: 2s;
+  }
+
+  &::after {
+    top: calc(var(--clock-radius) * 0.25 + var(--clock-hour-length));
+    height: var(--clock-hour-length);
+    animation-duration: 15s;
   }
 }
 
-.arrowRight {
-  transform: rotate(-90deg);
-
-  &:hover {
-    transform: rotate(-90deg) translateY(2px);
-    opacity: 0.5;
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
   }
 }
