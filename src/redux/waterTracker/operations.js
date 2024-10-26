@@ -3,7 +3,8 @@ import axios from 'axios';
 
 import getCurrentMonth from '../../utils/getCurrentMonth';
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL =
+  'https://browser-battalion-3-0-backend-kyxl.onrender.com';
 
 export const addWaterItem = createAsyncThunk(
   'water/addItem',

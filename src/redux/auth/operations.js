@@ -5,7 +5,8 @@ import toast from 'react-hot-toast';
 import getCurrentMonth from '../../utils/getCurrentMonth';
 import { getMonthWaterData } from '../waterTracker/operations';
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL =
+  'https://browser-battalion-3-0-backend-kyxl.onrender.com';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
