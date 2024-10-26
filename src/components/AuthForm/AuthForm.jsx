@@ -18,9 +18,8 @@ const AuthForm = () => {
     const { email, password } = values;
 
     try {
-      let response;
       if (pathname === '/signin') {
-        response = await dispatch(login({ email, password })).unwrap();
+        await dispatch(login({ email, password }));
       } else if (pathname === '/signup') {
         response = await dispatch(register({ email, password })).unwrap();
       }

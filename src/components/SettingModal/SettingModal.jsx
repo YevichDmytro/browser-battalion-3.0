@@ -7,7 +7,7 @@ import Input from './Input/Input';
 import Photo from './Photo/Photo';
 import css from './SettingModal.module.css';
 import { userInfoValidationSchema } from '../../../utils/userInfoValidationSchema';
-import { updateUserData } from '../../redux/auth/operations';
+import { updatePhoto, updateUserData } from '../../redux/auth/operations';
 import { selectUser } from '../../redux/auth/selectors';
 import ModalWrapper from '../ModalWrapper/ModalWrapper';
 
@@ -17,10 +17,10 @@ const SettingModal = ({ isOpen, handleClose }) => {
   // const [photo, setPhoto] = useState(undefined);
   const initialValues = {
     email: user.email || '',
-    userName: user.name || '',
+    name: user.name || '',
     gender: user.gender,
     photo: user.avatar || '',
-    oldPassword: '',
+    outdatedPassword: '',
     password: '',
     repeatPassword: '',
   };
@@ -37,7 +37,7 @@ const SettingModal = ({ isOpen, handleClose }) => {
     //   console.log(key, value);
     // }
 
-    dispatch(updateUserData(formData)).then(() => {
+    dispatch(updatePhoto(formData)).then(() => {
       setIsSubmitBlocked(false);
     });
   };
@@ -53,21 +53,23 @@ const SettingModal = ({ isOpen, handleClose }) => {
   // };
 
   const onSubmit = values => {
-    const userInfo = {
-      userName: values.name,
+    let userInfo = {
+      name: values.name,
       email: values.email,
       gender: values.gender,
-      oldPassword: values.outdatedPassword,
       password: values.password,
-      repeatPassword: values.repeatPassword,
     };
 
-    if (userInfo.password === '' && userInfo.repeatPassword === '') {
-      userInfo.password = undefined;
-      userInfo.repeatPassword = undefined;
+    if (userInfo.password === '') {
+      delete userInfo.password;
+    }
+
+    if (userInfo.name === undefined || userInfo.name === '') {
+      delete userInfo.name;
     }
 
     console.log('User Info Object:', userInfo);
+    dispatch(updateUserData(userInfo));
   };
 
   return (
