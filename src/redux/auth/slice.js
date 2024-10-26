@@ -1,10 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { register, login, logout, refreshUser } from './operations';
+import {
+  register,
+  login,
+  logout,
+  refreshUser,
+  updateUserData,
+  updatePhoto,
+} from './operations';
 
 const authInitialState = {
   user: {
-    name: null,
+    userName: null,
     email: null,
     gender: null,
     waterRate: null,
@@ -58,7 +65,7 @@ const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, state => {
         state.user = {
-          name: null,
+          userName: null,
           email: null,
           gender: null,
           waterRate: null,
@@ -71,7 +78,7 @@ const authSlice = createSlice({
       })
       .addCase(logout.rejected, state => {
         state.user = {
-          name: null,
+          userName: null,
           email: null,
           gender: null,
           waterRate: null,
@@ -94,6 +101,33 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, (state, action) => {
         state.isRefreshing = false;
         state.error = action.payload;
+      })
+      .addCase(updateUserData.pending, state => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(updateUserData.fulfilled, (state, action) => {
+        state.user = { ...state.user, ...action.payload };
+        state.isAuthenticated = true;
+        state.loading = false;
+        state.error = false;
+      })
+      .addCase(updateUserData.rejected, state => {
+        state.loading = false;
+        state.error = true;
+      })
+      .addCase(updatePhoto.pending, state => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(updatePhoto.fulfilled, (state, action) => {
+        state.user.photo = action.payload;
+        state.loading = false;
+        state.error = false;
+      })
+      .addCase(updatePhoto.rejected, state => {
+        state.loading = false;
+        state.error = true;
       }),
 });
 

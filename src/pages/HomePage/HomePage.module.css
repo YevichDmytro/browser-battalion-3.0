@@ -1,52 +1,80 @@
-.homepage {
-  background-image: url(../../../images/mobile-homescreen-bg-bubbles-1x.webp);
+.wrapper {
+  background-image: url(./images/mobile-homescreen-bg-bubbles-1x.webp);
   background-size: cover;
-  background-position: center 52px;
+  background-position: center center;
   background-repeat: no-repeat;
-  padding: 24px 20px 40px;
+  padding-top: 24px;
+  padding-bottom: 40px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
+}
+
+.homepage {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.rightCol {
+  background-color: var(--secondary-2);
+  padding: 24px 8px;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @media screen and (min-width: 768px) {
+    padding: 24px 32px;
+  }
 }
 
 @media screen and (min-resolution: 192dpi) and (max-width: 767px),
   screen and (min-resolution: 2dppx) and (max-width: 767px),
   screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
-  .homepage {
-    background-image: url(../../../images/mobile-homescreen-bg-bubbles-2x.webp);
+  .wrapper {
+    background-image: url(./images/mobile-homescreen-bg-bubbles-2x.webp);
   }
 }
 
 @media screen and (min-width: 768px) {
-  .homepage {
-    background-image: url(../../../images/tablet-homescreen-bg-bubbles-1x.webp);
+  .wrapper {
+    background-image: url(./images/tablet-homescreen-bg-bubbles-1x.webp);
+    background-position: center 20px;
   }
 
   @media screen and (min-resolution: 192dpi) and (min-width: 768px),
     screen and (min-resolution: 2dppx) and (min-width: 768px),
     screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
-    .homepage {
-      background-image: url(../../../images/tablet-homescreen-bg-bubbles-2x.webp);
+    .wrapper {
+      background-image: url(./images/tablet-homescreen-bg-bubbles-2x.webp);
     }
   }
 }
 
 @media screen and (min-width: 1440px) {
+  .wrapper {
+    padding-top: 20px;
+    background-image: url(./images/desktop-mainpage-bg-bubbles-1x.webp);
+  }
   .homepage {
-    background-image: url(../../../public/images/desktop-mainpage-bg-bubbles-1x.webp);
-    padding: 20px 20px 40px;
     flex-direction: row;
-    flex-shrink: 0;
+    justify-content: space-between;
+    gap: 32px;
   }
 
   .col {
     width: 592px;
+    flex-shrink: 0;
   }
 
   @media screen and (min-resolution: 192dpi) and (min-width: 1440px),
     screen and (min-resolution: 2dppx) and (min-width: 1440px),
     screen and (min-device-pixel-ratio: 2) and (min-width: 1440px) {
-    .homepage {
-      background-image: url(../../../public/images/desktop-mainpage-bg-bubbles-2x.webp);
+    .wrapper {
+      background-image: url(./images/desktop-mainpage-bg-bubbles-2x.webp);
     }
   }
 }

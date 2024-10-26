@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
@@ -30,6 +31,13 @@ const App = () => {
   }, [dispatch]);
   return (
     <>
+      <Toaster toastOptions={{
+        success: {
+        iconTheme: {
+            primary: '#407bff'
+      },
+    },
+  }} position="top-center" reverseOrder={false} />
       {(isRefreshing || isLoading) && <Loader />}
       <Suspense>
         <Routes>

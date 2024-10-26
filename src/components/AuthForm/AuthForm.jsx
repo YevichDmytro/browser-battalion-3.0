@@ -7,18 +7,27 @@ import {
   loginFormValidationSchema,
   registerFormValidationSchema,
 } from '../../../utils/userInfoValidationSchema';
-import { register, login } from '../../redux/auth/operations';
+import { login, register } from '../../redux/auth/operations';
 import AuthFormInput from '../AuthFormInput/AuthFormInput';
 
 const AuthForm = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = async (values, actions) => {
     const { email, password } = values;
-    if (pathname === '/signin') dispatch(login({email, password}));
-    else if (pathname === '/signup') dispatch(register({ email, password }));
-    actions.resetForm();
+
+    try {
+      if (pathname === '/signin') {
+        await dispatch(login({ email, password }));
+      } else if (pathname === '/signup') {
+        await dispatch(register({ email, password }));
+      }
+
+      actions.resetForm();
+    } catch (error) {
+      error.message;
+    }
   };
 
   const chooseValidationSchema = () => {

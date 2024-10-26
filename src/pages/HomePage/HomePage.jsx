@@ -1,18 +1,47 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import css from './HomePage.module.css';
 import DailyNorma from '../../components/DailyNorma/DailyNorma';
+import MonthStatsTable from '../../components/MonthStatsTable/MonthStatsTable';
+import TodayListModal from '../../components/TodayListModal/TodayListModal';
 import TodayWaterList from '../../components/TodayWaterList/TodayWaterList';
 import Container from '../../components/ui/Container/Container';
+import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel';
+import { selectTodayData } from '../../redux/waterTracker/selectors';
+import classNames from 'classnames';
 
 const HomePage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModal, setIsAddModal] = useState(false);
+  const [editingItem, setEditingItem] = useState(null);
+  const todayData = useSelector(selectTodayData);
+
   return (
-    <Container className={css.homepage}>
-      <div className={css.col}>
-        <DailyNorma />
-      </div>
-      <div className={css.col}>
-        <TodayWaterList />
-      </div>
-    </Container>
+    <div className={css.wrapper}>
+      <Container className={css.homepage}>
+        <div className={css.col}>
+          <DailyNorma />
+          <WaterRatioPanel />
+        </div>
+        <div className={classNames(css.col, css.rightCol)}>
+          <TodayWaterList
+            setModal={setIsModalOpen}
+            setAddModal={setIsAddModal}
+            setEditingItem={setEditingItem}
+          />
+          {isModalOpen && (
+            <TodayListModal
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+              isAddModal={isAddModal}
+              editingItem={editingItem}
+            />
+          )}
+          <MonthStatsTable />
+        </div>
+      </Container>
+    </div>
   );
 };
 

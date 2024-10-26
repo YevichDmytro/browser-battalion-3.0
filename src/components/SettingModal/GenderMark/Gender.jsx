@@ -1,7 +1,7 @@
-import { Field } from "formik";
-import { useId } from "react";
+import { Field } from 'formik';
+import { useId } from 'react';
 
-import styles from "./Gender.module.css";
+import styles from './Gender.module.css';
 
 const Gender = () => {
   const womanRadioId = useId();
@@ -16,7 +16,7 @@ const Gender = () => {
             id={womanRadioId}
             type="radio"
             name="gender"
-            value="woman"
+            value="female"
             className={styles.radioInput}
           />
           <span className={styles.radioMark}></span>
@@ -28,7 +28,7 @@ const Gender = () => {
             id={manRadioId}
             type="radio"
             name="gender"
-            value="man"
+            value="male"
             className={styles.radioInput}
           />
           <span className={styles.radioMark}></span>

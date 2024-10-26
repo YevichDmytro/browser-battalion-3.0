@@ -1,22 +1,27 @@
 import { Formik, Form } from 'formik';
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Gender from './GenderMark/Gender';
 import Input from './Input/Input';
 import Photo from './Photo/Photo';
 import css from './SettingModal.module.css';
 import { userInfoValidationSchema } from '../../../utils/userInfoValidationSchema';
+import { updatePhoto, updateUserData } from '../../redux/auth/operations';
+import { selectUser } from '../../redux/auth/selectors';
 import ModalWrapper from '../ModalWrapper/ModalWrapper';
 
 const SettingModal = ({ isOpen, handleClose }) => {
-  const user = {};
+  const user = useSelector(selectUser);
+  console.log(user);
+  const dispatch = useDispatch();
   const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
 
   const initialValues = {
     email: user.email || '',
     name: user.name || '',
-    gender: user.gender,
-    avatar: user.avatar || '',
+    gender: user.gender || '',
     outdatedPassword: '',
     password: '',
     repeatPassword: '',
@@ -24,24 +29,52 @@ const SettingModal = ({ isOpen, handleClose }) => {
 
   const handleAvatarChange = e => {
     setIsSubmitBlocked(true);
-    setTimeout(() => {
-      setIsSubmitBlocked(false);
-    }, 3000);
     const file = e.target.files[0];
-    console.log(file);
+
+    if (file) {
+      const formData = new FormData();
+      formData.append('photo', file);
+
+      dispatch(updatePhoto(formData))
+        .then(() => {
+          toast.success('You updated your avatar!');
+          setIsSubmitBlocked(false);
+        })
+        .catch(() => {
+          setIsSubmitBlocked(false);
+          toast.success('Something went wrong!');
+        });
+    }
   };
 
   const onSubmit = values => {
-    const userInfo = {
+    let userInfo = {
       name: values.name,
       email: values.email,
       gender: values.gender,
-      avatar: values.avatar,
       outdatedPassword: values.outdatedPassword,
       password: values.password,
-      repeatPassword: values.repeatPassword,
     };
-    console.log('User Info Object:', userInfo);
+
+    if (userInfo.password === '') {
+      delete userInfo.password;
+    }
+
+    if (userInfo.outdatedPassword === '') {
+      delete userInfo.outdatedPassword;
+    }
+
+    if (userInfo.name === undefined || userInfo.name === '') {
+      delete userInfo.name;
+    }
+
+    dispatch(updateUserData(userInfo))
+      .then(() => {
+        toast.success('You updated your data!');
+      })
+      .catch(() => {
+        toast.error('Something went wrong!');
+      });
   };
 
   return (
@@ -56,7 +89,6 @@ const SettingModal = ({ isOpen, handleClose }) => {
           {({ errors, touched, handleSubmit }) => (
             <Form onSubmit={handleSubmit} className={css.form}>
               <Photo
-                avatar={user.avatar}
                 isSubmitBlocked={isSubmitBlocked}
                 handleAvatarChange={handleAvatarChange}
               />

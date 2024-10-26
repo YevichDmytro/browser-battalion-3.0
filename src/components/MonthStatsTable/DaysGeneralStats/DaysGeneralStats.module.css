@@ -1,0 +1,39 @@
+.modal {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  background: white;
+  border: 1px solid #ccc;
+  z-index: 10;
+  background-color: white;
+  border-radius: 10px;
+  padding: 24px 13px;
+  box-shadow: 0 4px 4px 0 rgba(64, 123, 255, 0.3);
+  overflow: hidden;
+}
+
+.modalList {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #2f2f2f;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  pointer-events: none;
+}
+
+.dynamicElement {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33333;
+  color: #407bff;
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    width: 292px;
+    padding: 24px, 16px;
+  }
+}

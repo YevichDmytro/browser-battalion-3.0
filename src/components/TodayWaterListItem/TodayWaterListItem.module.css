@@ -1,9 +1,6 @@
 .container {
     display: flex;
     flex-direction: column;
-    max-height: 180px;
-    overflow: auto;
-    scroll-behavior: smooth;
     padding: 0px 8px;
 }
 
@@ -48,23 +45,24 @@
     width: max-content;
     padding: 0;
     background-color: #ECF2FF;
-    border: 1px solid transparent;
     background-color: transparent;
+    width: 16px;
+    height: 16px;
 }
 
 .iconsButton:hover,
 .iconsButton:focus {
-    border: 1px solid transparent;
+
     background-color: #ECF2FF;
 }
 
 .notebook {
     fill: transparent;
     stroke: #9EBBFF;
-    width: 12.5px;
-    height: 12.5px;
+    width: 16px;
+    height: 16px;
     padding-bottom: 1px;
-    border-bottom: 1px solid transparent;
+
 }
 
 .notebook:hover {
@@ -75,10 +73,10 @@
 .trashbox {
     fill: transparent;
     stroke: #EF5050;
-    width: 11px;
-    height: 13px;
+    width: 16px;
+    height: 16px;
     padding-bottom: 1px;
-    border-bottom: 1px solid transparent;
+
 }
 
 .trashbox:hover {
@@ -91,5 +89,4 @@
         width: 26px;
         height: 26px;
     }
-
 }
