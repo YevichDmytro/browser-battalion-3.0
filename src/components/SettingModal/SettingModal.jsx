@@ -14,7 +14,6 @@ import ModalWrapper from '../ModalWrapper/ModalWrapper';
 
 const SettingModal = ({ isOpen, handleClose }) => {
   const user = useSelector(selectUser);
-  console.log(user);
   const dispatch = useDispatch();
   const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
 
@@ -36,7 +35,8 @@ const SettingModal = ({ isOpen, handleClose }) => {
       formData.append('photo', file);
 
       dispatch(updatePhoto(formData))
-        .then(() => {
+        .then(res => {
+          if (res?.error?.message) return toast.error('Something went wrong!');
           toast.success('You updated your avatar!');
           setIsSubmitBlocked(false);
         })
@@ -69,7 +69,8 @@ const SettingModal = ({ isOpen, handleClose }) => {
     }
 
     dispatch(updateUserData(userInfo))
-      .then(() => {
+      .then(res => {
+        if (res?.error?.message) return toast.error('Something went wrong!');
         toast.success('You updated your data!');
         handleClose();
       })
