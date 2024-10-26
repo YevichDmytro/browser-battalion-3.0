@@ -36,11 +36,16 @@
 .date {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 4px;
 
   p {
     font-size: 16px;
     color: var(--primary-blue);
+    text-align: center;
+  }
+
+  @media screen and (min-width: 768px) {
+    gap: 12px;
   }
 }
 
@@ -96,6 +101,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 }
 
 .day {
@@ -123,6 +129,10 @@
       font-size: 16px;
     }
   }
+}
+
+.dayIsGoal {
+  border: 1px solid var(--primary-white);
 }
 
 .percentage {
