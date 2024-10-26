@@ -1,0 +1,79 @@
+.waterPanel {
+  display: flex;
+  /* align-items: flex-start; */
+  /* gap: 23px; */
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+.waterProgressBar {
+  width: 280px;
+  height: 82px;
+  margin-bottom: 16px;
+}
+.btnAddWater {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 10px;
+  width: 280px;
+  height: 36px;
+  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  background: #407bff;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+}
+.today {
+  font-size: 18px;
+  line-height: 1.33333;
+  text-align: start;
+  color: #407bff;
+}
+.svg {
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+@media screen and (min-width: 767px) {
+  .waterPanel {
+    width: 704px;
+    height: 90px;
+    flex-direction: row;
+    gap: 23px;
+  }
+  .waterProgressBar {
+    width: 356px;
+    height: 90px;
+    margin-bottom: 0px;
+  }
+  .btnAddWater {
+    margin: 20px 0 20px 0;
+    width: 336px;
+    height: 44px;
+    font-size: 18px;
+  }
+  .today {
+    margin-bottom: 16px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .waterPanel {
+    width: 592px;
+    height: 90px;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+  }
+  .waterProgressBar {
+    width: 391px;
+    height: 90px;
+    margin-bottom: 0px;
+  }
+  .btnAddWater {
+    width: 178px;
+    height: 44px;
+    font-size: 18px;
+  }
+}
