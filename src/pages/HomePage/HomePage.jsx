@@ -6,9 +6,10 @@ import DailyNorma from '../../components/DailyNorma/DailyNorma';
 import MonthStatsTable from '../../components/MonthStatsTable/MonthStatsTable';
 import TodayListModal from '../../components/TodayListModal/TodayListModal';
 import TodayWaterList from '../../components/TodayWaterList/TodayWaterList';
-import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel';
 import Container from '../../components/ui/Container/Container';
+import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel';
 import { selectTodayData } from '../../redux/waterTracker/selectors';
+import classNames from 'classnames';
 
 const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,8 +22,9 @@ const HomePage = () => {
       <Container className={css.homepage}>
         <div className={css.col}>
           <DailyNorma />
+          <WaterRatioPanel />
         </div>
-        <div className={css.col}>
+        <div className={classNames(css.col, css.rightCol)}>
           <TodayWaterList
             setModal={setIsModalOpen}
             setAddModal={setIsAddModal}

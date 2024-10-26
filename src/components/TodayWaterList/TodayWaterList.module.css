@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 16px;
   position: relative;
+  min-height: 260px;
 }
 
 .addWaterBox {
@@ -71,6 +72,7 @@
 }
 
 .button {
+  margin-top: auto;
   background-color: transparent;
   color: #407bff;
   font-family: 'Roboto', sans-serif;
