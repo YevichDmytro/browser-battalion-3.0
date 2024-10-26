@@ -17,7 +17,6 @@ const TodayListModal = ({
   setIsModalOpen,
   isAddModal,
   editingItem,
-  onAddWater,
 }) => {
   const [value, setValue] = useState(0);
   const [isTimeSelectOpen, setIsTimeSelectOpen] = useState(false);
@@ -30,7 +29,6 @@ const TodayListModal = ({
     now.setMinutes(minutes);
     return now.toTimeString().slice(0, 5);
   };
-
   const getCurrentDate = () => {
     const now = new Date();
     const year = now.getFullYear();
@@ -128,19 +126,6 @@ const TodayListModal = ({
           console.error('Failed to update water item:', error);
           toast.error('Failed to update water item!');
         });
-    }
-    try {
-      if (isAddModal) {
-        dispatch(addWaterItem({ value }));
-        onAddWater(value);
-        toast.success('Successfully added water!');
-      }
-
-      actions.resetForm();
-      setIsModalOpen(false);
-    } catch (error) {
-      console.error('Failed to add water item:', error);
-      toast.error('Failed to add water item!');
     }
   };
 

@@ -1,10 +1,11 @@
 import css from './WaterProgress.module.css';
-const WaterProgress = ({ currentWater, waterGoal }) => {
+const WaterProgress = ({ waterGoal, todayData }) => {
   const progress = () => {
-    if (currentWater > waterGoal) {
-      currentWater = waterGoal;
+    if (todayData > waterGoal) {
+      todayData = waterGoal;
     }
-    const sum = (currentWater / waterGoal) * 100;
+    const sum = (todayData / waterGoal) * 100;
+
     return sum;
   };
 
@@ -35,7 +36,7 @@ const WaterProgress = ({ currentWater, waterGoal }) => {
         </div>
         <div className={css.blocks}>
           <div className={css.block1}></div>
-          <div>50%</div>
+          <div className={css.fifty}>50%</div>
         </div>
         <div className={css.blocks}>
           <div className={css.block1}></div>
