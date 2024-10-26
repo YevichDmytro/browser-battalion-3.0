@@ -21,7 +21,7 @@ const HomePage = () => {
   return (
     <div className={css.wrapper}>
       <Container className={css.homepage}>
-        <div className={css.col}>
+        <div className={classNames(css.col, css.leftCol)}>
           <DailyNorma />
           <WaterRatioPanel />
         </div>

@@ -87,7 +87,7 @@
   color: var(--primary-white);
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
   background-color: var(--secondary-3);
-  transition: box-shadow var(--transition);
+  transition: box-shadow 0.2s var(--transition);
 
   &:hover {
     box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
@@ -100,7 +100,7 @@
 .cancelBtn {
   color: var(--primary-blue);
   background-color: var(--secondary-lightblue);
-  transition: box-shadow var(--transition);
+  transition: box-shadow 0.2s var(--transition);
 
   &:hover {
     box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);

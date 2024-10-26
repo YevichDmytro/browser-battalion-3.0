@@ -1,20 +1,15 @@
+import { useSelector } from 'react-redux';
+
 import css from './WaterProgress.module.css';
-const WaterProgress = ({ waterGoal, todayData }) => {
-  const progress = () => {
-    if (todayData > waterGoal) {
-      todayData = waterGoal;
-    }
-    const sum = (todayData / waterGoal) * 100;
-
-    return sum;
-  };
-
+import { selectPercentageOfGoal } from '../../redux/waterTracker/selectors';
+const WaterProgress = () => {
+  const todayGoal = useSelector(selectPercentageOfGoal);
   return (
     <div className={css.waterProgressContainer}>
       <div className={css.waterProgress}>
         <div
           className={css.waterProgressBar}
-          style={{ width: `${progress()}%` }}
+          style={{ width: `${todayGoal}%` }}
         >
           <svg
             className={css.progressIcon}

@@ -8,7 +8,7 @@ import { selectUser } from '../../../redux/auth/selectors';
 const Photo = ({ isSubmitBlocked, handleAvatarChange }) => {
   const { name, email, photo } = useSelector(selectUser);
   const fileInputId = useId();
-  const defaultAvatar = '/public/SettingModalIcon/User-avatar.svg.png';
+  const defaultAvatar = './SettingModalIcon/User-avatar.svg.png';
   const currentAvatar = photo || defaultAvatar;
   const userName = name || email || 'User';
   const nameFirstLetter = userName.charAt(0).toUpperCase();

@@ -1,7 +1,7 @@
 .section {
   padding-top: 24px;
   height: 100vh;
-  background-image: url('../../../public/auth-page/background-mobil-1x.png');
+  background-image: url('./auth-page/background-mobil-1x.png');
   background-repeat: no-repeat;
   background-position: 0px 45px;
   background-size: 100% auto;
@@ -25,7 +25,7 @@
 @media screen and (min-width: 768px) {
   .section {
     padding-top: 40px;
-    background-image: url('../../../public/auth-page/background-tabl-1x.png');
+    background-image: url('./auth-page/background-tabl-1x.png');
     background-position: 0 -60px;
   }
 
@@ -42,7 +42,7 @@
 @media screen and (min-width: 1440px) {
   .section {
     padding-top: 162px;
-    background-image: url('../../../public/auth-page/background-deskt-1x.png');
+    background-image: url('./auth-page/background-deskt-1x.png');
     background-position: 0 49px;
   }
 

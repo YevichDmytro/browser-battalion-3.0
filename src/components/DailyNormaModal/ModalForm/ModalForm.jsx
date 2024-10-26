@@ -1,28 +1,48 @@
 import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
 import css from './ModalForm.module.css';
+import { updateWaterRate } from '../../../redux/auth/operations';
 import ModalInput from '../ModalInput/ModalInput';
 import ModalInputsRadio from '../ModalInputsRadio/ModalInputsRadio';
 
 const ModalForm = ({ onClose }) => {
-  const [liters, setLiters] = useState('0');
+  const dispatch = useDispatch();
+
+  const [milliliters, setMilliliters] = useState('0');
   const [gender, setGender] = useState('woman');
   const [mass, setMass] = useState('0');
   const [time, setTime] = useState('0');
 
   useEffect(() => {
+    const numericMass = parseFloat(mass) || 0;
+    const numericTime = parseFloat(time) || 0;
+
+    let volume;
     if (gender === 'man') {
-      const volume = (mass * 0.04 + time * 0.6).toFixed(1);
-      setLiters(volume.toString());
+      volume = (numericMass * 0.04 + numericTime * 0.6) * 1000;
     } else {
-      const volume = (mass * 0.03 + time * 0.4).toFixed(1);
-      setLiters(volume.toString());
+      volume = (numericMass * 0.03 + numericTime * 0.4) * 1000;
     }
+
+    setMilliliters(volume.toFixed(1));
   }, [gender, mass, time]);
 
   const handleSubmit = (values, actions) => {
+    const updatedValues = {
+      waterRate: milliliters,
+    };
+    dispatch(updateWaterRate(updatedValues))
+      .unwrap()
+      .then(() => {
+        toast.success('Water rate has been updated successfully!');
+      })
+      .catch(error => {
+        toast.error(`${error}`);
+      });
     onClose();
     actions.resetForm();
   };
@@ -76,7 +96,9 @@ const ModalForm = ({ onClose }) => {
               <p className={css.discr}>
                 The required amount of water in liters per day:
               </p>
-              <p className={css.litersText}>{liters} L</p>
+              <p className={css.litersText}>
+                {(milliliters / 1000).toFixed(1)} L
+              </p>
             </div>
             <ModalInput
               {...formikProps}
