@@ -71,6 +71,7 @@ const SettingModal = ({ isOpen, handleClose }) => {
     dispatch(updateUserData(userInfo))
       .then(() => {
         toast.success('You updated your data!');
+        handleClose();
       })
       .catch(() => {
         toast.error('Something went wrong!');
