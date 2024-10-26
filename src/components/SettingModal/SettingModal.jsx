@@ -42,7 +42,7 @@ const SettingModal = ({ isOpen, handleClose }) => {
         })
         .catch(() => {
           setIsSubmitBlocked(false);
-          toast.success('Something went wrong!');
+          toast.error('Something went wrong!');
         });
     }
   };
