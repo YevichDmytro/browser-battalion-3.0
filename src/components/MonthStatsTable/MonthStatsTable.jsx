@@ -10,6 +10,7 @@ import {
   selectMonthData,
   selectWaterIsMonthLoading,
 } from '../../redux/waterTracker/selectors';
+import getCurrentMonth from '../../utils/getCurrentMonth.js';
 
 const MonthStatsTable = () => {
   const dispatch = useDispatch();
@@ -17,10 +18,8 @@ const MonthStatsTable = () => {
   const isLoading = useSelector(selectWaterIsMonthLoading);
   const formattedDate = useSelector(selectFormattedMonth);
 
-  const getCurrentMonth = () => {
-    const today = new Date();
-    return `${today.getMonth() + 1}-${today.getFullYear()}`;
-  };
+  const modalRef = useRef();
+  const containerRef = useRef(null);
 
   const isFutureMonth = () => {
     const [selectedMonth, selectedYear] = currentMonth.split('-').map(Number);
@@ -40,38 +39,10 @@ const MonthStatsTable = () => {
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
   const [isNextDisabled, setIsNextDisabled] = useState(isFutureMonth());
 
-  const modalRef = useRef();
-  const containerRef = useRef(null);
-
   useEffect(() => {
     dispatch(getMonthWaterData(currentMonth));
     setIsNextDisabled(isFutureMonth());
   }, [dispatch, currentMonth]);
-
-  useEffect(() => {
-    if (isModalOpen) {
-      document.addEventListener('click', handleModalClose);
-    }
-    return () => {
-      document.removeEventListener('click', handleModalClose);
-    };
-  }, [isModalOpen]);
-
-  const changeMonth = increment => {
-    const [month, year] = currentMonth.split('-').map(Number);
-    const newDate = new Date(year, month - 1 + increment);
-    setCurrentMonth(`${newDate.getMonth() + 1}-${newDate.getFullYear()}`);
-  };
-
-  const handlePrevMonth = () => {
-    if (isLoading) return;
-    changeMonth(-1);
-  };
-  const handleNextMonth = () => {
-    if (isLoading || isNextDisabled) return;
-    changeMonth(1);
-    setIsNextDisabled(isFutureMonth());
-  };
 
   const handleDayClick = (data, event) => {
     const liElement = event.currentTarget;
@@ -113,6 +84,31 @@ const MonthStatsTable = () => {
     }
   };
 
+  useEffect(() => {
+    if (isModalOpen) {
+      document.addEventListener('click', handleModalClose);
+    }
+    return () => {
+      document.removeEventListener('click', handleModalClose);
+    };
+  }, [isModalOpen]);
+
+  const changeMonth = increment => {
+    const [month, year] = currentMonth.split('-').map(Number);
+    const newDate = new Date(year, month - 1 + increment);
+    setCurrentMonth(`${newDate.getMonth() + 1}-${newDate.getFullYear()}`);
+  };
+
+  const handlePrevMonth = () => {
+    if (isLoading) return;
+    changeMonth(-1);
+  };
+  const handleNextMonth = () => {
+    if (isLoading || isNextDisabled) return;
+    changeMonth(1);
+    setIsNextDisabled(isFutureMonth());
+  };
+
   return (
     <div ref={containerRef} className={css.container}>
       <div className={css.top}>
@@ -152,7 +148,12 @@ const MonthStatsTable = () => {
                   className={css.item}
                   onClick={event => handleDayClick(dayData, event)}
                 >
-                  <div className={css.day}>
+                  <div
+                    className={classNames(
+                      css.day,
+                      dayData.goalPercentage === 100 && css.dayIsGoal
+                    )}
+                  >
                     <span>{index + 1}</span>
                   </div>
                   <p className={css.percentage}>{dayData.goalPercentage}%</p>
