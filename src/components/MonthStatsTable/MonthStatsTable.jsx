@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import DaysGeneralStats from './DaysGeneralStats/DaysGeneralStats';
 import css from './MonthStatsTable.module.css';
 import { getMonthWaterData } from '../../redux/waterTracker/operations';
 import {
@@ -22,6 +23,7 @@ const MonthStatsTable = () => {
     return `${today.getMonth() + 1}-${today.getFullYear()}`;
   };
 
+  const [selectDay, setSelectDay] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
 
   useEffect(() => {
@@ -42,6 +44,13 @@ const MonthStatsTable = () => {
     if (isLoading) return;
     changeMonth(1);
   };
+
+  const openGeneralStats = e => {
+    // dispatch(getMonthWaterData(currentMonth));
+    setSelectDay(e.target.textContent);
+  };
+
+  const dayData = monthData[selectDay - 1];
 
   return (
     <div className={css.container}>
@@ -67,7 +76,11 @@ const MonthStatsTable = () => {
         ) : (
           <ul className={css.list}>
             {monthData.map((dayData, index) => (
-              <li key={dayData.date} className={css.item}>
+              <li
+                onClick={openGeneralStats}
+                key={dayData.date}
+                className={css.item}
+              >
                 <div className={css.day}>
                   <span>{index + 1}</span>
                 </div>
@@ -77,6 +90,7 @@ const MonthStatsTable = () => {
           </ul>
         )}
       </div>
+      {dayData && <DaysGeneralStats dayData={dayData} />}
     </div>
   );
 };
