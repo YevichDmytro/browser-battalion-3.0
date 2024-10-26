@@ -8,13 +8,13 @@ import { getMonthWaterData } from '../../redux/waterTracker/operations';
 import {
   selectFormattedMonth,
   selectMonthData,
-  selectWaterIsLoading,
+  selectWaterIsMonthLoading,
 } from '../../redux/waterTracker/selectors';
 
 const MonthStatsTable = () => {
   const dispatch = useDispatch();
   const monthData = useSelector(selectMonthData);
-  const isLoading = useSelector(selectWaterIsLoading);
+  const isLoading = useSelector(selectWaterIsMonthLoading);
   const formattedDate = useSelector(selectFormattedMonth);
 
   const getCurrentMonth = () => {
@@ -22,15 +22,29 @@ const MonthStatsTable = () => {
     return `${today.getMonth() + 1}-${today.getFullYear()}`;
   };
 
+  const isFutureMonth = () => {
+    const [selectedMonth, selectedYear] = currentMonth.split('-').map(Number);
+    const [currentMonthNumber, currentYear] = getCurrentMonth()
+      .split('-')
+      .map(Number);
+
+    return (
+      selectedYear > currentYear ||
+      (selectedYear === currentYear && selectedMonth >= currentMonthNumber)
+    );
+  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dayData, setDayData] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
+  const [isNextDisabled, setIsNextDisabled] = useState(isFutureMonth());
 
   const modalRef = useRef();
 
   useEffect(() => {
     dispatch(getMonthWaterData(currentMonth));
+    setIsNextDisabled(isFutureMonth());
   }, [dispatch, currentMonth]);
 
   const changeMonth = increment => {
@@ -44,8 +58,9 @@ const MonthStatsTable = () => {
     changeMonth(-1);
   };
   const handleNextMonth = () => {
-    if (isLoading) return;
+    if (isLoading || isNextDisabled) return;
     changeMonth(1);
+    setIsNextDisabled(isFutureMonth());
   };
 
   const handleDayClick = (data, event) => {
@@ -82,14 +97,21 @@ const MonthStatsTable = () => {
       <div className={css.top}>
         <p className={css.title}>Month</p>
         <div className={css.date}>
-          <button onClick={handlePrevMonth}>
-            <svg className={classNames(css.arrow, css.arrowLeft)}>
+          <button
+            onClick={handlePrevMonth}
+            className={classNames(css.btn, css.btnPrev)}
+          >
+            <svg className={css.arrow}>
               <use href="./month-stats-table/icons.svg#arrow"></use>
             </svg>
           </button>
           <p>{formattedDate}</p>
-          <button onClick={handleNextMonth}>
-            <svg className={classNames(css.arrow, css.arrowRight)}>
+          <button
+            onClick={handleNextMonth}
+            className={classNames(css.btn, css.btnNext)}
+            disabled={isNextDisabled}
+          >
+            <svg className={css.arrow}>
               <use href="./month-stats-table/icons.svg#arrow"></use>
             </svg>
           </button>
@@ -97,7 +119,9 @@ const MonthStatsTable = () => {
       </div>
       <div className={css.bottom}>
         {isLoading ? (
-          <span className={css.loader}>Loading</span>
+          <div className={css.loader}>
+            <div className={css.clockLoader}></div>
+          </div>
         ) : (
           <>
             <ul className={css.list}>

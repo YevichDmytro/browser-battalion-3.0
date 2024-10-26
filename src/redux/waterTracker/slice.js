@@ -13,6 +13,7 @@ const initialState = {
   todayData: {},
   error: null,
   loading: false,
+  monthLoading: false,
 };
 
 const waterSlice = createSlice({
@@ -58,17 +59,17 @@ const waterSlice = createSlice({
         state.error = true;
       })
       .addCase(getMonthWaterData.pending, state => {
-        state.loading = true;
+        state.monthLoading = true;
         state.error = false;
       })
       .addCase(getMonthWaterData.fulfilled, (state, action) => {
         state.formattedMonth = action.payload.date;
         state.monthData = action.payload.waterData;
-        state.loading = false;
+        state.monthLoading = false;
         state.error = null;
       })
       .addCase(getMonthWaterData.rejected, state => {
-        state.loading = false;
+        state.monthLoading = false;
         state.error = true;
       }),
 });
