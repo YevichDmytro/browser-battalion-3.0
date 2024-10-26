@@ -70,7 +70,19 @@ export const updateUserData = createAsyncThunk(
   'users/updateUserData',
   async (userData, thunkAPI) => {
     try {
-      const response = await axios.patch('/user/update', userData, {
+      const response = await axios.patch('/user/update', userData, {});
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updatePhoto = createAsyncThunk(
+  'users/updatePhoto',
+  async (userData, thunkAPI) => {
+    try {
+      const response = await axios.patch('/user/avatar', userData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

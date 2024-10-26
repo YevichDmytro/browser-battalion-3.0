@@ -25,7 +25,7 @@ const ModalWrapper = ({ isOpen, onClose, children }) => {
       <div className={css.modalContent}>
         <button className={css.closeButton} onClick={onClose}>
           <svg width="16" height="16" className={css.iconClose}>
-            <use href={`/public/logout/x-btn.svg#x-btn`}></use>
+            <use href={`./logout/x-btn.svg#x-btn`}></use>
           </svg>
         </button>
         {children}
