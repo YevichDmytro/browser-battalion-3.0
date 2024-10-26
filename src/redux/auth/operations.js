@@ -13,7 +13,15 @@ export const register = createAsyncThunk(
   async (newUser, thunkAPI) => {
     try {
       const response = await axios.post('/auth/register', newUser);
-      return response.data.data;
+
+      const loginResponse = await axios.post('/auth/login', {
+        email: newUser.email,
+        password: newUser.password,
+      });
+
+      setAuthHeader(loginResponse.data.data.accessToken);
+
+      return loginResponse.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

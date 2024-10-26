@@ -1,6 +1,6 @@
 import { Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import {
   loginFormValidationSchema,
@@ -13,7 +13,6 @@ import css from './AuthForm.module.css';
 const AuthForm = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleSubmit = async (values, actions) => {
     const { email, password } = values;
@@ -24,10 +23,6 @@ const AuthForm = () => {
         response = await dispatch(login({ email, password })).unwrap();
       } else if (pathname === '/signup') {
         response = await dispatch(register({ email, password })).unwrap();
-      }
-
-      if (response && response.redirectUrl) {
-        navigate(response.redirectUrl);
       }
 
       actions.resetForm();
