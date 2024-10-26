@@ -1,5 +1,6 @@
 import { Formik, Form } from 'formik';
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Gender from './GenderMark/Gender';
@@ -13,44 +14,33 @@ import ModalWrapper from '../ModalWrapper/ModalWrapper';
 
 const SettingModal = ({ isOpen, handleClose }) => {
   const user = useSelector(selectUser);
+  console.log(user);
+  const dispatch = useDispatch();
   const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
-  // const [photo, setPhoto] = useState(undefined);
+
   const initialValues = {
     email: user.email || '',
     name: user.name || '',
-    gender: user.gender,
-    photo: user.avatar || '',
+    gender: user.gender || '',
     outdatedPassword: '',
     password: '',
     repeatPassword: '',
   };
 
-  const dispatch = useDispatch();
-
   const handleAvatarChange = e => {
     setIsSubmitBlocked(true);
     const file = e.target.files[0];
-    console.log(file);
-    const formData = new FormData();
-    formData.append('photo', file);
-    // for (let [key, value] of formData.entries()) {
-    //   console.log(key, value);
-    // }
 
-    dispatch(updatePhoto(formData)).then(() => {
-      setIsSubmitBlocked(false);
-    });
+    if (file) {
+      const formData = new FormData();
+      formData.append('photo', file);
+
+      dispatch(updatePhoto(formData)).then(() => {
+        toast.success('You updated your avatar!');
+        setIsSubmitBlocked(false);
+      });
+    }
   };
-
-  // const handleAvatarChange = e => {
-  //   setIsSubmitBlocked(true);
-  //   setTimeout(() => {
-  //     setIsSubmitBlocked(false);
-  //   }, 3000);
-  //   const file = e.target.files[0];
-  //   setPhoto(file);
-  //   console.log(file);
-  // };
 
   const onSubmit = values => {
     let userInfo = {
@@ -68,8 +58,9 @@ const SettingModal = ({ isOpen, handleClose }) => {
       delete userInfo.name;
     }
 
-    console.log('User Info Object:', userInfo);
-    dispatch(updateUserData(userInfo));
+    dispatch(updateUserData(userInfo)).then(() => {
+      toast.success('You updated your data!');
+    });
   };
 
   return (

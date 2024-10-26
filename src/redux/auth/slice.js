@@ -121,7 +121,7 @@ const authSlice = createSlice({
         state.error = false;
       })
       .addCase(updatePhoto.fulfilled, (state, action) => {
-        state.user = { ...state.user, ...action.payload };
+        state.user.photo = action.payload;
         state.loading = false;
         state.error = false;
       })
