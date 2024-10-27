@@ -32,19 +32,26 @@ const ModalForm = ({ onClose }) => {
   }, [gender, mass, time]);
 
   const handleSubmit = (values, actions) => {
+    const willDrinkInMilliliters = parseFloat(values.willDrink) * 1000;
+    const waterRate =
+      willDrinkInMilliliters > 0 ? willDrinkInMilliliters : milliliters;
+
     const updatedValues = {
-      waterRate: milliliters,
+      waterRate,
     };
+
     dispatch(updateWaterRate(updatedValues))
       .unwrap()
       .then(() => {
         toast.success('Water rate has been updated successfully!');
+        onClose();
       })
       .catch(error => {
         toast.error(`${error}`);
+      })
+      .finally(() => {
+        actions.resetForm();
       });
-    onClose();
-    actions.resetForm();
   };
 
   const validationSchema = Yup.object({
