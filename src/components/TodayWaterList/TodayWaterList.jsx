@@ -1,18 +1,17 @@
+import clsx from 'clsx';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import css from './TodayWaterList.module.css';
 import { getTodayWaterData } from '../../redux/waterTracker/operations';
 import {
-  selectTodayData,
-  selectWaterIsLoading,
+  selectTodayData
 } from '../../redux/waterTracker/selectors';
 import TodayWaterListItem from '../TodayWaterListItem/TodayWaterListItem';
 
 const TodayWaterList = ({ setModal, setAddModal, setEditingItem }) => {
   const dispatch = useDispatch();
   const todayData = useSelector(selectTodayData) || [];
-  const isLoading = useSelector(selectWaterIsLoading);
 
   const getCurrentDate = () => {
     const now = new Date();
@@ -57,12 +56,9 @@ const TodayWaterList = ({ setModal, setAddModal, setEditingItem }) => {
     : [];
 
   return (
-    <div className={css.container}>
+    <div className={clsx(selectTodayData.length > 0 ? css.container : css.noNotesBox)}>
       <h2 className={css.title}>Today</h2>
-      {isLoading ? (
-        <span className={css.loader}>Loading</span>
-      ) : (
-        <ul className={css.addWaterBox}>
+      <ul className={css.addWaterBox}>
           {sortedTodayData.length > 0 ? (
             sortedTodayData.map(item => (
               <li key={item._id}>
@@ -73,10 +69,9 @@ const TodayWaterList = ({ setModal, setAddModal, setEditingItem }) => {
               </li>
             ))
           ) : (
-            <li>No notes yet</li>
+            <li className={css.noNotes}>No notes yet</li>
           )}
         </ul>
-      )}
       <button onClick={openAddModal} className={css.button} type="button">
         + Add water
       </button>
