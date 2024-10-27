@@ -83,6 +83,7 @@ const TodayListModal = ({
         const time = `${String(hour).padStart(2, '0')}:${String(
           minute
         ).padStart(2, '0')}`;
+        // if()
         chooseTime.push(
           <option key={time} value={time}>
             {time}
@@ -148,12 +149,12 @@ const TodayListModal = ({
             </h2>
 
             {!isAddModal && editingItem && (
-              <div className={css.previouWaterInfoWrapper}>
-                <div className={css.previouWaterInfoBox}>
+              <div className={css.prevWaterInfoWrapper}>
+                <div className={css.prevWaterInfoBox}>
                   <svg height={36} width={36}>
                     <use href="./home-page/icons.svg#icon-glass"></use>
                   </svg>
-                  <div className={css.previuosWaterInfo}>
+                  <div className={css.prevWaterInfo}>
                     <p className={css.previousWaterInfoAmount}>
                       {editingItem.value}ml
                     </p>
@@ -195,7 +196,7 @@ const TodayListModal = ({
               </div>
             </div>
 
-            <div className={css.recordingtimeBox}>
+            <div className={css.recordingTimeBox}>
               <label
                 className={css.recordingTimeLabel}
                 htmlFor={idForTimerField}
