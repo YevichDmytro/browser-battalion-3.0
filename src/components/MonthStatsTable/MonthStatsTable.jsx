@@ -156,7 +156,9 @@ const MonthStatsTable = () => {
                   >
                     <span>{index + 1}</span>
                   </div>
-                  <p className={css.percentage}>{dayData.goalPercentage}%</p>
+                  <p className={css.percentage}>
+                    {dayData.goalPercentage || 0}%
+                  </p>
                 </li>
               ))}
             </ul>

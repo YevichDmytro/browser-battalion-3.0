@@ -11,7 +11,7 @@ const initialState = {
   formattedMonth: null,
   monthData: [],
   todayData: {},
-  todayGoal: null,
+  todayGoal: 0,
   error: null,
   loading: false,
   monthLoading: false,
