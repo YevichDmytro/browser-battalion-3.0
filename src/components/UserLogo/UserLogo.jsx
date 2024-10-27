@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import css from './UserLogo.module.css';
@@ -12,6 +12,7 @@ const UserLogo = () => {
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [isLogoutVisible, setIsLogoutVisible] = useState(false);
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
+  const [displayName, setDisplayName] = useState('');
 
   const user = useSelector(selectUser);
   const { name, email, photo } = user;
@@ -42,10 +43,27 @@ const UserLogo = () => {
     setIsSettingsVisible(false);
   };
 
+  useEffect(() => {
+    const updateDisplayName = () => {
+      if (window.innerWidth <= 768) {
+        setDisplayName(
+          userName.length > 5 ? `${userName.slice(0, 5)}...` : userName
+        );
+      } else {
+        setDisplayName(userName);
+      }
+    };
+
+    updateDisplayName();
+
+    window.addEventListener('resize', updateDisplayName);
+    return () => window.removeEventListener('resize', updateDisplayName);
+  }, [userName]);
+
   return (
     <div className={css.container}>
       <button className={css.user} onClick={handleToggleMenu}>
-        <p className={css.userName}>{userName}</p>
+        <p className={css.userName}>{displayName}</p>
         <div className={css.userPhotoContainer}>
           {isUserPhoto ? (
             <img src={photo} alt={name} className={css.userImg} />
