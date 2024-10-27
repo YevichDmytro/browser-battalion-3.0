@@ -3,6 +3,9 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 
   .sizeBox {
     display: flex;
@@ -45,7 +48,7 @@
       gap: 81px;
       flex-direction: row;
       align-items: end;
-      padding: 31px 192px 185px 198px;
+      /* padding: 31px 192px 185px 198px; */
     }
   }
   .container {
