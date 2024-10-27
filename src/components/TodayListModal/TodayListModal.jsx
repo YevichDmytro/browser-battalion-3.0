@@ -106,6 +106,12 @@ const TodayListModal = ({
 
   const handleSubmit = (values, actions) => {
     const { time, value } = values;
+
+    if (value === 0) {
+      toast.error("Water amount should be more than 0");
+      return;
+    }
+
     const fullDateTime = `${currentDate} ${time}:00`;
 
     if (isAddModal) {
