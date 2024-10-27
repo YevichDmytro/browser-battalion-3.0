@@ -45,7 +45,7 @@
 
 .iconArrow {
   fill: var(--primary-blue);
-  transition: transform var(--transition);
+  transition: transform 0.2s var(--transition);
 }
 
 .iconArrowActive {

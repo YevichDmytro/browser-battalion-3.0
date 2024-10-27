@@ -1,11 +1,14 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useRef } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import PrivateRoute from '../../components/Routing/PrivateRoute';
 import PublicRoute from '../../components/Routing/PublicRoute';
-import { refreshUser } from '../../redux/auth/operations.js';
+import {
+  refreshUser,
+  setupAxiosInterceptors,
+} from '../../redux/auth/operations.js';
 import {
   selectIsRefreshing,
   selectLoading,
@@ -25,19 +28,31 @@ const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
   const isLoading = useSelector(selectLoading);
+  const hasMounted = useRef(false);
 
   useEffect(() => {
     dispatch(refreshUser());
+
+    if (!hasMounted.current) {
+      dispatch(refreshUser());
+      setupAxiosInterceptors(dispatch);
+      hasMounted.current = true;
+    }
   }, [dispatch]);
+
   return (
     <>
-      <Toaster toastOptions={{
-        success: {
-        iconTheme: {
-            primary: '#407bff'
-      },
-    },
-  }} position="top-center" reverseOrder={false} />
+      <Toaster
+        toastOptions={{
+          success: {
+            iconTheme: {
+              primary: '#407bff',
+            },
+          },
+        }}
+        position="top-center"
+        reverseOrder={false}
+      />
       {(isRefreshing || isLoading) && <Loader />}
       <Suspense>
         <Routes>

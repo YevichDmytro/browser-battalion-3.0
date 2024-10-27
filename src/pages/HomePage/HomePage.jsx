@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -8,23 +9,28 @@ import TodayListModal from '../../components/TodayListModal/TodayListModal';
 import TodayWaterList from '../../components/TodayWaterList/TodayWaterList';
 import Container from '../../components/ui/Container/Container';
 import WaterRatioPanel from '../../components/WaterRatioPanel/WaterRatioPanel';
-import { selectTodayData } from '../../redux/waterTracker/selectors';
-import classNames from 'classnames';
+import { selectWaterIsLoading } from '../../redux/waterTracker/selectors';
 
 const HomePage = () => {
+  const isListLoading = useSelector(selectWaterIsLoading);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddModal, setIsAddModal] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
-  const todayData = useSelector(selectTodayData);
 
   return (
     <div className={css.wrapper}>
       <Container className={css.homepage}>
-        <div className={css.col}>
+        <div className={classNames(css.col, css.leftCol)}>
           <DailyNorma />
           <WaterRatioPanel />
         </div>
         <div className={classNames(css.col, css.rightCol)}>
+          {isListLoading && (
+            <div className={css.loader}>
+              <h2 className={css.animate}>Loading</h2>
+            </div>
+          )}
           <TodayWaterList
             setModal={setIsModalOpen}
             setAddModal={setIsAddModal}

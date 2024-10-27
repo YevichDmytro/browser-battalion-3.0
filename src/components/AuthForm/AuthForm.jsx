@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 
 import css from './AuthForm.module.css';
+import { login, register } from '../../redux/auth/operations';
 import {
   loginFormValidationSchema,
   registerFormValidationSchema,
-} from '../../../utils/userInfoValidationSchema';
-import { login, register } from '../../redux/auth/operations';
+} from '../../utils/userInfoValidationSchema.js';
 import AuthFormInput from '../AuthFormInput/AuthFormInput';
 
 const AuthForm = () => {

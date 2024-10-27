@@ -1,10 +1,36 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
-axios.defaults.baseURL = 'https://browser-battalion-3-0-backend.onrender.com';
+import getCurrentMonth from '../../utils/getCurrentMonth';
+import { getMonthWaterData } from '../waterTracker/operations';
+
+axios.defaults.baseURL =
+  'https://browser-battalion-3-0-backend-kyxl.onrender.com';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+let hasShownToast = false;
+
+export const setupAxiosInterceptors = dispatch => {
+  axios.interceptors.response.use(
+    response => response,
+    error => {
+      if (error.response && error.response.status === 401) {
+        if (!hasShownToast) {
+          toast.error('Session has expired! Please log in again.');
+          hasShownToast = true;
+        }
+        dispatch(logout());
+        setAuthHeader('');
+      } else {
+        hasShownToast = false;
+      }
+      return Promise.reject(error);
+    }
+  );
 };
 
 export const register = createAsyncThunk(
@@ -49,7 +75,6 @@ export const refreshUser = createAsyncThunk(
 
     try {
       const response = await axios.get('/user/userById');
-
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -68,6 +93,19 @@ export const updateUserData = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const response = await axios.patch('/user/update', userData, {});
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateWaterRate = createAsyncThunk(
+  'users/updateWaterRate',
+  async (data, thunkAPI) => {
+    try {
+      const response = await axios.patch('/user/waterRate', data, {});
+      thunkAPI.dispatch(getMonthWaterData(getCurrentMonth()));
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -7,6 +7,7 @@ import {
   refreshUser,
   updateUserData,
   updatePhoto,
+  updateWaterRate,
 } from './operations';
 
 const authInitialState = {
@@ -114,6 +115,16 @@ const authSlice = createSlice({
       })
       .addCase(updateUserData.rejected, state => {
         state.loading = false;
+        state.error = true;
+      })
+      .addCase(updateWaterRate.pending, state => {
+        state.error = false;
+      })
+      .addCase(updateWaterRate.fulfilled, (state, action) => {
+        state.user.waterRate = action.payload.waterRate;
+        state.error = false;
+      })
+      .addCase(updateWaterRate.rejected, state => {
         state.error = true;
       })
       .addCase(updatePhoto.pending, state => {

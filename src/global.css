@@ -40,7 +40,7 @@
   --font-weight-bold: 700;
 
   /* ---------transition-------- */
-  --transition: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: cubic-bezier(0.4, 0, 0.2, 1);
 
   background-color: var(--primary-white);
 }
@@ -49,9 +49,9 @@
   display: none;
 }
 
-html {
+/* html {
   scrollbar-width: none;
-}
+} */
 
 html,
 body {

@@ -1,73 +1,77 @@
 .background {
-  background-image: url(../../../public/welcome-page/mob/MainPageBG.png);
-  background-size: cover;
-  background-position: bottom;
+  background-image: url(/welcome-page/mob/MainPageBG.png);
+  background-size: contain;
+  background-position: center;
   background-repeat: no-repeat;
-  padding: 24px 20px 40px;
-}
 
-.sizeBox {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  margin: 0 auto;
-}
-
-@media screen and (min-resolution: 192dpi) and (max-width: 767px),
-  screen and (min-resolution: 2dppx) and (max-width: 767px),
-  screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
-  .image {
-    background-image: url(../../../public/welcome-page/mob/MainPageBG@2x.png);
+  .sizeBox {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin: 0 auto;
   }
+}
+
+.container {
+  padding: 24px 20px 40px;
 }
 
 @media screen and (min-width: 768px) {
   .background {
-    background-image: url(../../../public/welcome-page/tab/MainPageBG.png);
+    background-image: url(/welcome-page/tab/MainPageBG.png);
+    background-size: contain;
     padding: 40px 32px 50px;
-  }
 
-  @media screen and (min-resolution: 192dpi) and (min-width: 768px),
-    screen and (min-resolution: 2dppx) and (min-width: 768px),
-    screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
-    .image {
-      background-image: url(../../../public/welcome-page/tab/MainPageBG@2x.png);
+    .sizeBox {
+      max-width: 768px;
+      gap: 60px;
     }
-  }
-
-  .sizeBox {
-    max-width: 768px;
-    gap: 60px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .background {
-    background-image: url(../../../public/welcome-page/desk/MainPageBG.png);
+    background-image: url(/welcome-page/desk/MainPageBG.png);
     background-size: contain;
     background-position: bottom;
-    padding: 41px 32px 109px;
-    height: 93.5vh;
+    /* height: 93.5vh; */
     max-width: 100%;
     margin: 0;
-  }
 
-  @media screen and (min-resolution: 192dpi) and (min-width: 1440px),
-    screen and (min-resolution: 2dppx) and (min-width: 1440px),
-    screen and (min-device-pixel-ratio: 2) and (min-width: 1440px) {
-    .image {
-      background-image: url(../../../public/welcome-page/desk/MainPageBG@2x.png),
-        url(../../../public/welcome-page/desk/MainPageBubbleBG@2x.png);
+    .sizeBox {
+      background-image: url(/welcome-page/desk/MainPageBubbleBG.png);
+      background-position: bottom right;
+      max-width: max-content;
+      gap: 81px;
+      flex-direction: row;
+      align-items: end;
+      padding: 31px 192px 185px 198px;
+    }
+  }
+  .container {
+    padding: 41px 32px 109px;
+  }
+}
+
+@media screen and (min-resolution: 192dpi),
+  screen and (min-resolution: 2dppx),
+  screen and (min-device-pixel-ratio: 2) {
+  @media (max-width: 767px) {
+    .background {
+      background-image: url(/welcome-page/mob/MainPageBG@2x.png);
     }
   }
 
-  .sizeBox {
-    background-image: url(../../../public/welcome-page/desk/MainPageBubbleBG.png);
-    background-position: bottom right;
-    max-width: max-content;
-    gap: 81px;
-    flex-direction: row;
-    align-items: end;
-    padding: 31px 192px 185px 198px;
+  @media (min-width: 768px) {
+    .background {
+      background-image: url(/welcome-page/tab/MainPageBG@2x.png);
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .background {
+      background-image: url(/welcome-page/desk/MainPageBG@2x.png),
+        url(/welcome-page/desk/MainPageBubbleBG@2x.png);
+    }
   }
 }

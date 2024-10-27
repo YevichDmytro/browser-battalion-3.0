@@ -11,6 +11,7 @@ const initialState = {
   formattedMonth: null,
   monthData: [],
   todayData: {},
+  todayGoal: 0,
   error: null,
   loading: false,
   monthLoading: false,
@@ -50,7 +51,8 @@ const waterSlice = createSlice({
         state.error = false;
       })
       .addCase(getTodayWaterData.fulfilled, (state, action) => {
-        state.todayData = action.payload;
+        state.todayData = action.payload.records;
+        state.todayGoal = action.payload.percentageOfGoal;
         state.loading = false;
         state.error = null;
       })

@@ -9,7 +9,7 @@
   right: 0;
   z-index: 300;
 
-  transition: opacity var(--transition);
+  transition: opacity 0.2s var(--transition);
 
   visibility: hidden;
   pointer-events: none;
@@ -33,7 +33,7 @@
   align-items: center;
   gap: 8px;
 
-  transition: opacity var(--transition);
+  transition: opacity 0.2s var(--transition);
 
   &:hover {
     opacity: 0.5;

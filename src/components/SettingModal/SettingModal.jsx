@@ -7,9 +7,9 @@ import Gender from './GenderMark/Gender';
 import Input from './Input/Input';
 import Photo from './Photo/Photo';
 import css from './SettingModal.module.css';
-import { userInfoValidationSchema } from '../../../utils/userInfoValidationSchema';
 import { updatePhoto, updateUserData } from '../../redux/auth/operations';
 import { selectUser } from '../../redux/auth/selectors';
+import { userInfoValidationSchema } from '../../utils/userInfoValidationSchema.js';
 import ModalWrapper from '../ModalWrapper/ModalWrapper';
 
 const SettingModal = ({ isOpen, handleClose }) => {
@@ -37,13 +37,14 @@ const SettingModal = ({ isOpen, handleClose }) => {
       formData.append('photo', file);
 
       dispatch(updatePhoto(formData))
-        .then(() => {
+        .then(res => {
+          if (res?.error?.message) return toast.error('Something went wrong!');
           toast.success('You updated your avatar!');
           setIsSubmitBlocked(false);
         })
         .catch(() => {
           setIsSubmitBlocked(false);
-          toast.success('Something went wrong!');
+          toast.error('Something went wrong!');
         });
     }
   };
@@ -56,6 +57,10 @@ const SettingModal = ({ isOpen, handleClose }) => {
       outdatedPassword: values.outdatedPassword,
       password: values.password,
     };
+
+    if (userInfo.password !== values.repeatPassword) {
+      return toast.error('Passwords do not match!');
+    }
 
     if (userInfo.password === '') {
       delete userInfo.password;
@@ -70,8 +75,10 @@ const SettingModal = ({ isOpen, handleClose }) => {
     }
 
     dispatch(updateUserData(userInfo))
-      .then(() => {
+      .then(res => {
+        if (res?.error?.message) return toast.error('Something went wrong!');
         toast.success('You updated your data!');
+        handleClose();
       })
       .catch(() => {
         toast.error('Something went wrong!');
