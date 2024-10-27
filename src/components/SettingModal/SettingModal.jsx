@@ -56,6 +56,10 @@ const SettingModal = ({ isOpen, handleClose }) => {
       password: values.password,
     };
 
+    if (userInfo.password !== values.repeatPassword) {
+      return toast.error('Passwords do not match!');
+    }
+
     if (userInfo.password === '') {
       delete userInfo.password;
     }

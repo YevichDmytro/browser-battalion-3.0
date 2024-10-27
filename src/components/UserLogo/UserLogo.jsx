@@ -24,10 +24,6 @@ const UserLogo = () => {
     setMenuVisible(!isMenuVisible);
   };
 
-  // const handleCloseMenu = () => {
-  //   setMenuVisible(false);
-  // };
-
   const handleLogoutClick = () => {
     setMenuVisible(false);
     setIsLogoutVisible(true);

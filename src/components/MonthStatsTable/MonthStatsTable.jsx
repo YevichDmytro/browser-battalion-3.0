@@ -53,7 +53,7 @@ const MonthStatsTable = () => {
     let resultPosition;
 
     if (window.innerWidth < 768) {
-      resultPosition = (containerRect.width - modalWidth) / 2 + 15;
+      resultPosition = (containerRect.width - modalWidth) / 2 + 5;
     } else if (window.innerWidth >= 768 && window.innerWidth < 1440) {
       resultPosition =
         liRect.left - containerRect.left + liRect.width / 2 - modalWidth / 2;

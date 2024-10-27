@@ -50,7 +50,7 @@
 }
 
 .btn {
-  transition: transform var(--transition), opacity var(--transition);
+  transition: transform 0.2s var(--transition), opacity 0.2s var(--transition);
 
   &:disabled {
     opacity: 0.3;

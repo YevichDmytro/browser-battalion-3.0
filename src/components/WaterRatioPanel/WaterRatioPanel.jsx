@@ -1,35 +1,16 @@
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 import css from './WaterRatioPanel.module.css';
-import { selectTodayData } from '../../redux/waterTracker/selectors';
 import TodayListModal from '../TodayListModal/TodayListModal';
 import WaterProgress from '../WaterProgress/WaterProgress';
 
 const WaterRatioPanel = () => {
-  const todayData = useSelector(selectTodayData);
-
   const [isModalOpen, setModalOpen] = useState(false);
   const [isAddModal, setIsAddModal] = useState(true);
   const [editingItem, setEditingItem] = useState(null);
-  const [currentWater, setCurrentWater] = useState(0);
   const openAddModal = () => {
     setIsAddModal(true);
     setModalOpen(true);
-  };
-  let waterGoal = 2000;
-  useEffect(() => {
-    if (Array.isArray(todayData)) {
-      const totalWater = todayData.reduce(
-        (total, item) => total + item.value,
-        0
-      );
-      setCurrentWater(totalWater);
-    }
-  }, [todayData]);
-
-  const handleAddWater = addedValue => {
-    setCurrentWater(prev => prev + addedValue);
   };
 
   const closeModal = () => {
@@ -41,7 +22,7 @@ const WaterRatioPanel = () => {
     <div className={css.waterPanel}>
       <div className={css.waterProgressBar}>
         <h2 className={css.today}>Today</h2>
-        <WaterProgress waterGoal={waterGoal} todayData={currentWater} />
+        <WaterProgress />
       </div>
       <button className={css.btnAddWater} onClick={openAddModal}>
         <svg
@@ -65,7 +46,6 @@ const WaterRatioPanel = () => {
           setIsModalOpen={closeModal}
           isAddModal={isAddModal}
           editingItem={editingItem}
-          onAddWater={handleAddWater}
         />
       )}
     </div>
