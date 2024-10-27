@@ -14,7 +14,9 @@ import ModalWrapper from '../ModalWrapper/ModalWrapper';
 
 const SettingModal = ({ isOpen, handleClose }) => {
   const user = useSelector(selectUser);
+
   const dispatch = useDispatch();
+
   const [isSubmitBlocked, setIsSubmitBlocked] = useState(false);
 
   const initialValues = {

@@ -16,6 +16,7 @@ const TodayWaterListItem = ({ openEditModal, item: { _id, dateTime, value } }) =
             })
             .catch((error) => {
                 console.error('Failed to delete water item:', error);
+                toast.error('Failed to delete water item');
             });
     };
 
