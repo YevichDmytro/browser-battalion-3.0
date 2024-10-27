@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { forwardRef } from 'react';
 
-import css from '../DaysGeneralStats/DaysGeneralStats.module.css';
+import css from './DaysGeneralStats.module.css';
 
 const DaysGeneralStats = forwardRef(({ dayData, className, style }, ref) => {
   return (

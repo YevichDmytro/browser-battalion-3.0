@@ -1,28 +1,32 @@
 import { Form, Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 
 import css from './ModalForm.module.css';
 import { updateWaterRate } from '../../../redux/auth/operations';
+import { selectUser } from '../../../redux/auth/selectors';
 import ModalInput from '../ModalInput/ModalInput';
 import ModalInputsRadio from '../ModalInputsRadio/ModalInputsRadio';
 
 const ModalForm = ({ onClose }) => {
   const dispatch = useDispatch();
+  const { waterRate, gender: userGender } = useSelector(selectUser);
 
   const [milliliters, setMilliliters] = useState('0');
-  const [gender, setGender] = useState('woman');
+  const [gender, setGender] = useState('female');
   const [mass, setMass] = useState('0');
   const [time, setTime] = useState('0');
+
+  const dailyNormaInLiters = waterRate ? waterRate / 1000 : 0;
 
   useEffect(() => {
     const numericMass = parseFloat(mass) || 0;
     const numericTime = parseFloat(time) || 0;
 
     let volume;
-    if (gender === 'man') {
+    if (gender === 'male') {
       volume = (numericMass * 0.04 + numericTime * 0.6) * 1000;
     } else {
       volume = (numericMass * 0.03 + numericTime * 0.4) * 1000;
@@ -56,17 +60,17 @@ const ModalForm = ({ onClose }) => {
 
   const validationSchema = Yup.object({
     mass: Yup.string()
-      .matches(/^[0-9]+$/, 'Must be only digits')
+      .matches(/^\d+(\.\d+)?$/, 'Must be a valid number')
       .required('Required')
       .min(1, 'Too short')
       .max(10, 'Too long'),
     time: Yup.string()
-      .matches(/^[0-9]+$/, 'Must be only digits')
+      .matches(/^\d+(\.\d+)?$/, 'Must be a valid number')
       .required('Required')
       .min(1, 'Too short')
       .max(10, 'Too long'),
     willDrink: Yup.string()
-      .matches(/^[0-9]+$/, 'Must be only digits')
+      .matches(/^\d+(\.\d+)?$/, 'Must be a valid number')
       .min(1, 'Too short')
       .max(10, 'Too long'),
   });
@@ -74,10 +78,10 @@ const ModalForm = ({ onClose }) => {
   return (
     <Formik
       initialValues={{
-        gender: 'woman',
+        gender: userGender,
         mass: '0',
         time: '0',
-        willDrink: '0',
+        willDrink: dailyNormaInLiters.toString(),
       }}
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
