@@ -1,15 +1,21 @@
 .modal {
-  max-width: 300px;
+  position: absolute;
+  min-width: 290px;
   width: 100%;
   height: auto;
   background: white;
   border: 1px solid #ccc;
-  z-index: 10;
+  z-index: 300;
   background-color: white;
   border-radius: 10px;
   padding: 24px 13px;
   box-shadow: 0 4px 4px 0 rgba(64, 123, 255, 0.3);
   overflow: hidden;
+  transform: translate(0, -50%);
+
+  @media screen and (min-width: 1440px) {
+    transform: translate(-50%, -50%);
+  }
 }
 
 .modalList {

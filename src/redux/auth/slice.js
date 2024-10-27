@@ -7,11 +7,12 @@ import {
   refreshUser,
   updateUserData,
   updatePhoto,
+  updateWaterRate,
 } from './operations';
 
 const authInitialState = {
   user: {
-    userName: null,
+    name: null,
     email: null,
     gender: null,
     waterRate: null,
@@ -65,7 +66,7 @@ const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, state => {
         state.user = {
-          userName: null,
+          name: null,
           email: null,
           gender: null,
           waterRate: null,
@@ -78,7 +79,7 @@ const authSlice = createSlice({
       })
       .addCase(logout.rejected, state => {
         state.user = {
-          userName: null,
+          name: null,
           email: null,
           gender: null,
           waterRate: null,
@@ -114,6 +115,16 @@ const authSlice = createSlice({
       })
       .addCase(updateUserData.rejected, state => {
         state.loading = false;
+        state.error = true;
+      })
+      .addCase(updateWaterRate.pending, state => {
+        state.error = false;
+      })
+      .addCase(updateWaterRate.fulfilled, (state, action) => {
+        state.user.waterRate = action.payload.waterRate;
+        state.error = false;
+      })
+      .addCase(updateWaterRate.rejected, state => {
         state.error = true;
       })
       .addCase(updatePhoto.pending, state => {

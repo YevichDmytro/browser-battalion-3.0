@@ -5,14 +5,16 @@ import WhyDrinkWater from '../../components/WhyDrinkWater/WhyDrinkWater';
 
 const WelcomePage = () => {
   return (
-    <Container className={css.background}>
-      <div>
-        <div className={css.sizeBox}>
-          <WaterConsumptionTracker />
-          <WhyDrinkWater />
+    <section className={css.background}>
+      <Container className={css.container}>
+        <div>
+          <div className={css.sizeBox}>
+            <WaterConsumptionTracker />
+            <WhyDrinkWater />
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </section>
   );
 };
 

@@ -1,7 +1,9 @@
 .wrapper {
-  background-image: url(./images/mobile-homescreen-bg-bubbles-1x.webp);
+  max-width: 1440px;
+  margin: 0 auto;
+  background-image: url(/images/mobile-homescreen-bg-bubbles-1x.webp);
   background-size: cover;
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
   padding-top: 24px;
   padding-bottom: 40px;
@@ -17,6 +19,7 @@
 }
 
 .rightCol {
+  position: relative;
   background-color: var(--secondary-2);
   padding: 24px 8px;
   border-radius: 10px;
@@ -27,21 +30,64 @@
   gap: 24px;
 
   @media screen and (min-width: 768px) {
-    padding: 24px 32px;
+    padding: 32px 24px;
   }
+}
+
+.leftCol {
+  @media screen and (min-width: 1440px) {
+    padding-top: 30px;
+  }
+}
+
+.loader {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(15px);
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes load {
+  0% {
+    opacity: 0.08;
+    filter: blur(5px);
+    letter-spacing: 3px;
+  }
+  100% {
+  }
+}
+
+.animate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: auto;
+  animation: load 0.5s infinite 0s ease-in-out;
+  animation-direction: alternate;
+  color: var(--primary-blue);
+  text-shadow: 0 0 1px var(--primary-blue);
+  font-size: 30px;
 }
 
 @media screen and (min-resolution: 192dpi) and (max-width: 767px),
   screen and (min-resolution: 2dppx) and (max-width: 767px),
   screen and (min-device-pixel-ratio: 2) and (max-width: 767px) {
   .wrapper {
-    background-image: url(./images/mobile-homescreen-bg-bubbles-2x.webp);
+    background-image: url(/images/mobile-homescreen-bg-bubbles-2x.webp);
   }
 }
 
 @media screen and (min-width: 768px) {
   .wrapper {
-    background-image: url(./images/tablet-homescreen-bg-bubbles-1x.webp);
+    background-image: url(/images/tablet-homescreen-bg-bubbles-1x.webp);
     background-position: center 20px;
   }
 
@@ -49,7 +95,7 @@
     screen and (min-resolution: 2dppx) and (min-width: 768px),
     screen and (min-device-pixel-ratio: 2) and (min-width: 768px) {
     .wrapper {
-      background-image: url(./images/tablet-homescreen-bg-bubbles-2x.webp);
+      background-image: url(/images/tablet-homescreen-bg-bubbles-2x.webp);
     }
   }
 }
@@ -57,7 +103,8 @@
 @media screen and (min-width: 1440px) {
   .wrapper {
     padding-top: 20px;
-    background-image: url(./images/desktop-mainpage-bg-bubbles-1x.webp);
+    max-height: 800px;
+    background-image: url(/images/desktop-mainpage-bg-bubbles-1x.webp);
   }
   .homepage {
     flex-direction: row;
@@ -74,7 +121,7 @@
     screen and (min-resolution: 2dppx) and (min-width: 1440px),
     screen and (min-device-pixel-ratio: 2) and (min-width: 1440px) {
     .wrapper {
-      background-image: url(./images/desktop-mainpage-bg-bubbles-2x.webp);
+      background-image: url(/images/desktop-mainpage-bg-bubbles-2x.webp);
     }
   }
 }

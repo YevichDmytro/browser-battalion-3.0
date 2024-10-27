@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import Modal from 'react-modal';
 
 import css from './ModalWrapper.module.css';
@@ -6,13 +6,28 @@ import css from './ModalWrapper.module.css';
 Modal.setAppElement('#root');
 
 const ModalWrapper = ({ isOpen, onClose, children }) => {
+  const handleEscapeKey = useCallback(
+    event => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    },
+    [onClose]
+  );
+
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
+    if (isOpen) {
+      document.documentElement.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleEscapeKey);
+    } else {
+      document.documentElement.style.overflow = '';
+    }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = '';
+      window.removeEventListener('keydown', handleEscapeKey);
     };
-  }, [isOpen]);
+  }, [isOpen, onClose, handleEscapeKey]);
 
   return (
     <Modal
