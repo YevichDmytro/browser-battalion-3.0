@@ -22,6 +22,8 @@ const authInitialState = {
   isAuthenticated: false,
   isRefreshing: false,
   loading: false,
+  userLoading: false,
+  photoLoading: false,
   error: null,
 };
 
@@ -36,6 +38,8 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.user = { ...state.user, ...action.payload.user };
+        state.token = action.payload.accessToken;
+        state.isAuthenticated = true;
         state.loading = false;
         state.error = false;
       })
@@ -104,40 +108,43 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(updateUserData.pending, state => {
-        state.loading = true;
+        state.userLoading = true;
         state.error = false;
       })
       .addCase(updateUserData.fulfilled, (state, action) => {
         state.user = { ...state.user, ...action.payload };
         state.isAuthenticated = true;
-        state.loading = false;
+        state.userLoading = false;
         state.error = false;
       })
       .addCase(updateUserData.rejected, state => {
-        state.loading = false;
+        state.userLoading = false;
         state.error = true;
       })
       .addCase(updateWaterRate.pending, state => {
+        state.userLoading = true;
         state.error = false;
       })
       .addCase(updateWaterRate.fulfilled, (state, action) => {
         state.user.waterRate = action.payload.waterRate;
+        state.userLoading = false;
         state.error = false;
       })
       .addCase(updateWaterRate.rejected, state => {
+        state.userLoading = false;
         state.error = true;
       })
       .addCase(updatePhoto.pending, state => {
-        state.loading = true;
+        state.photoLoading = true;
         state.error = false;
       })
       .addCase(updatePhoto.fulfilled, (state, action) => {
         state.user.photo = action.payload;
-        state.loading = false;
+        state.photoLoading = false;
         state.error = false;
       })
       .addCase(updatePhoto.rejected, state => {
-        state.loading = false;
+        state.photoLoading = false;
         state.error = true;
       }),
 });

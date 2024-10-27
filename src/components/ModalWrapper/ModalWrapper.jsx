@@ -1,11 +1,17 @@
 import { useCallback, useEffect } from 'react';
 import Modal from 'react-modal';
+import { useSelector } from 'react-redux';
 
 import css from './ModalWrapper.module.css';
+import { selectUserLoading } from '../../redux/auth/selectors';
+import { selectWaterIsLoading } from '../../redux/waterTracker/selectors';
 
 Modal.setAppElement('#root');
 
 const ModalWrapper = ({ isOpen, onClose, children }) => {
+  const isUserLoading = useSelector(selectUserLoading);
+  const isWaterLoading = useSelector(selectWaterIsLoading);
+
   const handleEscapeKey = useCallback(
     event => {
       if (event.key === 'Escape') {
@@ -37,6 +43,11 @@ const ModalWrapper = ({ isOpen, onClose, children }) => {
       className={css.defaultModal}
       overlayClassName={css.defaultOverlay}
     >
+      {(isUserLoading || isWaterLoading) && (
+        <div className={css.loader}>
+          <div className={css.clockLoader}></div>
+        </div>
+      )}
       <div className={css.modalContent}>
         <button className={css.closeButton} onClick={onClose}>
           <svg width="16" height="16" className={css.iconClose}>

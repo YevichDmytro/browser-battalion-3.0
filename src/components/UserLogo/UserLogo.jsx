@@ -45,7 +45,7 @@ const UserLogo = () => {
 
   useEffect(() => {
     const updateDisplayName = () => {
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth < 768) {
         setDisplayName(
           userName.length > 5 ? `${userName.slice(0, 5)}...` : userName
         );
