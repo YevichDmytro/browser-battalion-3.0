@@ -3,9 +3,11 @@ import { useId } from 'react';
 import { useSelector } from 'react-redux';
 
 import styles from './Photo.module.css';
-import { selectUser } from '../../../redux/auth/selectors';
+import { selectPhotoLoading, selectUser } from '../../../redux/auth/selectors';
 
 const Photo = ({ isSubmitBlocked, handleAvatarChange }) => {
+  const isLoading = useSelector(selectPhotoLoading);
+
   const { name, email, photo } = useSelector(selectUser);
   const fileInputId = useId();
   const defaultAvatar = './SettingModalIcon/User-avatar.svg.png';
@@ -17,7 +19,11 @@ const Photo = ({ isSubmitBlocked, handleAvatarChange }) => {
     <div className={styles.photoContainer}>
       <h3 className={styles.photoSubtitle}>Your Photo</h3>
       <div className={styles.photoWrapper}>
-        {photo ? (
+        {isLoading ? (
+          <div className={styles.userImgAlternative}>
+            <span className={styles.photoLoading}></span>
+          </div>
+        ) : photo ? (
           <img
             className={styles.photoAvatar}
             src={currentAvatar}
