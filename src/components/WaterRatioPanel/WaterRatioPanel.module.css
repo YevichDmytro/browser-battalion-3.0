@@ -18,22 +18,23 @@
   border-radius: 10px;
   width: 280px;
   height: 36px;
-  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-  background: #407bff;
+  box-shadow: var(--box-shadow-darkblue);
+  background: var(--primary-blue);
   text-align: center;
-  color: #fff;
+  color: var(--primary-white);
   font-size: 16px;
 }
 .today {
   font-size: 18px;
   line-height: 1.33333;
   text-align: start;
-  color: #407bff;
+  color: var(--primary-white);
 }
 .svg {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+  stroke: var(--primary-white);
 }
 @media screen and (min-width: 767px) {
   .waterPanel {

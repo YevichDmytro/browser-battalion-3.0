@@ -36,9 +36,9 @@
 .saveButton {
   width: 100%;
   padding: 8px 30px;
-  background-color: #407bff;
-  color: #ffffff;
-  box-shadow: 0px 4px 8px 0px #407bff57;
+  background-color: var(--primary-blue);
+  color: var(--primary-white);
+  box-shadow: var(--box-shadow-darkblue);
   line-height: 1.25;
   text-align: center;
   border-radius: 10px;

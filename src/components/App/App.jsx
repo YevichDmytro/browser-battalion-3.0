@@ -44,6 +44,11 @@ const App = () => {
     <>
       <Toaster
         toastOptions={{
+          style: {
+            background: 'var(--primary-white)',
+            color: 'var(--primary-black)',
+            boxShadow: 'var(--box-shadow-blue)',
+          },
           success: {
             iconTheme: {
               primary: '#407bff',

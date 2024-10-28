@@ -8,7 +8,7 @@
 
 .errNumber {
   font-size: 54px;
-  color: red;
+  color: var(--secondary-3);
 }
 
 .errMessage {

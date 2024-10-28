@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #407bff;
+  --primary-color: var(--primary-blue);
   --disabled-color: dimgrey;
   --avatar-size: 80px;
 }
@@ -44,7 +44,7 @@
 .uploadLabel {
   font-size: 14px;
   font-weight: 500;
-  color: var(--primary-color);
+  color: var(--primary-blue);
   cursor: pointer;
   transition: color 0.3s ease;
   justify-content: center;
@@ -84,7 +84,7 @@
 }
 
 .photoLoading {
-  color: #fff;
+  color: var(--primary-white);
   font-size: 8px;
   width: 10px;
   height: 10px;

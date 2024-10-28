@@ -3,13 +3,12 @@
   min-width: 290px;
   width: 100%;
   height: auto;
-  background: white;
-  border: 1px solid #ccc;
+  background: var(--primary-white);
   z-index: 300;
-  background-color: white;
+  background-color: var(--primary-white);
   border-radius: 10px;
   padding: 24px 13px;
-  box-shadow: 0 4px 4px 0 rgba(64, 123, 255, 0.3);
+  box-shadow: var(--box-shadow-darkblue);
   overflow: hidden;
   transform: translate(0, -50%);
 
@@ -22,7 +21,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 1.25;
-  color: #2f2f2f;
+  color: var(--primary-black);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -34,7 +33,7 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 1.33333;
-  color: #407bff;
+  color: var(--primary-blue);
 }
 
 @media screen and (min-width: 768px) {

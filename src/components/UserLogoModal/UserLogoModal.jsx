@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 
 import css from './UserLogoModal.module.css';
+import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher';
 
 const UserLogoModal = ({ onLogoutClose, onSettingsClose, isVisible }) => {
   return (
@@ -21,6 +22,9 @@ const UserLogoModal = ({ onLogoutClose, onSettingsClose, isVisible }) => {
             </svg>
             <p className={css.text}>Log out</p>
           </button>
+        </li>
+        <li className={css.item}>
+          <ThemeSwitcher />
         </li>
       </ul>
     </div>

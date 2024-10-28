@@ -43,14 +43,14 @@
   padding: 8px 0;
   width: 100%;
 
-  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  box-shadow: var(--box-shadow-darkblue);
   background: var(--primary-blue);
   transition: box-shadow 0.3s ease;
 }
 
 .button:hover,
 .button:focus {
-  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+  box-shadow: var(--box-shadow-blue);
 }
 
 .button:active {
@@ -60,7 +60,8 @@
 @media screen and (min-width: 768px) {
   .button {
     display: block;
-    width: auto;
+    max-width: 160px;
+    width: 100%;
     padding: 10px 30px;
     margin-left: auto;
     font-size: 18px;
