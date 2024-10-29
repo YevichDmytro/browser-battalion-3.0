@@ -9,11 +9,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--primary-blue);
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 16px;
+  color: #2f2f2f;
+  border: 1px solid #2f2f2f;
+  border-radius: 10px;
+  padding: 8px 16px;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -86,6 +85,12 @@
     font-size: 18px;
     line-height: 1.33;
     padding: 10px 0;
+  }
+
+  .googleButton {
+    font-size: 18px;
+    line-height: 1.33;
+    padding: 10px 16px;
   }
 }
 

@@ -49,7 +49,6 @@ const AuthForm = () => {
     setLoadingGoogle(true);
     try {
       const response = await getOAuthUrl();
-      console.log('Google OAuth URL:', response.data.data.url);
       window.open(response.data.data.url, '_self');
     } catch (error) {
       console.error('Error fetching Google auth URL:', error.message);
@@ -68,24 +67,22 @@ const AuthForm = () => {
   };
 
   const getGoogleButtonText = () => {
-    return pathname === '/signin' ? 'Sign in with Google' : 'Sign up with Google';
+    return pathname === '/signin' ? 'Sign In with Google' : 'Sign Up with Google';
   };
 
   useEffect(() => {
     const code = searchParams.get('code');
-    console.log('OAuth Code:', code);
 
     if (code) {
       const handleOAuthConfirmation = async () => {
         try {
-          const response = await dispatch(googleAuth(code));
-          console.log(response.data.data);
+          const response = await dispatch(googleAuth(code)).unwrap();
           console.log('OAuth confirmation response:', response);
 
-          if (response.data.data) {
-            localStorage.setItem('accessToken', response.data.data.accessToken);
-            localStorage.setItem('refreshToken', response.data.data.refreshToken);
-            window.location.href = 'https://browser-battalion-3-0-dev-git-staging-yevichdmytros-projects.vercel.app/home';
+          if (response.data) {
+            localStorage.setItem('accessToken', response.data.accessToken);
+            localStorage.setItem('refreshToken', response.data.refreshToken);
+            window.location.href = 'https://browser-battalion-3-0-dev-git-staging-yevichdmytros-projects.vercel.app'
           } else {
             console.error('No data received from confirmation response');
           }
@@ -137,7 +134,7 @@ const AuthForm = () => {
             </button>
             <button
               type="button"
-              className={`${css.button} ${css.googleButton}`}
+              className={css.googleButton}
               onClick={handleGoogleAuth}
               disabled={loadingGoogle}
             >
