@@ -33,6 +33,10 @@ ul {
   gap: 8px;
 }
 
+.listItemSvg {
+  stroke: var(--primary-blue);
+}
+
 .titleBox {
   display: flex;
   flex-direction: column;
@@ -98,7 +102,6 @@ ul {
   .listItemSvg {
     height: 40px;
     width: 40px;
-    stroke: var(--primary-blue);
   }
 
   .trackerButton {
