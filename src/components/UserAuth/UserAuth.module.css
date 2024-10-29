@@ -19,6 +19,6 @@
 }
 
 .iconUser {
-  stroke: black;
+  stroke: var(--primary-black);
   fill: none;
 }

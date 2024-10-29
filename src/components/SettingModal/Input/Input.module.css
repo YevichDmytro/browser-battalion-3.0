@@ -22,10 +22,10 @@
   height: 44px;
   padding: 12px 10px;
   padding-right: 30px;
-  border: 1px solid #d7e3ff;
+  border: 1px solid var(--secondary-lightblue);
   border-radius: 6px;
   background-color: transparent;
-  color: #9ebbff;
+  color: var(--secondary-4);
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
@@ -37,23 +37,23 @@
 }
 
 .input:focus {
-  color: #407bff;
+  color: var(--primary-blue);
 }
 
 .input:active {
-  color: #407bff;
+  color: var(--primary-blue);
 }
 
 .input::placeholder {
-  color: #9ebbff;
+  color: var(--secondary-4);
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
 }
 
 .errorInput {
-  color: #ef5050;
-  border-color: #ef5050;
+  color: var(--secondary-3);
+  border-color: var(--secondary-3);
 }
 
 .errorInput::placeholder {
@@ -66,7 +66,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 1.3;
-  color: #ef5050;
+  color: var(--secondary-3);
 }
 
 @media screen and (min-width: 768px) {
@@ -83,7 +83,7 @@
   height: 16px;
   border: none;
   background-color: transparent;
-  color: #407bff;
+  color: var(--primary-blue);
   cursor: pointer;
   position: absolute;
 }

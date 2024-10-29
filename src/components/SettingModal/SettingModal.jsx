@@ -11,6 +11,7 @@ import { updatePhoto, updateUserData } from '../../redux/auth/operations';
 import { selectUser } from '../../redux/auth/selectors';
 import { userInfoValidationSchema } from '../../utils/userInfoValidationSchema.js';
 import ModalWrapper from '../ModalWrapper/ModalWrapper';
+import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher.jsx';
 
 const SettingModal = ({ isOpen, handleClose }) => {
   const user = useSelector(selectUser);

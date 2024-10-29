@@ -33,6 +33,10 @@
   --secondary-orange: #ff9d43;
   --secondary-lightblue: #d7e3ff;
 
+  --box-shadow-blue: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+  --box-shadow-darkblue: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  --box-shadow-norma: 0 4px 8px 0 rgba(158, 187, 255, 0.12);
+
   /* ---------fonts-------- */
   --font-family: 'Roboto', sans-serif;
   --font-weight-regular: 400;
@@ -43,6 +47,25 @@
   --transition: cubic-bezier(0.4, 0, 0.2, 1);
 
   background-color: var(--primary-white);
+  color: var(--primary-black);
+
+  transition: background-color 0.2s var(--transition),
+    color 0.2s var(--transition);
+}
+
+[data-theme='dark'] {
+  --primary-white: #1c1d26;
+  --primary-black: #d5dff5;
+  --primary-blue: #5082f2;
+  --secondary-2: #1f2438;
+  --secondary-3: #f16161;
+  --secondary-4: #2f3875;
+  --secondary-orange: #ffa756;
+  --secondary-lightblue: #2a3052;
+
+  --box-shadow-blue: 0 4px 14px 0 rgba(0, 0, 0, 0.54);
+  --box-shadow-darkblue: 0 4px 8px 0 rgba(0, 0, 0, 0.34);
+  --box-shadow-norma: 0 4px 14px 0 rgba(0, 0, 0, 0.2);
 }
 
 ::-webkit-scrollbar {

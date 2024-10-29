@@ -2,7 +2,7 @@
   background-color: var(--primary-white);
   padding: 16px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.2);
+  box-shadow: var(--box-shadow-norma);
   margin-top: 10px;
   position: absolute;
   top: 100%;

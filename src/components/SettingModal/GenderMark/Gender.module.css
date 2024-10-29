@@ -21,7 +21,7 @@
   align-items: center;
   font-size: 16px;
   font-weight: 400;
-  color: #000000; /* Чёрный цвет */
+  color: var(--primary-black);
   cursor: pointer;
   position: relative;
   margin-right: 20px;
@@ -34,17 +34,17 @@
 .radioMark {
   width: 14px;
   height: 14px;
-  border: 1px solid #007bff; /* Синий цвет */
+  border: 1px solid var(--primary-blue);
   border-radius: 50%;
   position: relative;
   margin-right: 8px;
 }
 
 .radioInput:checked + .radioMark::after {
-  content: "";
+  content: '';
   width: 6px;
   height: 6px;
-  background-color: #007bff; /* Синий цвет при выборе */
+  background-color: var(--primary-blue); /* Синий цвет при выборе */
   border-radius: 50%;
   position: absolute;
   top: 50%;

@@ -38,7 +38,6 @@
   font-weight: var(--font-weight-medium);
   font-size: 26px;
   line-height: 1.23;
-  color: black;
 }
 
 .closeBtn {
@@ -52,7 +51,7 @@
 }
 
 .closeIcon {
-  fill: blue;
+  fill: var(--primary-blue);
 }
 
 .text {
@@ -60,7 +59,6 @@
   font-weight: var(--font-weight-medium);
   font-size: 18px;
   line-height: 1.1;
-  color: black;
 }
 
 .wrapButtons {
@@ -85,12 +83,12 @@
 
 .logoutBtn {
   color: var(--primary-white);
-  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  box-shadow: var(--box-shadow-darkblue);
   background-color: var(--secondary-3);
   transition: box-shadow 0.2s var(--transition);
 
   &:hover {
-    box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+    box-shadow: var(--box-shadow-blue);
   }
   &:active {
     box-shadow: none;
@@ -103,7 +101,7 @@
   transition: box-shadow 0.2s var(--transition);
 
   &:hover {
-    box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+    box-shadow: var(--box-shadow-blue);
   }
   &:active {
     box-shadow: none;

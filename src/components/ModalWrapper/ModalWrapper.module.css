@@ -15,7 +15,7 @@
   position: relative;
   border-radius: 10px;
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: var(--primary-white);
   max-height: 95%;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -79,7 +79,7 @@
 }
 
 .clockLoader {
-  --clock-color: var(--primary-color);
+  --clock-color: var(--primary-blue);
   --clock-width: 4rem;
   --clock-radius: calc(var(--clock-width) / 2);
   --clock-minute-length: calc(var(--clock-width) * 0.4);
