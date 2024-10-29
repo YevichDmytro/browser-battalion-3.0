@@ -8,6 +8,16 @@
   justify-content: space-between;
 }
 
+.rightContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  @media screen and (min-width: 768px) {
+    gap: 30px;
+  }
+}
+
 .menuBtn {
   padding: 0;
   margin: 0;

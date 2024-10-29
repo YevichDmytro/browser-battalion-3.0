@@ -32,7 +32,7 @@ const WaterConsumptionTracker = () => {
             <svg className={css.listItemSvg} height={32} width={32}>
               <use href="./welcome-page/icons.svg#icon-statistic"></use>
             </svg>
-            Viev statistics
+            View statistics
           </li>
           <li className={css.listItem}>
             <svg className={css.listItemSvg} height={32} width={32}>
@@ -49,7 +49,7 @@ const WaterConsumptionTracker = () => {
         variant="link"
         href="/signup"
       >
-        Try tracker 
+        Try tracker
       </Button>
     </div>
   );

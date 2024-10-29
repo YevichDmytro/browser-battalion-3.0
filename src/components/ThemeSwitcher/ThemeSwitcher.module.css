@@ -12,7 +12,7 @@
 
 .checkboxLabel {
   background-color: var(--primary-black);
-  width: 50px;
+  width: 60px;
   height: 26px;
   border-radius: 50px;
   position: relative;
@@ -22,12 +22,11 @@
   justify-content: space-between;
   align-items: center;
   transition: background-color 0.3s ease;
-  width: 100%;
 }
 
 .icon {
   font-style: normal;
-  font-size: 14px; /* Розмір іконок */
+  font-size: 14px;
 }
 
 .moon {
@@ -50,9 +49,5 @@
 }
 
 .checkbox:checked + .checkboxLabel .ball {
-  transform: translateX(290%);
-
-  @media screen and (min-width: 768px) {
-    transform: translateX(325%);
-  }
+  transform: translateX(34px);
 }
