@@ -5,6 +5,32 @@
   max-width: 336px;
 }
 
+.googleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-blue);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 8px;
+}
+
+.googleButton:hover {
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+}
+
+.googleButton svg {
+  width: 20px;
+  height: 20px;
+}
+
 .title {
   font-family: var(--font-family);
   font-weight: 500;
