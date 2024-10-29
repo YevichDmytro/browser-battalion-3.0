@@ -1,92 +1,87 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    padding: 0px 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 8px;
 }
 
 .operationContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 12px 0px;
-    border-bottom: 1px solid lightblue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 12px 0px;
+  border-bottom: 1px solid var(--secondary-lightblue);
 }
 
 .amountInfoContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
 }
 
 .amountInfo {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-    color: #407BFF;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--primary-blue);
 }
 
 .timeInfo {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 12px;
-    color: black;
-
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
 }
 
 .iconsContainer {
-    display: flex;
-    flex-direction: row;
-    gap: 18px;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  align-items: center;
 }
 
 .iconsButton {
-    width: max-content;
-    padding: 0;
-    background-color: #ECF2FF;
-    background-color: transparent;
-    width: 16px;
-    height: 16px;
+  width: max-content;
+  padding: 0;
+  background-color: var(--secondary-2);
+  background-color: transparent;
+  width: 16px;
+  height: 16px;
 }
 
 .iconsButton:hover,
 .iconsButton:focus {
-
-    background-color: #ECF2FF;
+  background-color: var(--secondary-2);
 }
 
 .notebook {
-    fill: transparent;
-    stroke: #9EBBFF;
-    width: 16px;
-    height: 16px;
-    padding-bottom: 1px;
-
+  fill: transparent;
+  stroke: var(--secondary-4);
+  width: 16px;
+  height: 16px;
+  padding-bottom: 1px;
 }
 
 .notebook:hover {
-    color: #9EBBFF;
-    border-bottom: 1px solid #9EBBFF;
+  color: var(--secondary-4);
+  border-bottom: 1px solid var(--secondary-4);
 }
 
 .trashbox {
-    fill: transparent;
-    stroke: #EF5050;
-    width: 16px;
-    height: 16px;
-    padding-bottom: 1px;
-
+  fill: transparent;
+  stroke: var(--secondary-3);
+  width: 16px;
+  height: 16px;
+  padding-bottom: 1px;
 }
 
 .trashbox:hover {
-    color: #EF5050;
-    border-bottom: 1px solid #EF5050;
+  color: var(--secondary-3);
+  border-bottom: 1px solid var(--secondary-3);
 }
 
 @media screen and (max-width: 767px) {
-    .iconWaterGlass {
-        width: 26px;
-        height: 26px;
-    }
+  .iconWaterGlass {
+    width: 26px;
+    height: 26px;
+  }
 }

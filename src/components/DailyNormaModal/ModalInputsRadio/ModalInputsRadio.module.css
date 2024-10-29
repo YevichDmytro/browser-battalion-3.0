@@ -22,3 +22,28 @@
   cursor: pointer;
   padding-left: 8px;
 }
+
+input[type='radio'] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--primary-blue);
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+}
+
+input[type='radio']:checked::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--primary-blue);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

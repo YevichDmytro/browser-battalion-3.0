@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import DaysGeneralStats from './DaysGeneralStats/DaysGeneralStats';
 import css from './MonthStatsTable.module.css';
 import { getMonthWaterData } from '../../redux/waterTracker/operations';
 import {
@@ -11,6 +10,7 @@ import {
   selectWaterIsMonthLoading,
 } from '../../redux/waterTracker/selectors';
 import getCurrentMonth from '../../utils/getCurrentMonth.js';
+import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats.jsx';
 
 const MonthStatsTable = () => {
   const dispatch = useDispatch();

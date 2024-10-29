@@ -19,16 +19,17 @@ const TodayListModal = ({
   editingItem,
 }) => {
   const [value, setValue] = useState(0);
-  const [isTimeSelectOpen, setIsTimeSelectOpen] = useState(false);
   const idForTimerField = useId();
   const idForValueField = useId();
   const dispatch = useDispatch();
+
   const getCurrentTimeRounded = () => {
     const now = new Date();
-    const minutes = Math.ceil(now.getMinutes() / 5) * 5;
+    const minutes = Math.floor(now.getMinutes() / 5) * 5;
     now.setMinutes(minutes);
     return now.toTimeString().slice(0, 5);
   };
+
   const getCurrentDate = () => {
     const now = new Date();
     const year = now.getFullYear();
@@ -78,11 +79,21 @@ const TodayListModal = ({
 
   const timerOptions = () => {
     const chooseTime = [];
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+
     for (let hour = 0; hour < 24; hour++) {
       for (let minute = 0; minute < 60; minute += 5) {
         const time = `${String(hour).padStart(2, '0')}:${String(
           minute
         ).padStart(2, '0')}`;
+        if (
+          hour > currentHour ||
+          (hour === currentHour && minute > currentMinute)
+        ) {
+          return chooseTime;
+        }
         chooseTime.push(
           <option key={time} value={time}>
             {time}
@@ -95,6 +106,12 @@ const TodayListModal = ({
 
   const handleSubmit = (values, actions) => {
     const { time, value } = values;
+
+    if (value === 0) {
+      toast.error("Water amount should be more than 0");
+      return;
+    }
+
     const fullDateTime = `${currentDate} ${time}:00`;
 
     if (isAddModal) {
@@ -148,12 +165,12 @@ const TodayListModal = ({
             </h2>
 
             {!isAddModal && editingItem && (
-              <div className={css.previouWaterInfoWrapper}>
-                <div className={css.previouWaterInfoBox}>
+              <div className={css.prevWaterInfoWrapper}>
+                <div className={css.prevWaterInfoBox}>
                   <svg height={36} width={36}>
                     <use href="./home-page/icons.svg#icon-glass"></use>
                   </svg>
-                  <div className={css.previuosWaterInfo}>
+                  <div className={css.prevWaterInfo}>
                     <p className={css.previousWaterInfoAmount}>
                       {editingItem.value}ml
                     </p>
@@ -195,38 +212,26 @@ const TodayListModal = ({
               </div>
             </div>
 
-            <div className={css.recordingtimeBox}>
+            <div className={css.recordingTimeBox}>
               <label
                 className={css.recordingTimeLabel}
                 htmlFor={idForTimerField}
               >
                 Recording time:
               </label>
-              {isTimeSelectOpen ? (
-                <Field
-                  className={css.input}
-                  as="select"
-                  name="time"
-                  id={idForTimerField}
-                  onBlur={() => setIsTimeSelectOpen(false)}
-                  onChange={e => {
-                    const selectedTime = e.target.value;
-                    setFieldValue('time', selectedTime);
-                    setCurrentTime(selectedTime);
-                  }}
-                >
-                  <option className={css} value="" />
-                  {timerOptions()}
-                </Field>
-              ) : (
-                <Field
-                  className={css.input}
-                  type="text"
-                  readOnly
-                  value={currentTime}
-                  onClick={() => setIsTimeSelectOpen(true)}
-                />
-              )}
+              <Field
+                className={css.input}
+                as="select"
+                name="time"
+                id={idForTimerField}
+                onChange={e => {
+                  const selectedTime = e.target.value;
+                  setFieldValue('time', selectedTime);
+                  setCurrentTime(selectedTime);
+                }}
+              >
+                {timerOptions()}
+              </Field>
             </div>
 
             <div className={css.enterTheValueBox}>

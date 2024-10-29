@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 232px;
+  width: 100%;
+}
+
+.titleBox {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 232px;
+}
+
+.mainTitle {
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.5;
+}
+
+.secondaryTitle {
+  max-width: 207px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.buttonBox {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  padding: 8px 30px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--primary-white);
+}
+
+.delete {
+  background-color: var(--secondary-3);
+  box-shadow: var(--box-shadow-darkblue);
+}
+
+.cancel {
+  background-color: var(--secondary-lightblue);
+  color: var(--primary-blue);
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 544px;
+  }
+
+  .titleBox {
+    width: 544px;
+  }
+
+  .secondaryTitle {
+    max-width: max-content;
+  }
+
+  .buttonBox {
+    flex-direction: row-reverse;
+    max-width: 544px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .button {
+    padding: 10px 30px;
+    max-width: 160px;
+    width: 100%;
+  }
+}

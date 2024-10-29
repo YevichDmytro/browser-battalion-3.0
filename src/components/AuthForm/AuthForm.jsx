@@ -1,4 +1,5 @@
 import { Form, Formik } from 'formik';
+import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 
@@ -19,9 +20,23 @@ const AuthForm = () => {
 
     try {
       if (pathname === '/signin') {
-        await dispatch(login({ email, password }));
+        await dispatch(login({ email, password }))
+          .unwrap()
+          .then(() => {
+            toast.success('Authentication successful!');
+          })
+          .catch(error => {
+            toast.error(`Authentication failed, please try again!`);
+          });
       } else if (pathname === '/signup') {
-        await dispatch(register({ email, password }));
+        await dispatch(register({ email, password }))
+          .unwrap()
+          .then(() => {
+            toast.success('Registration successful!');
+          })
+          .catch(error => {
+            toast.error(`Registration failed, please try again!`);
+          });
       }
 
       actions.resetForm();

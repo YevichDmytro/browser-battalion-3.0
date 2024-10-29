@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
 
   font-weight: 400;
   font-size: 16px;
@@ -19,6 +20,6 @@
 }
 
 .iconUser {
-  stroke: black;
+  stroke: var(--primary-black);
   fill: none;
 }

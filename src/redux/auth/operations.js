@@ -3,7 +3,10 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 import getCurrentMonth from '../../utils/getCurrentMonth';
-import { getMonthWaterData } from '../waterTracker/operations';
+import {
+  getMonthWaterData,
+  getTodayWaterData,
+} from '../waterTracker/operations';
 
 axios.defaults.baseURL =
   'https://browser-battalion-3-0-backend-kyxl.onrender.com';
@@ -38,6 +41,7 @@ export const register = createAsyncThunk(
   async (newUser, thunkAPI) => {
     try {
       const response = await axios.post('/auth/register', newUser);
+      setAuthHeader(response.data.data.accessToken);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -77,8 +81,6 @@ export const refreshUser = createAsyncThunk(
       const response = await axios.get('/user/userById');
       return response.data.data;
     } catch (error) {
-      console.log(error);
-
       return thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -108,6 +110,7 @@ export const updateWaterRate = createAsyncThunk(
     try {
       const response = await axios.patch('/user/waterRate', data, {});
       thunkAPI.dispatch(getMonthWaterData(getCurrentMonth()));
+      thunkAPI.dispatch(getTodayWaterData());
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

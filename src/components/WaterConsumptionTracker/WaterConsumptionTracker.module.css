@@ -1,108 +1,117 @@
-h1,h2,h3,h4,h5,h6 {
-    margin: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
 }
 
 ul {
-    margin: 0;
+  margin: 0;
 }
 
 .justForCheck {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0 auto;
 }
 
 .list {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    gap: 16px;
-    padding: 0;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 16px;
+  padding: 0;
 }
 
 .listItem {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.listItemSvg {
+  stroke: var(--primary-blue);
 }
 
 .titleBox {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 280px;
 }
 
 .mainTitle {
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -0.03em;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 
 .titleDescription {
-    font-size: 24px;
-    font-weight: 400;
-    letter-spacing: -0.03em;
-    max-width: 197px;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  max-width: 197px;
 }
 
 .benefitsTitle {
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: -0.03em;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
 }
 
 .benefitsBox {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .trackerButton {
-    border: transparent;
-    padding: 8px 30px;
+  border: transparent;
+  padding: 8px 30px;
 }
 
 @media screen and (min-width: 768px) {
-    .titleDescription {
-        max-width: max-content;
-    }
-    .list {
-        flex-direction: row;
-    }
+  .titleDescription {
+    max-width: max-content;
+  }
+  .list {
+    flex-direction: row;
+  }
 
-    .listItem {
-        min-width: 224px;
-    }
+  .listItem {
+    min-width: 224px;
+  }
 
-    .titleBox {
-        max-width: 439px;
-    }
+  .titleBox {
+    max-width: 439px;
+  }
 
-    .mainTitle {
-        font-size: 36px;
-        line-height: 1.3;
-    }
+  .mainTitle {
+    font-size: 36px;
+    line-height: 1.3;
+  }
 
-    .titleDescription {
-        font-size: 26px;
-    }
+  .titleDescription {
+    font-size: 26px;
+  }
 
-    .listItemSvg {
-        height: 40px;
-        width: 40px;
-    }
+  .listItemSvg {
+    height: 40px;
+    width: 40px;
+  }
 
-    .trackerButton {
-        max-width: 336px;
-        padding: 10px 30px;
-    }
+  .trackerButton {
+    max-width: 336px;
+    padding: 10px 30px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
-    .list {
-        flex-direction: column;
-    }
+  .list {
+    flex-direction: column;
+  }
 }

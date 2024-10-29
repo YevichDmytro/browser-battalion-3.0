@@ -36,7 +36,7 @@
 
 .button {
   background-color: transparent;
-  color: #407bff;
+  color: var(--primary-blue);
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   width: max-content;
@@ -48,7 +48,7 @@
 .button:focus {
   border: 1px solid transparent;
   background-color: transparent;
-  color: #ff9d43;
+  color: var(--secondary-orange);
 }
 
 @media screen and (min-width: 768px) {
