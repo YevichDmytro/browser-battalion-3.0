@@ -8,7 +8,6 @@ import {
   updateUserData,
   updatePhoto,
   updateWaterRate,
-  googleAuth,
 } from './operations';
 
 const authInitialState = {
@@ -146,22 +145,6 @@ const authSlice = createSlice({
       })
       .addCase(updatePhoto.rejected, state => {
         state.photoLoading = false;
-        state.error = true;
-      })
-      .addCase(googleAuth.pending, state => {
-        state.loading = true;
-        state.error = false;
-      })
-      .addCase(googleAuth.fulfilled, (state, action) => {
-        state.user = { ...state.user, ...action.payload.user };
-        state.token = action.payload.accessToken;
-        state.isAuthenticated = true;
-        state.loading = false;
-        state.error = false;
-      })
-      .addCase(googleAuth.rejected, state => {
-        state.isAuthenticated = false;
-        state.loading = false;
         state.error = true;
       }),
 });
