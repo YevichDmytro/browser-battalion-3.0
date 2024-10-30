@@ -5,8 +5,16 @@ import { useDispatch } from 'react-redux';
 import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
 
 import css from './AuthForm.module.css';
-import { login, register, getOAuthUrl, googleAuth } from '../../redux/auth/operations';
-import { loginFormValidationSchema, registerFormValidationSchema } from '../../utils/userInfoValidationSchema';
+import {
+  login,
+  register,
+  getOAuthUrl,
+  googleAuth,
+} from '../../redux/auth/operations';
+import {
+  loginFormValidationSchema,
+  registerFormValidationSchema,
+} from '../../utils/userInfoValidationSchema';
 import AuthFormInput from '../AuthFormInput/AuthFormInput';
 
 const AuthForm = () => {
@@ -67,11 +75,14 @@ const AuthForm = () => {
   };
 
   const getGoogleButtonText = () => {
-    return pathname === '/signin' ? 'Sign In with Google' : 'Sign Up with Google';
+    return pathname === '/signin'
+      ? 'Sign In with Google'
+      : 'Sign Up with Google';
   };
 
   useEffect(() => {
     const code = searchParams.get('code');
+    console.log(code);
 
     if (code) {
       const handleOAuthConfirmation = async () => {
@@ -82,7 +93,8 @@ const AuthForm = () => {
           if (response.data) {
             localStorage.setItem('accessToken', response.data.accessToken);
             localStorage.setItem('refreshToken', response.data.refreshToken);
-            window.location.href = 'https://browser-battalion-3-0-dev-git-staging-yevichdmytros-projects.vercel.app'
+            window.location.href =
+              'https://browser-battalion-3-0-dev-git-staging-yevichdmytros-projects.vercel.app';
           } else {
             console.error('No data received from confirmation response');
           }
@@ -139,7 +151,7 @@ const AuthForm = () => {
               disabled={loadingGoogle}
             >
               <svg>
-                <use href='./auth-page/icons.svg#icon-google'></use>
+                <use href="./auth-page/icons.svg#icon-google"></use>
               </svg>
               {loadingGoogle ? 'Loading...' : getGoogleButtonText()}
             </button>
