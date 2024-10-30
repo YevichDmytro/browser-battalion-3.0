@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   addWaterItem,
+  deleteWaterItem,
   getMonthWaterData,
   getTodayWaterData,
   updateWaterItem,
@@ -43,6 +44,18 @@ const waterSlice = createSlice({
         state.error = false;
       })
       .addCase(updateWaterItem.rejected, state => {
+        state.loading = false;
+        state.error = true;
+      })
+      .addCase(deleteWaterItem.pending, state => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(deleteWaterItem.fulfilled, state => {
+        state.loading = false;
+        state.error = false;
+      })
+      .addCase(deleteWaterItem.rejected, state => {
         state.loading = false;
         state.error = true;
       })
