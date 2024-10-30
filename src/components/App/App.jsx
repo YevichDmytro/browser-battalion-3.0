@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
@@ -13,6 +13,7 @@ import {
   selectIsRefreshing,
   selectLoading,
 } from '../../redux/auth/selectors.js';
+import Animation from '../Animation/Animation.jsx';
 import SharedLayout from '../SharedLayout/SharedLayout';
 import Loader from '../ui/Loader/Loader.jsx';
 
@@ -29,6 +30,18 @@ const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
   const isLoading = useSelector(selectLoading);
   const hasMounted = useRef(false);
+
+  const [showWrapper, setShowWrapper] = useState(false);
+  const [showAnimation, setShowAnimation] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowWrapper(true);
+      setShowAnimation(false);
+    }, 3600);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -59,53 +72,58 @@ const App = () => {
         reverseOrder={false}
       />
       {(isRefreshing || isLoading) && <Loader />}
-      <Suspense>
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route
-              index
-              element={
-                <PublicRoute>
-                  <Navigate to="/welcome" />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="welcome"
-              element={
-                <PublicRoute>
-                  <WelcomePage />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="signup"
-              element={
-                <PublicRoute>
-                  <SignupPage />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="signin"
-              element={
-                <PublicRoute>
-                  <SigninPage />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="home"
-              element={
-                <PrivateRoute>
-                  <HomePage />
-                </PrivateRoute>
-              }
-            />
-          </Route>
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Suspense>
+
+      {showAnimation && <Animation />}
+
+      <div className={`wrapper ${showWrapper ? 'show' : ''}`}>
+        <Suspense>
+          <Routes>
+            <Route path="/" element={<SharedLayout />}>
+              <Route
+                index
+                element={
+                  <PublicRoute>
+                    <Navigate to="/welcome" />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="welcome"
+                element={
+                  <PublicRoute>
+                    <WelcomePage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="signup"
+                element={
+                  <PublicRoute>
+                    <SignupPage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="signin"
+                element={
+                  <PublicRoute>
+                    <SigninPage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="home"
+                element={
+                  <PrivateRoute>
+                    <HomePage />
+                  </PrivateRoute>
+                }
+              />
+            </Route>
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+      </div>
     </>
   );
 };
