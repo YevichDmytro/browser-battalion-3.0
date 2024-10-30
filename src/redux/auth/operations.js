@@ -145,7 +145,6 @@ export const googleAuth = createAsyncThunk(
     try {
       const response = await axios.post('/auth/confirm-oauth', { code });
       setAuthHeader(response.data.data.accessToken);
-      console.log('Operations gogoleAuth', response.data.data);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
