@@ -5,6 +5,31 @@
   max-width: 336px;
 }
 
+.googleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2f2f2f;
+  border: 1px solid #2f2f2f;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 8px;
+}
+
+.googleButton:hover {
+  box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
+}
+
+.googleButton svg {
+  width: 20px;
+  height: 20px;
+}
+
 .title {
   font-family: var(--font-family);
   font-weight: 500;
@@ -60,6 +85,12 @@
     font-size: 18px;
     line-height: 1.33;
     padding: 10px 0;
+  }
+
+  .googleButton {
+    font-size: 18px;
+    line-height: 1.33;
+    padding: 10px 16px;
   }
 }
 

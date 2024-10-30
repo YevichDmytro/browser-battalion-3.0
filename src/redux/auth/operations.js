@@ -133,3 +133,21 @@ export const updatePhoto = createAsyncThunk(
     }
   }
 );
+
+export const getOAuthUrl = async () => {
+  const response = await axios.get('/auth/get-oauth-url');
+  return response;
+};
+
+export const googleAuth = createAsyncThunk(
+  'auth/googleAuth',
+  async (code, thunkAPI) => {
+    try {
+      const response = await axios.post('/auth/confirm-oauth', { code });
+      setAuthHeader(response.data.data.accessToken);
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

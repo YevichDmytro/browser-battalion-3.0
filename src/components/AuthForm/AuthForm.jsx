@@ -1,19 +1,19 @@
 import { Form, Formik } from 'formik';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
 
 import css from './AuthForm.module.css';
-import { login, register } from '../../redux/auth/operations';
-import {
-  loginFormValidationSchema,
-  registerFormValidationSchema,
-} from '../../utils/userInfoValidationSchema.js';
+import { login, register, getOAuthUrl, googleAuth } from '../../redux/auth/operations';
+import { loginFormValidationSchema, registerFormValidationSchema } from '../../utils/userInfoValidationSchema';
 import AuthFormInput from '../AuthFormInput/AuthFormInput';
 
 const AuthForm = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const [loadingGoogle, setLoadingGoogle] = useState(false);
+  const [searchParams] = useSearchParams();
 
   const handleSubmit = async (values, actions) => {
     const { email, password } = values;
@@ -45,6 +45,18 @@ const AuthForm = () => {
     }
   };
 
+  const handleGoogleAuth = async () => {
+    setLoadingGoogle(true);
+    try {
+      const response = await getOAuthUrl();
+      window.open(response.data.data.url, '_self');
+    } catch (error) {
+      console.error('Error fetching Google auth URL:', error.message);
+    } finally {
+      setLoadingGoogle(false);
+    }
+  };
+
   const chooseValidationSchema = () => {
     if (pathname === '/signin') return loginFormValidationSchema;
     else if (pathname === '/signup') return registerFormValidationSchema;
@@ -53,6 +65,35 @@ const AuthForm = () => {
   const getAuthPageTitle = () => {
     return pathname === '/signin' ? 'Sign In' : 'Sign Up';
   };
+
+  const getGoogleButtonText = () => {
+    return pathname === '/signin' ? 'Sign In with Google' : 'Sign Up with Google';
+  };
+
+  useEffect(() => {
+    const code = searchParams.get('code');
+
+    if (code) {
+      const handleOAuthConfirmation = async () => {
+        try {
+          const response = await dispatch(googleAuth(code)).unwrap();
+          console.log('OAuth confirmation response:', response);
+
+          if (response.data) {
+            localStorage.setItem('accessToken', response.data.accessToken);
+            localStorage.setItem('refreshToken', response.data.refreshToken);
+            window.location.href = 'https://browser-battalion-3-0-dev-git-staging-yevichdmytros-projects.vercel.app'
+          } else {
+            console.error('No data received from confirmation response');
+          }
+        } catch (error) {
+          console.error('Error during OAuth confirmation:', error.message);
+        }
+      };
+
+      handleOAuthConfirmation();
+    }
+  }, [searchParams, dispatch]);
 
   return (
     <div className={css.container}>
@@ -90,6 +131,17 @@ const AuthForm = () => {
             )}
             <button className={css.button} type="submit">
               {getAuthPageTitle()}
+            </button>
+            <button
+              type="button"
+              className={css.googleButton}
+              onClick={handleGoogleAuth}
+              disabled={loadingGoogle}
+            >
+              <svg>
+                <use href='./auth-page/icons.svg#icon-google'></use>
+              </svg>
+              {loadingGoogle ? 'Loading...' : getGoogleButtonText()}
             </button>
           </Form>
         )}
