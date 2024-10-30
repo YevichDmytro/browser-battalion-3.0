@@ -1,9 +1,25 @@
 .section {
   padding-top: 24px;
-  background-image: url('./auth-page/background-mobil-1x.png');
+  background-image: url('/auth-page/background-mobil-1x.png');
   background-repeat: no-repeat;
   background-position: 0px 45px;
   background-size: 100% auto;
+  flex-grow: 1;
+}
+
+[data-theme='dark'] .section {
+  background-image: url(/darktheme/mobile-background-element-sign-in-1x.png);
+}
+
+@media screen and (min-resolution: 192dpi),
+  screen and (min-resolution: 2dppx),
+  screen and (min-device-pixel-ratio: 2) {
+  .section {
+    background-image: url('/auth-page/background-mobil-2x.png');
+  }
+  [data-theme='dark'] .section {
+    background-image: url(/darktheme/mobile-background-element-sign-in-2x.png);
+  }
 }
 
 .container {
@@ -28,6 +44,21 @@
     background-position: 0 -60px;
   }
 
+  [data-theme='dark'] .section {
+    background-image: url(/darktheme/tablet-background-sign-in-1x.png);
+  }
+
+  @media screen and (min-resolution: 192dpi),
+    screen and (min-resolution: 2dppx),
+    screen and (min-device-pixel-ratio: 2) {
+    .section {
+      background-image: url('/auth-page/background-tabl-2x.png');
+    }
+    [data-theme='dark'] .section {
+      background-image: url(/darktheme/tablet-background-sign-in-2x.png);
+    }
+  }
+
   .container {
     padding: 0 32px;
   }
@@ -44,6 +75,21 @@
     padding-top: 162px;
     background-image: url('/auth-page/background-deskt-1x.png');
     background-position: 0 49px;
+  }
+
+  [data-theme='dark'] .section {
+    background-image: url(/darktheme/desktop-background-element-main-page-1x.png);
+  }
+
+  @media screen and (min-resolution: 192dpi),
+    screen and (min-resolution: 2dppx),
+    screen and (min-device-pixel-ratio: 2) {
+    .section {
+      background-image: url('/auth-page/background-deskt-1x.png');
+    }
+    [data-theme='dark'] .section {
+      background-image: url(/darktheme/desktop-background-element-main-page-2x.png);
+    }
   }
 
   .container {
