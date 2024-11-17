@@ -60,22 +60,18 @@ npm run dev
 - GitHub: [YevichDmytro](https://github.com/YevichDmytro)
 
 ## Contributors
-
-| Name               | GitHub Profile                                      | Role/Contribution           |
-|--------------------|-----------------------------------------------------|-----------------------------|
-| Yevich Dmytro      | [YevichDmytro](https://github.com/YevichDmytro)   | Team Lead                   |
-| Olexandr Veselyi   | [sany0chekk](https://github.com/sany0chekk)        | Scrum Master                |
-| Varu Olenarokalo   | [olenarokalo](https://github.com/olenarokalo)      | Backend Developer           |
-| Viktor Gedz        | [Vikto0004](https://github.com/Vikto0004)          | Frontend Developer          |
+| Name               | GitHub Profile                                        | Role/Contribution           |
+|--------------------|-------------------------------------------------------|-----------------------------|
+| Yevich Dmytro      | [YevichDmytro](https://github.com/YevichDmytro)       | Team Lead                   |
+| Olexandr Veselyi   | [sany0chekk](https://github.com/sany0chekk)           | Scrum Master                |
+| Varu Olenarokalo   | [olenarokalo](https://github.com/olenarokalo)         | Backend Developer           |
+| Viktor Gedz        | [Vikto0004](https://github.com/Vikto0004)             | Frontend Developer          |
 | Vladyslav Kvasha   | [KvashaVladyslav](https://github.com/KvashaVladyslav) | Frontend Developer          |
-| Ihor Nikitin       | [NikitinIhor](https://github.com/NikitinIhor)      | Frontend Developer          |
-| Nataliia           | [Nataliia21a](https://github.com/Nataliia21a)      | Frontend Developer          |
-| Maksym Topolya     | [MaksymTopolya](https://github.com/MaksymTopolya)  | Frontend Developer          |
-| pxntelle           | [pxntelle](https://github.com/pxntelle)            | Frontend Developer          |
-| oko1o              | [oko1o](https://github.com/oko1o)                  | Frontend Developer          |
-
-
-## Show your support
+| Ihor Nikitin       | [NikitinIhor](https://github.com/NikitinIhor)         | Frontend Developer          |
+| Nataliia           | [Nataliia21a](https://github.com/Nataliia21a)         | Frontend Developer          |
+| Maksym Topolya     | [MaksymTopolya](https://github.com/MaksymTopolya)     | Frontend Developer          |
+| pxntelle           | [pxntelle](https://github.com/pxntelle)               | Frontend Developer          |
+| oko1o              | [oko1o](https://github.com/oko1o)                     | Frontend Developer          |
 
 Give a ⭐️ if this project helped you!
 
